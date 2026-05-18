@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>Technical Report</title></head>
+<body>
+<div class="header-bar">
+  <h1>Technical Report</h1>
+  <div class="subtitle">
+    {{ ctx.dataset.filename }} · {{ ctx.task_type | replace("_", " ") | title }} ·
+    Generated {{ generated_at[:10] }}
+  </div>
+</div>
+
+<h2>1. Dataset Overview</h2>
+<table class="kv-table">
+  <tr><td>Filename</td><td>{{ ctx.dataset.filename }}</td></tr>
+  <tr><td>SHA-256 (prefix)</td><td><code>{{ ctx.dataset.sha256 }}</code></td></tr>
+  <tr><td>Rows</td><td>{{ ctx.dataset.row_count | default("-") }}</td></tr>
+  <tr><td>Features</td><td>{{ ctx.dataset.col_count | default("-") }}</td></tr>
+  <tr><td>Target column</td><td>{{ ctx.dataset.target_column | default("-") }}</td></tr>
+  <tr><td>Task type</td><td>{{ ctx.task_type }}</td></tr>
+</table>
+
+{% if ctx.eda_summary %}
+<h2>2. EDA Findings</h2>
+<p>{{ ctx.eda_summary }}</p>
+{% endif %}
+
+{% if ctx.quality_issues %}
+<h3>Quality Issues</h3>
+<table class="data">
+  <tr><th>Feature</th><th>Issue</th><th>Severity</th><th>Recommendation</th></tr>
+  {% for qi in ctx.quality_issues[:20] %}
+  <tr>
+    <td>{{ qi.feature | default("-") }}</td>
+    <td>{{ qi.issue_type | default("-") }}</td>
+    <td>
+      <span class="badge {% if qi.severity=='high' %}badge-warn{% elif qi.severity=='medium' %}badge-mild{% else %}badge-ok{% endif %}">
+        {{ qi.severity | default("low") }}
+      </span>
+    </td>
+    <td>{{ qi.recommendation | default("-") }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+
+<h2>3. Preprocessing Strategy</h2>
+{% if ctx.preprocessing_strategy.columns %}
+<table class="data">
+  <tr><th>Column</th><th>Action</th><th>Impute</th><th>Encode</th><th>Scale</th><th>Reason</th></tr>
+  {% for col, strat in ctx.preprocessing_strategy.columns.items() %}
+  {% if strat.action != "drop" %}
+  <tr>
+    <td><code>{{ col }}</code></td>
+    <td>{{ strat.action }}</td>
+    <td>{{ strat.impute_strategy | default("-") }}</td>
+    <td>{{ strat.encode_strategy | default("-") }}</td>
+    <td>{{ strat.scale_strategy | default("-") }}</td>
+    <td style="font-size:8pt">{{ strat.reason | truncate(80) }}</td>
+  </tr>
+  {% endif %}
+  {% endfor %}
+</table>
+{% endif %}
+
+<h2 class="section-break">4. Model Selection</h2>
+<table class="kv-table">
+  <tr><td>Candidates evaluated</td><td>{{ ctx.model_comparison | length }}</td></tr>
+  <tr><td>Selected model</td><td><strong>{{ ctx.model_name }}</strong></td></tr>
+  <tr><td>Primary metric</td><td>{{ ctx.preprocessing_strategy.task_type | default("-") }}</td></tr>
+</table>
+
+{% if ctx.model_comparison %}
+<h3>Cross-Validation Results (mean ± std · 3 seeds × 5 folds)</h3>
+<table class="data">
+  <tr><th>Model</th><th>CV Score (mean)</th><th>CV Score (std)</th><th>Train Score</th><th>Overfit Gap</th></tr>
+  {% for r in ctx.model_comparison %}
+  <tr>
+    <td>{% if r.model_name == ctx.model_name %}<strong>{{ r.model_name }}</strong>{% else %}{{ r.model_name }}{% endif %}</td>
+    <td>{{ "%.4f"|format(r.mean) }}</td>
+    <td>{{ "%.4f"|format(r.std) }}</td>
+    <td>{{ "%.4f"|format(r.train_mean | default(0)) }}</td>
+    <td>
+      <span class="badge {% if (r.overfit_gap | default(0)) > 0.15 %}badge-warn{% else %}badge-ok{% endif %}">
+        {{ "%.4f"|format(r.overfit_gap | default(0)) }}
+      </span>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+
+{% if ctx.stat_tests %}
+<h3>Statistical Significance Test</h3>
+<table class="kv-table">
+  <tr><td>Test</td><td>{{ ctx.stat_tests.test_name | default("-") }}</td></tr>
+  <tr><td>p-value</td><td>{{ "%.4f"|format(ctx.stat_tests.p_value) if ctx.stat_tests.p_value else "-" }}</td></tr>
+  <tr><td>Interpretation</td><td>{{ ctx.stat_tests.interpretation | default("-") }}</td></tr>
+</table>
+{% endif %}
+
+<h2>5. Final Model Performance</h2>
+<div class="metric-grid">
+  {% for name, val in ctx.final_metrics.items() %}
+  <div class="metric-box">
+    <span class="value">{{ "%.4f"|format(val) }}</span>
+    <span class="label">{{ name | upper }}</span>
+  </div>
+  {% endfor %}
+</div>
+
+{% if ctx.calibration %}
+<h3>Calibration</h3>
+<table class="kv-table">
+  <tr><td>Method</td><td>{{ ctx.calibration.method | default("-") }}</td></tr>
+  <tr><td>Brier score before</td><td>{{ "%.4f"|format(ctx.calibration.brier_before) if ctx.calibration.brier_before else "-" }}</td></tr>
+  <tr><td>Brier score after</td><td>{{ "%.4f"|format(ctx.calibration.brier_after) if ctx.calibration.brier_after else "-" }}</td></tr>
+  <tr><td>ECE before</td><td>{{ "%.4f"|format(ctx.calibration.ece_before) if ctx.calibration.ece_before else "-" }}</td></tr>
+  <tr><td>ECE after</td><td>{{ "%.4f"|format(ctx.calibration.ece_after) if ctx.calibration.ece_after else "-" }}</td></tr>
+  <tr><td>Improvement</td><td>{{ "%.1f"|format(ctx.calibration.improvement_pct) }}%</td></tr>
+</table>
+{% endif %}
+
+{% if ctx.threshold.optimal %}
+<h3>Threshold Optimization</h3>
+<table class="kv-table">
+  <tr><td>Optimal threshold</td><td><strong>{{ "%.3f"|format(ctx.threshold.optimal) }}</strong></td></tr>
+  <tr><td>Cost at default (0.5)</td><td>{{ "%.2f"|format(ctx.threshold.cost_at_default) }}</td></tr>
+  <tr><td>Cost at optimal</td><td>{{ "%.2f"|format(ctx.threshold.cost_at_optimal) }}</td></tr>
+  <tr><td>Improvement</td><td>{{ "%.1f"|format(ctx.threshold.improvement_pct) }}%</td></tr>
+</table>
+{% endif %}
+
+<h2 class="section-break">6. Feature Importance (SHAP)</h2>
+{% if ctx.shap.top_features %}
+<table class="data">
+  <tr><th>Rank</th><th>Feature</th><th>Mean |SHAP|</th></tr>
+  {% for feat in ctx.shap.top_features %}
+  {% set ns = namespace(shap_val=0.0) %}
+  {% if feat in ctx.shap.feature_names %}
+    {% set idx = ctx.shap.feature_names.index(feat) %}
+    {% set ns.shap_val = ctx.shap.mean_abs[idx] if idx < ctx.shap.mean_abs | length else 0.0 %}
+  {% endif %}
+  <tr>
+    <td>{{ loop.index }}</td>
+    <td><code>{{ feat }}</code></td>
+    <td>{{ "%.4f"|format(ns.shap_val) }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% if shap_chart_b64 %}
+<img class="chart" src="data:image/png;base64,{{ shap_chart_b64 }}" alt="SHAP feature importance" />
+{% endif %}
+{% endif %}
+
+{% if ctx.drift and ctx.drift.features %}
+<h2>7. Drift Analysis</h2>
+<div class="callout {% if ctx.drift.overall_severity == 'significant' %}callout-danger{% elif ctx.drift.overall_severity == 'mild' %}callout-warn{% else %}callout-ok{% endif %}">
+  Overall: <strong>{{ ctx.drift.overall_severity | upper }}</strong> ·
+  Aggregate PSI: {{ "%.4f"|format(ctx.drift.aggregate_psi) }} ·
+  Features drifted: {{ ctx.drift.n_features_drifted }}
+  {% if ctx.drift.warning %}<br>{{ ctx.drift.warning }}{% endif %}
+</div>
+<table class="data">
+  <tr><th>Feature</th><th>Type</th><th>PSI</th><th>KS</th><th>Severity</th></tr>
+  {% for f in ctx.drift.features[:15] %}
+  <tr>
+    <td><code>{{ f.feature }}</code></td>
+    <td>{{ f.type }}</td>
+    <td>{{ "%.4f"|format(f.psi) if f.psi else "-" }}</td>
+    <td>{{ "%.3f"|format(f.ks_statistic) if f.ks_statistic else "-" }}</td>
+    <td>
+      <span class="badge {% if f.severity=='significant' %}badge-warn{% elif f.severity=='mild' %}badge-mild{% else %}badge-ok{% endif %}">
+        {{ f.severity }}
+      </span>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+
+{% if ctx.fairness and ctx.fairness.attributes %}
+<h2>8. Fairness Analysis</h2>
+<div class="callout {% if ctx.fairness.overall_severity in ['moderate','severe'] %}callout-warn{% else %}callout{% endif %}">
+  Overall severity: <strong>{{ ctx.fairness.overall_severity | upper }}</strong>
+  {% if ctx.fairness.blocks_deliverables %} · Acknowledged by user{% endif %}
+</div>
+{% for attr in ctx.fairness.attributes %}
+<h3>{{ attr.attribute }}</h3>
+<table class="kv-table">
+  <tr><td>Demographic parity diff</td><td>{{ "%.4f"|format(attr.demographic_parity_diff | default(0)) }}</td></tr>
+  {% if attr.equalized_odds_diff | default(None) %}<tr><td>Equalized odds diff</td><td>{{ "%.4f"|format(attr.equalized_odds_diff) }}</td></tr>{% endif %}
+  <tr><td>Severity</td><td>
+    <span class="badge {% if attr.severity=='severe' %}badge-warn{% elif attr.severity in ['moderate','mild'] %}badge-mild{% else %}badge-ok{% endif %}">
+      {{ attr.severity }}
+    </span>
+  </td></tr>
+</table>
+{% endfor %}
+{% endif %}
+
+<h2 class="section-break">9. Reproducibility</h2>
+<table class="kv-table">
+  <tr><td>Run ID</td><td><code>{{ ctx.run_id }}</code></td></tr>
+  <tr><td>Seeds</td><td>{{ ctx.seeds }}</td></tr>
+  <tr><td>Models used</td><td>{{ ctx.claude_models_used }}</td></tr>
+</table>
+
+{% if ctx.library_versions %}
+<h3>Library Versions</h3>
+<table class="kv-table">
+  {% for lib, ver in ctx.library_versions.items() %}
+  <tr><td>{{ lib }}</td><td><code>{{ ver }}</code></td></tr>
+  {% endfor %}
+</table>
+{% endif %}
+
+<div class="footer">
+  Generated {{ generated_at }} · Run ID: {{ ctx.run_id }} · Generator v{{ generator_version }}
+</div>
+</body>
+</html>

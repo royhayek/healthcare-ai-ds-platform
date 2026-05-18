@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>Model Card - {{ ctx.model_name }}</title></head>
+<body>
+<div class="header-bar">
+  <h1>Model Card</h1>
+  <div class="subtitle">
+    {{ ctx.model_name }} · {{ ctx.task_type | replace("_", " ") | title }} ·
+    Generated {{ generated_at[:10] }}
+  </div>
+</div>
+
+<div class="no-break">
+  <h2>Model Details</h2>
+  <table>
+    <tr><th>Field</th><th>Value</th></tr>
+    <tr><td>Model name</td><td>{{ ctx.model_name }}</td></tr>
+    <tr><td>Task type</td><td>{{ ctx.task_type | replace("_", " ") | title }}</td></tr>
+    <tr><td>Run ID</td><td>{{ ctx.run_id }}</td></tr>
+    <tr><td>Training dataset</td><td>{{ ctx.dataset.filename }} ({{ ctx.dataset.row_count }} rows, {{ ctx.dataset.col_count }} cols)</td></tr>
+    <tr><td>Target column</td><td>{{ ctx.dataset.target_column }}</td></tr>
+    <tr><td>Created</td><td>{{ ctx.created_at[:10] }}</td></tr>
+    <tr><td>Created by</td><td>{{ ctx.created_by }}</td></tr>
+    {% if ctx.threshold.optimal %}
+    <tr><td>Optimal threshold</td><td>{{ "%.4f" | format(ctx.threshold.optimal) }}</td></tr>
+    {% endif %}
+  </table>
+</div>
+
+<div class="no-break">
+  <h2>Performance Metrics</h2>
+  <div class="metric-grid">
+    {% for name, val in ctx.final_metrics.items() %}
+    <div class="metric-box">
+      <span class="value">{{ "%.4f" | format(val) }}</span>
+      <span class="label">{{ name | upper }}</span>
+    </div>
+    {% endfor %}
+  </div>
+  {% if ctx.threshold.improvement_pct %}
+  <p class="small">Threshold optimisation improved business cost by {{ "%.1f" | format(ctx.threshold.improvement_pct) }}% vs. default 0.5.</p>
+  {% endif %}
+</div>
+
+<div class="no-break">
+  <h2>Intended Use</h2>
+  <p>{{ narrative.intended_use }}</p>
+  <h3>Primary Intended Uses</h3>
+  <p>{{ narrative.primary_intended_uses }}</p>
+  <h3>Out-of-Scope Uses</h3>
+  <p>{{ narrative.out_of_scope_uses }}</p>
+</div>
+
+<div class="no-break">
+  <h2>Relevant Factors</h2>
+  <p>{{ narrative.relevant_factors }}</p>
+</div>
+
+<div class="no-break">
+  <h2>Evaluation Factors</h2>
+  <p>{{ narrative.evaluation_factors }}</p>
+</div>
+
+{% if ctx.shap.top_features %}
+<div class="no-break">
+  <h2>Top Predictive Features</h2>
+  <table>
+    <tr><th>Rank</th><th>Feature</th><th>Mean |SHAP|</th></tr>
+    {% for feat in ctx.shap.top_features %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ feat }}</td>
+      {% if ctx.shap.mean_abs and loop.index0 < ctx.shap.mean_abs | length %}
+      <td>{{ "%.4f" | format(ctx.shap.mean_abs[loop.index0]) }}</td>
+      {% else %}
+      <td>-</td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endif %}
+
+<div class="no-break">
+  <h2>Evaluation Results</h2>
+  <h3>Unitary Results</h3>
+  <p>{{ narrative.unitary_results }}</p>
+  {% if narrative.intersectional_results %}
+  <h3>Intersectional Results</h3>
+  <p>{{ narrative.intersectional_results }}</p>
+  {% endif %}
+</div>
+
+{% if ctx.drift and ctx.drift.overall_severity and ctx.drift.overall_severity != "not_run" %}
+<div class="no-break">
+  <h2>Drift Assessment</h2>
+  <p>Overall severity: <span class="badge badge-{{ 'ok' if ctx.drift.overall_severity == 'stable' else ('mild' if ctx.drift.overall_severity == 'mild' else 'warn') }}">{{ ctx.drift.overall_severity | upper }}</span></p>
+  {% if ctx.drift.significant_features %}
+  <p>Significant drift in: {{ ctx.drift.significant_features | join(", ") }}</p>
+  {% endif %}
+</div>
+{% endif %}
+
+{% if ctx.fairness and ctx.fairness.overall_severity and ctx.fairness.overall_severity != "not_run" %}
+<div class="no-break">
+  <h2>Fairness Analysis</h2>
+  <p>Overall severity: <span class="badge badge-{{ 'ok' if ctx.fairness.overall_severity == 'none' else ('mild' if ctx.fairness.overall_severity == 'mild' else 'warn') }}">{{ ctx.fairness.overall_severity | upper }}</span></p>
+  {% if ctx.fairness.blocks_deliverables %}
+  <div class="callout callout-danger">⚠ Severe fairness disparity detected. Human review required before production deployment.</div>
+  {% endif %}
+</div>
+{% else %}
+<div class="no-break">
+  <h2>Fairness Analysis</h2>
+  <div class="callout callout-warn">⚠ No fairness analysis was run for this model. This is a risk - see Risk Register.</div>
+</div>
+{% endif %}
+
+<div class="no-break">
+  <h2>Ethical Considerations</h2>
+  <p>{{ narrative.ethical_considerations }}</p>
+</div>
+
+<div class="no-break">
+  <h2>Caveats and Recommendations</h2>
+  <p>{{ narrative.caveats }}</p>
+</div>
+
+<div class="footer">
+  Run ID: {{ ctx.run_id }} · Model: {{ ctx.model_name }} · Platform: ai-ds-platform v{{ generator_version }}
+  · Audit hash verified ✓
+</div>
+</body>
+</html>

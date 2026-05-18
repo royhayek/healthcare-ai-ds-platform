@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>Data Quality Report</title></head>
+<body>
+<div class="header-bar">
+  <h1>Data Quality Report</h1>
+  <div class="subtitle">{{ ctx.dataset.filename }} · Generated {{ generated_at[:10] }}</div>
+</div>
+
+<h2>Dataset Summary</h2>
+<table class="kv-table">
+  <tr><td>Rows</td><td>{{ ctx.dataset.row_count | default("-") }}</td></tr>
+  <tr><td>Columns</td><td>{{ ctx.dataset.col_count | default("-") }}</td></tr>
+  <tr><td>Target column</td><td>{{ ctx.dataset.target_column | default("-") }}</td></tr>
+  <tr><td>Task type</td><td>{{ ctx.task_type }}</td></tr>
+  <tr><td>SHA-256 (prefix)</td><td><code>{{ ctx.dataset.sha256 }}</code></td></tr>
+</table>
+
+{% if ctx.quality_issues %}
+<h2>Quality Issues by Severity</h2>
+<table class="data">
+  <tr><th>Feature</th><th>Issue Type</th><th>Severity</th><th>Recommendation</th></tr>
+  {% for qi in ctx.quality_issues %}
+  <tr>
+    <td><code>{{ qi.feature | default("-") }}</code></td>
+    <td>{{ qi.issue_type | default("-") }}</td>
+    <td>
+      <span class="badge {% if qi.severity=='high' %}badge-warn{% elif qi.severity=='medium' %}badge-mild{% else %}badge-ok{% endif %}">
+        {{ qi.severity | default("low") }}
+      </span>
+    </td>
+    <td>{{ qi.recommendation | default("-") }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<div class="callout">
+  <strong>No significant quality issues detected</strong> for this dataset.
+</div>
+{% endif %}
+
+{% if column_profiles %}
+<h2>Per-Column Summary</h2>
+<table class="data">
+  <tr><th>Column</th><th>Type</th><th>Missing %</th><th>Unique</th><th>Notes</th></tr>
+  {% for col in column_profiles %}
+  <tr>
+    <td><code>{{ col.name }}</code></td>
+    <td>{{ col.dtype | default("-") }}</td>
+    <td>
+      <span class="badge {% if col.missing_pct > 20 %}badge-warn{% elif col.missing_pct > 5 %}badge-mild{% else %}badge-ok{% endif %}">
+        {{ "%.1f"|format(col.missing_pct) }}%
+      </span>
+    </td>
+    <td>{{ col.n_unique | default("-") }}</td>
+    <td style="font-size:8pt">{{ col.notes | default("") }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+
+<h2>Preprocessing Applied</h2>
+{% if ctx.preprocessing_strategy.columns %}
+<p>The following preprocessing was applied to address quality issues:</p>
+<table class="data">
+  <tr><th>Column</th><th>Action</th><th>Imputation</th><th>Rationale</th></tr>
+  {% for col, strat in ctx.preprocessing_strategy.columns.items() %}
+  <tr>
+    <td><code>{{ col }}</code></td>
+    <td>{{ strat.action }}</td>
+    <td>{{ strat.impute_strategy | default("none") }}</td>
+    <td style="font-size:8pt">{{ strat.reason | truncate(100) }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+
+<div class="footer">
+  Generated {{ generated_at }} · Run ID: {{ ctx.run_id }} · Platform: ai-ds-platform
+</div>
+</body>
+</html>

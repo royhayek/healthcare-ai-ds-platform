@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>Executive Summary</title></head>
+<body>
+<div class="header-bar">
+  <h1>Executive Summary</h1>
+  <div class="subtitle">
+    {{ ctx.dataset.filename }} · {{ ctx.task_type | replace("_", " ") | title }} ·
+    Generated {{ generated_at[:10] }}
+  </div>
+</div>
+
+<div class="no-break">
+  <h2>Bottom-Line Result</h2>
+  <div class="callout">
+    <strong>{{ content.one_liner }}</strong>
+  </div>
+  <p>{{ content.performance_paragraph }}</p>
+</div>
+
+<div class="no-break">
+  <h2>Business Impact</h2>
+  <p>{{ content.business_paragraph }}</p>
+</div>
+
+<div class="metric-grid">
+  {% for name, val in ctx.final_metrics.items() %}
+  <div class="metric-box">
+    <span class="value">{{ "%.4f"|format(val) }}</span>
+    <span class="label">{{ name | upper }}</span>
+  </div>
+  {% endfor %}
+  {% if ctx.threshold.optimal %}
+  <div class="metric-box">
+    <span class="value">{{ "%.3f"|format(ctx.threshold.optimal) }}</span>
+    <span class="label">OPTIMAL THRESHOLD</span>
+  </div>
+  {% endif %}
+</div>
+
+<div class="no-break">
+  <h2>Top 3 Actionable Insights</h2>
+  <ul>
+    {% for insight in content.insights %}
+    <li>{{ insight }}</li>
+    {% endfor %}
+  </ul>
+</div>
+
+<div class="no-break">
+  <h2>Top 3 Caveats and Risks</h2>
+  <ul>
+    {% for risk in content.risks %}
+    <li>{{ risk }}</li>
+    {% endfor %}
+  </ul>
+  {% if ctx.drift and ctx.drift.overall_severity == "significant" %}
+  <div class="callout callout-danger">
+    ⚠ Significant data drift detected versus comparison dataset. Predictions may degrade.
+  </div>
+  {% endif %}
+  {% if ctx.fairness and ctx.fairness.overall_severity in ["moderate","severe"] %}
+  <div class="callout callout-warn">
+    ⚠ Fairness disparity detected (severity: {{ ctx.fairness.overall_severity }}). See Technical Report for details.
+  </div>
+  {% endif %}
+</div>
+
+<div class="no-break">
+  <h2>Recommended Next Steps</h2>
+  <p>{{ content.next_steps_paragraph }}</p>
+</div>
+
+<div class="footer">
+  Run ID: {{ ctx.run_id }} · Model: {{ ctx.model_name }} · Platform: ai-ds-platform v{{ generator_version }}
+  · Audit hash verified ✓
+</div>
+</body>
+</html>

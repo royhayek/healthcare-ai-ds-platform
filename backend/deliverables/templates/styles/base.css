@@ -1,0 +1,47 @@
+/* Base stylesheet for all AI DS Platform PDFs */
+@page {
+    margin: 2cm 2.2cm;
+    @bottom-right { content: "Page " counter(page) " of " counter(pages); font-size: 9pt; color: #888; }
+    @bottom-left  { content: string(doctype); font-size: 9pt; color: #888; }
+}
+body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 10pt;
+    line-height: 1.55;
+    color: #1a1a1a;
+    max-width: 100%;
+}
+h1 { font-size: 18pt; font-weight: 700; color: #1a1a1a; margin: 0 0 6pt; border-bottom: 2pt solid #1a1a1a; padding-bottom: 4pt; }
+h2 { font-size: 13pt; font-weight: 600; color: #1a1a1a; margin: 16pt 0 4pt; border-left: 3pt solid #2563eb; padding-left: 8pt; }
+h3 { font-size: 11pt; font-weight: 600; color: #374151; margin: 10pt 0 3pt; }
+p  { margin: 0 0 7pt; }
+ul, ol { margin: 0 0 7pt 16pt; padding: 0; }
+li { margin-bottom: 3pt; }
+.meta { font-size: 8.5pt; color: #6b7280; }
+.kv-table { width: 100%; border-collapse: collapse; margin: 8pt 0; }
+.kv-table td { padding: 3pt 6pt; border-bottom: 0.5pt solid #e5e7eb; }
+.kv-table td:first-child { font-weight: 600; width: 38%; color: #374151; }
+table.data { width: 100%; border-collapse: collapse; font-size: 9pt; margin: 8pt 0; }
+table.data th { background: #1e3a5f; color: white; padding: 4pt 6pt; text-align: left; font-weight: 600; }
+table.data td { padding: 3pt 6pt; border-bottom: 0.5pt solid #e5e7eb; }
+table.data tr:nth-child(even) td { background: #f9fafb; }
+.badge { display: inline-block; padding: 1pt 6pt; border-radius: 3pt; font-size: 8pt; font-weight: 600; }
+.badge-ok     { background: #d1fae5; color: #065f46; }
+.badge-mild   { background: #fef3c7; color: #92400e; }
+.badge-warn   { background: #fee2e2; color: #991b1b; }
+.section-break { page-break-before: always; }
+.no-break { page-break-inside: avoid; }
+.header-bar { background: #1e3a5f; color: white; padding: 12pt 16pt; margin: -2cm -2.2cm 16pt; }
+.header-bar h1 { color: white; border-bottom: none; font-size: 16pt; }
+.header-bar .subtitle { font-size: 9pt; color: #93c5fd; margin: 3pt 0 0; }
+.metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8pt; margin: 8pt 0; }
+.metric-box  { background: #f3f4f6; border-radius: 4pt; padding: 8pt; text-align: center; }
+.metric-box .value { font-size: 14pt; font-weight: 700; color: #1e3a5f; display: block; }
+.metric-box .label { font-size: 8pt; color: #6b7280; }
+.callout { border-left: 3pt solid #2563eb; background: #eff6ff; padding: 6pt 10pt; margin: 8pt 0; border-radius: 0 4pt 4pt 0; }
+.callout-warn { border-color: #d97706; background: #fffbeb; }
+.callout-danger { border-color: #dc2626; background: #fef2f2; }
+img.chart { max-width: 100%; margin: 6pt 0; }
+code { font-family: "Courier New", monospace; font-size: 8.5pt; background: #f3f4f6; padding: 1pt 3pt; border-radius: 2pt; }
+pre  { font-family: "Courier New", monospace; font-size: 8pt; background: #f3f4f6; padding: 8pt; border-radius: 4pt; white-space: pre-wrap; }
+.footer { font-size: 8pt; color: #9ca3af; border-top: 0.5pt solid #e5e7eb; margin-top: 16pt; padding-top: 6pt; }
