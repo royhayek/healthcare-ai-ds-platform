@@ -1,0 +1,2001 @@
+customerID,tenure,MonthlyCharges,TotalCharges,NumProducts,Contract,PaymentMethod,InternetService,SeniorCitizen,TechSupport
+CUST-D-00000,34,45.371881231518636,1542.6439618716336,2,One year,Electronic check,Fiber optic,0,No
+CUST-D-00001,18,78.78912698678037,1418.2042857620468,3,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-00002,27,84.46755056177187,2280.6238651678404,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00003,20,88.51908149058772,1770.3816298117545,3,One year,Credit card,No,0,No internet service
+CUST-D-00004,7,69.92559077825841,489.47913544780886,3,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-00005,18,93.12385036468324,1676.2293065642982,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00006,33,78.10087316065373,2577.3288143015734,2,Month-to-month,Electronic check,Fiber optic,0,No internet service
+CUST-D-00007,35,120.0,4200.0,2,One year,Bank transfer,Fiber optic,0,Yes
+CUST-D-00008,34,80.20078110492385,2726.826557567411,1,Month-to-month,Electronic check,No,0,No
+CUST-D-00009,22,92.3467552884607,2031.6286163461355,1,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-00010,11,92.93685920848634,1022.3054512933497,1,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-00011,20,72.7146976128124,1454.293952256248,3,Month-to-month,Electronic check,No,0,No
+CUST-D-00012,23,96.96317945346146,2230.1531274296135,2,Month-to-month,Mailed check,DSL,0,No
+CUST-D-00013,11,120.0,1320.0,2,Month-to-month,Mailed check,No,0,Yes
+CUST-D-00014,34,120.0,4080.0,3,Month-to-month,Credit card,DSL,1,No
+CUST-D-00015,20,68.95905826322999,1379.1811652645997,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00016,13,69.17092058467584,899.2219676007859,2,One year,Mailed check,Fiber optic,1,Yes
+CUST-D-00017,17,81.82249744070096,1390.9824564919163,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00018,4,88.06500493072625,352.260019722905,2,One year,Mailed check,Fiber optic,0,No
+CUST-D-00019,22,54.7835990624502,1205.2391793739043,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00020,12,45.20646904768953,542.4776285722744,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00021,33,90.6314846854205,2990.8389946188768,2,Month-to-month,Electronic check,DSL,0,No
+CUST-D-00022,11,82.36241943725379,905.9866138097917,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00023,9,90.63197550347164,815.6877795312447,3,Month-to-month,Mailed check,DSL,1,No
+CUST-D-00024,22,110.50275374748543,2431.0605824446793,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00025,11,48.395363551930586,532.3489990712364,1,Month-to-month,Electronic check,No,0,No internet service
+CUST-D-00026,13,89.79675490427209,1167.357813755537,3,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-00027,14,119.77359391268155,1676.8303147775416,1,Month-to-month,Electronic check,DSL,0,No
+CUST-D-00028,25,73.8123437237418,1845.3085930935451,3,One year,Credit card,Fiber optic,0,No
+CUST-D-00029,10,78.4510899624349,784.5108996243491,1,Month-to-month,Credit card,DSL,0,No internet service
+CUST-D-00030,32,109.78180404633899,3513.0177294828477,1,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00031,13,72.8188855409368,946.6455120321784,3,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-00032,28,52.909830949916305,1481.4752665976566,3,One year,Bank transfer,Fiber optic,0,No
+CUST-D-00033,33,118.3714204681863,3906.256875450148,1,Month-to-month,Mailed check,No,0,Yes
+CUST-D-00034,25,30.621799984594315,765.5449996148578,1,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-00035,14,119.12528192237151,1667.7539469132012,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00036,24,100.69694288423412,2416.726629221619,1,Two year,Bank transfer,DSL,0,No
+CUST-D-00037,28,58.92187476980318,1649.812493554489,3,Month-to-month,Bank transfer,DSL,0,Yes
+CUST-D-00038,27,68.75962723600055,1856.509935372015,3,Month-to-month,Mailed check,DSL,0,No
+CUST-D-00039,2,30.720176024731064,61.44035204946213,2,One year,Credit card,Fiber optic,1,No
+CUST-D-00040,4,82.84241409107598,331.3696563643039,2,One year,Electronic check,Fiber optic,1,Yes
+CUST-D-00041,11,106.04083750718226,1166.4492125790048,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00042,13,77.29877249039583,1004.8840423751458,3,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-00043,25,39.00187988479273,975.0469971198182,1,Two year,Bank transfer,DSL,1,Yes
+CUST-D-00044,4,80.67898280875292,322.7159312350117,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00045,16,95.95830129320025,1535.332820691204,1,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-00046,28,85.29790796736577,2388.341423086242,2,Month-to-month,Bank transfer,No,0,No
+CUST-D-00047,32,62.426266546031755,1997.6405294730162,2,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-00048,3,37.3342379207967,112.0027137623901,1,One year,Credit card,Fiber optic,0,No
+CUST-D-00049,16,102.98653274953524,1647.784523992564,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00050,11,83.78677262733562,921.6544989006918,1,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00051,22,66.64621929824835,1466.216824561464,3,One year,Credit card,No,0,Yes
+CUST-D-00052,30,102.99661721398667,3089.8985164196,2,Month-to-month,Credit card,DSL,0,No
+CUST-D-00053,21,103.34783143814424,2170.304460201029,2,Month-to-month,Bank transfer,Fiber optic,1,Yes
+CUST-D-00054,21,52.44891992088103,1101.4273183385017,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00055,21,101.56336166216198,2132.8305949054015,1,One year,Electronic check,Fiber optic,0,Yes
+CUST-D-00056,11,120.0,1320.0,3,Month-to-month,Bank transfer,Fiber optic,0,No internet service
+CUST-D-00057,23,120.0,2760.0,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00058,6,79.57121387385062,477.4272832431037,3,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-00059,18,51.779365623608015,932.0285812249442,1,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-00060,32,78.30841444685537,2505.8692622993717,1,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-00061,7,120.0,840.0,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00062,4,120.0,480.0,3,Month-to-month,Credit card,DSL,1,No internet service
+CUST-D-00063,3,39.27045908336939,117.81137725010817,3,One year,Bank transfer,Fiber optic,0,No
+CUST-D-00064,2,120.0,240.0,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00065,9,67.34823599498206,606.1341239548385,1,One year,Credit card,DSL,0,No
+CUST-D-00066,10,94.50736447691891,945.0736447691891,1,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-00067,4,68.87923172048934,275.5169268819574,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00068,30,72.17479771327928,2165.243931398378,3,Two year,Bank transfer,DSL,0,Yes
+CUST-D-00069,4,91.42072080712468,365.6828832284987,2,One year,Mailed check,DSL,0,No
+CUST-D-00070,10,87.61196535719633,876.1196535719632,1,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-00071,10,52.986063243291,529.86063243291,1,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-00072,20,84.78140910523922,1695.6281821047844,3,One year,Mailed check,Fiber optic,1,No
+CUST-D-00073,21,67.06561619683319,1408.377940133497,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00074,16,77.79463331860202,1244.7141330976324,3,One year,Electronic check,No,0,Yes
+CUST-D-00075,13,79.98864262235024,1039.852354090553,2,Month-to-month,Electronic check,DSL,1,Yes
+CUST-D-00076,24,57.177766940130134,1372.2664065631232,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00077,28,79.17844803633285,2216.99654501732,2,Month-to-month,Credit card,DSL,0,No
+CUST-D-00078,17,113.9369111388751,1936.9274893608767,2,One year,Bank transfer,Fiber optic,0,Yes
+CUST-D-00079,34,96.1698855094874,3269.7761073225715,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00080,27,65.75032196894087,1775.2586931614035,3,Month-to-month,Electronic check,DSL,1,No
+CUST-D-00081,12,81.92796713993914,983.1356056792697,2,Month-to-month,Bank transfer,Fiber optic,0,No internet service
+CUST-D-00082,34,81.25603815626543,2762.705297313025,1,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-00083,9,79.87228901206427,718.8506011085784,3,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-00084,25,53.28544050065619,1332.136012516405,2,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-00085,25,78.31832736980253,1957.9581842450632,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00086,11,92.35918022755293,1015.9509825030822,1,One year,Credit card,Fiber optic,0,No
+CUST-D-00087,21,59.84446984669833,1256.733866780665,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00088,13,30.994742755153794,402.9316558169993,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00089,27,108.97064416886828,2942.2073925594436,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00090,11,95.14338247469662,1046.5772072216628,1,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-00091,22,113.27560480900615,2492.0633057981354,1,Month-to-month,Mailed check,No,0,No
+CUST-D-00092,18,120.0,2160.0,2,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-00093,10,120.0,1200.0,3,One year,Electronic check,Fiber optic,0,No
+CUST-D-00094,32,85.84718292419869,2747.109853574358,2,One year,Electronic check,Fiber optic,0,No
+CUST-D-00095,32,101.69206337528749,3254.1460280091997,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00096,18,78.88968941552567,1420.014409479462,2,One year,Mailed check,DSL,0,No internet service
+CUST-D-00097,21,90.09793883430375,1892.0567155203787,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00098,10,93.49422217403405,934.9422217403405,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00099,26,101.02175078464364,2626.565520400735,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00100,30,76.36522471970048,2290.956741591014,1,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-00101,24,99.38117930463758,2385.148303311302,3,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-00102,16,65.1896917223834,1043.0350675581344,2,Two year,Bank transfer,Fiber optic,0,No
+CUST-D-00103,27,46.882189566474544,1265.8191182948126,1,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-00104,12,80.03139990732278,960.3767988878733,2,One year,Credit card,Fiber optic,0,No
+CUST-D-00105,27,107.96333482174231,2915.0100401870423,2,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-00106,7,65.52974361209385,458.70820528465697,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00107,15,57.353163506464604,860.297452596969,1,Month-to-month,Mailed check,DSL,0,No internet service
+CUST-D-00108,23,120.0,2760.0,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00109,2,71.57441499684684,143.14882999369368,1,Month-to-month,Mailed check,DSL,0,Yes
+CUST-D-00110,27,79.89379554931641,2157.132479831543,3,Month-to-month,Credit card,DSL,0,No
+CUST-D-00111,17,107.8819195467746,1833.992632295168,2,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-00112,18,90.12546603383421,1622.2583886090158,1,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-00113,32,120.0,3840.0,3,Two year,Electronic check,Fiber optic,0,Yes
+CUST-D-00114,12,80.59679450791272,967.1615340949527,2,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-00115,6,74.62625696597922,447.75754179587534,2,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-00116,5,106.29122069472405,531.4561034736203,1,Two year,Electronic check,Fiber optic,0,No
+CUST-D-00117,28,114.66822535753047,3210.7103100108534,2,Month-to-month,Credit card,DSL,1,Yes
+CUST-D-00118,13,78.06109634608195,1014.7942524990654,2,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-00119,23,44.636643917190376,1026.6428100953788,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00120,2,62.18124395767051,124.36248791534102,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00121,25,48.58122284176422,1214.5305710441055,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00122,31,73.73521499226725,2285.7916647602847,1,Month-to-month,Mailed check,DSL,0,No
+CUST-D-00123,8,83.4031535842512,667.2252286740096,3,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-00124,32,67.45491678399192,2158.5573370877414,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00125,3,118.47343987431134,355.420319622934,1,One year,Bank transfer,Fiber optic,1,No
+CUST-D-00126,13,77.94255834582943,1013.2532584957826,2,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-00127,10,111.84108408265065,1118.4108408265065,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00128,11,68.38373107397848,752.2210418137633,1,Month-to-month,Bank transfer,Fiber optic,0,No internet service
+CUST-D-00129,22,77.02653978961314,1694.583875371489,3,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-00130,27,115.36927888889558,3114.9705300001806,2,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-00131,14,53.75609196498088,752.5852875097323,3,One year,Electronic check,Fiber optic,0,No internet service
+CUST-D-00132,9,41.505526063277436,373.54973456949693,2,Month-to-month,Electronic check,Fiber optic,1,No internet service
+CUST-D-00133,9,56.696062101774274,510.26455891596845,3,Month-to-month,Mailed check,DSL,1,No
+CUST-D-00134,13,94.72804426499434,1231.4645754449264,2,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-00135,14,60.5045739631734,847.0640354844276,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00136,35,81.31569363495447,2846.0492772234065,2,Month-to-month,Bank transfer,No,0,Yes
+CUST-D-00137,26,108.65372553649662,2824.996863948912,2,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-00138,16,91.56019087639928,1464.9630540223884,3,One year,Credit card,Fiber optic,0,No
+CUST-D-00139,9,69.73246938695402,627.5922244825862,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00140,1,120.0,120.0,1,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-00141,20,113.60173696201144,2272.034739240229,3,Month-to-month,Credit card,DSL,0,No
+CUST-D-00142,1,115.9157176109857,115.9157176109857,1,Month-to-month,Electronic check,Fiber optic,1,Yes
+CUST-D-00143,15,91.36992365317508,1370.548854797626,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00144,9,92.80731254724878,835.2658129252391,3,Month-to-month,Mailed check,DSL,0,No
+CUST-D-00145,35,72.26304026661948,2529.206409331682,2,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-00146,35,105.1670321589823,3680.84612556438,1,One year,Electronic check,No,0,No internet service
+CUST-D-00147,30,103.17836702064764,3095.3510106194294,2,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-00148,18,91.55286981467007,1647.9516566640614,2,One year,Bank transfer,DSL,1,No
+CUST-D-00149,26,60.60272385874868,1575.6708203274657,3,Month-to-month,Credit card,DSL,0,No
+CUST-D-00150,15,95.4469293671454,1431.703940507181,1,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-00151,20,55.96020717036291,1119.204143407258,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00152,4,88.73239616315635,354.9295846526254,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00153,14,58.6902411239156,821.6633757348184,3,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-00154,18,45.574557069677276,820.342027254191,3,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00155,24,96.37908817726802,2313.098116254432,2,Month-to-month,Electronic check,Fiber optic,1,Yes
+CUST-D-00156,13,62.71167803490526,815.2518144537684,1,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-00157,30,46.576374693825656,1397.2912408147697,3,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00158,12,83.74384578440221,1004.9261494128266,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00159,5,115.17290932013181,575.8645466006591,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00160,31,93.231632712418,2890.180614084958,1,One year,Mailed check,Fiber optic,0,No
+CUST-D-00161,2,94.99864342629648,189.99728685259296,2,One year,Credit card,Fiber optic,0,No
+CUST-D-00162,15,58.788319235946496,881.8247885391975,2,Month-to-month,Credit card,Fiber optic,1,No internet service
+CUST-D-00163,17,92.77962077790596,1577.2535532244015,1,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-00164,1,52.93303670012331,52.93303670012331,2,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-00165,10,47.529083213714,475.29083213714,2,Month-to-month,Mailed check,DSL,0,No internet service
+CUST-D-00166,30,120.0,3600.0,3,Month-to-month,Credit card,No,0,No
+CUST-D-00167,31,96.084842034254,2978.630103061874,1,One year,Electronic check,Fiber optic,0,No
+CUST-D-00168,15,111.30042114284137,1669.5063171426207,3,Month-to-month,Bank transfer,Fiber optic,0,No internet service
+CUST-D-00169,10,120.0,1200.0,1,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00170,10,59.48471056049138,594.8471056049138,2,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00171,32,69.51660991765479,2224.5315173649533,1,One year,Bank transfer,DSL,0,No internet service
+CUST-D-00172,34,50.60083856467223,1720.4285111988559,1,Month-to-month,Mailed check,DSL,0,No
+CUST-D-00173,18,120.0,2160.0,1,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-00174,16,94.66846281274904,1514.6954050039847,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00175,30,95.85339095929271,2875.6017287787813,1,Month-to-month,Electronic check,No,0,No internet service
+CUST-D-00176,11,84.44897778599365,928.9387556459301,1,One year,Mailed check,Fiber optic,0,Yes
+CUST-D-00177,16,77.8441888577907,1245.5070217246512,2,One year,Credit card,Fiber optic,0,No internet service
+CUST-D-00178,16,36.183275819611424,578.9324131137828,3,Month-to-month,Electronic check,Fiber optic,1,Yes
+CUST-D-00179,26,65.86381233425467,1712.4591206906216,1,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-00180,2,87.42750594768042,174.85501189536083,3,One year,Credit card,Fiber optic,0,No internet service
+CUST-D-00181,35,81.5405545231313,2853.919408309596,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00182,27,115.83984676908571,3127.6758627653144,1,Month-to-month,Credit card,DSL,0,Yes
+CUST-D-00183,6,111.30462285778479,667.8277371467087,1,Month-to-month,Electronic check,Fiber optic,1,No internet service
+CUST-D-00184,26,68.55439590796058,1782.4142936069752,1,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00185,10,79.5952964305357,795.952964305357,1,Month-to-month,Credit card,DSL,1,Yes
+CUST-D-00186,15,103.53527471584415,1553.0291207376622,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00187,19,75.90690345389851,1442.2311656240718,2,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-00188,25,115.05934882623518,2876.4837206558796,3,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00189,14,91.29270743498995,1278.0979040898592,2,Month-to-month,Electronic check,Fiber optic,0,No internet service
+CUST-D-00190,8,112.6577918614176,901.2623348913409,1,One year,Electronic check,Fiber optic,1,No
+CUST-D-00191,29,108.02571683119461,3132.745788104644,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00192,4,78.08841382686013,312.35365530744053,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00193,33,40.884168765464345,1349.1775692603235,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00194,30,102.39510506844451,3071.853152053335,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00195,21,120.0,2520.0,2,Month-to-month,Mailed check,DSL,1,No
+CUST-D-00196,16,108.54655400275978,1736.7448640441564,2,Month-to-month,Electronic check,DSL,0,No
+CUST-D-00197,5,95.84483428746505,479.22417143732525,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00198,29,107.56585911783,3119.40991441707,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00199,14,120.0,1680.0,3,One year,Bank transfer,Fiber optic,0,No
+CUST-D-00200,21,40.43458665112934,849.1263196737161,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00201,11,96.89144434632414,1065.8058878095655,3,One year,Mailed check,Fiber optic,0,Yes
+CUST-D-00202,23,99.01974828780142,2277.4542106194326,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00203,23,105.22008200053959,2420.0618860124105,3,Month-to-month,Credit card,DSL,0,No
+CUST-D-00204,1,93.57052329321968,93.57052329321968,2,Month-to-month,Electronic check,DSL,1,Yes
+CUST-D-00205,9,48.73107193257169,438.5796473931452,1,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00206,19,72.51893836465904,1377.8598289285217,1,Two year,Mailed check,DSL,0,No
+CUST-D-00207,3,97.26501457305102,291.79504371915306,1,Month-to-month,Electronic check,Fiber optic,1,Yes
+CUST-D-00208,6,84.82658610464905,508.95951662789435,3,Month-to-month,Electronic check,Fiber optic,0,No internet service
+CUST-D-00209,18,71.07729431634752,1279.3912976942554,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00210,13,93.26925243511313,1212.5002816564706,3,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00211,10,91.8327280201609,918.327280201609,3,Month-to-month,Electronic check,No,1,Yes
+CUST-D-00212,33,102.89846185603452,3395.649241249139,1,Month-to-month,Credit card,Fiber optic,1,Yes
+CUST-D-00213,18,99.59909800680265,1792.7837641224478,1,Month-to-month,Credit card,No,1,No
+CUST-D-00214,19,91.95924925374469,1747.225735821149,3,Month-to-month,Electronic check,DSL,1,No
+CUST-D-00215,13,69.0321902085031,897.4184727105403,1,Month-to-month,Credit card,Fiber optic,1,No internet service
+CUST-D-00216,13,36.416339779914566,473.41241713888934,3,Month-to-month,Electronic check,No,1,Yes
+CUST-D-00217,27,113.28535509532622,3058.704587573808,1,One year,Mailed check,Fiber optic,0,No
+CUST-D-00218,18,120.0,2160.0,2,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00219,10,112.0333190163505,1120.3331901635052,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00220,1,120.0,120.0,3,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00221,26,63.4428246207572,1649.5134401396872,3,One year,Electronic check,Fiber optic,0,No
+CUST-D-00222,19,66.7424350897733,1268.1062667056926,3,Month-to-month,Bank transfer,Fiber optic,0,No internet service
+CUST-D-00223,5,93.76934412168532,468.8467206084266,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00224,24,86.69158355786459,2080.59800538875,2,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-00225,28,97.75314273671763,2737.0879966280936,2,Month-to-month,Electronic check,DSL,0,No
+CUST-D-00226,24,45.01668972161907,1080.4005533188579,2,Month-to-month,Credit card,DSL,1,No internet service
+CUST-D-00227,35,66.53299011761754,2328.654654116614,1,One year,Mailed check,Fiber optic,0,Yes
+CUST-D-00228,12,120.0,1440.0,2,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00229,10,120.0,1200.0,3,Month-to-month,Credit card,DSL,0,No
+CUST-D-00230,29,90.15645678176553,2614.5372466712,1,One year,Credit card,No,0,No
+CUST-D-00231,35,58.41859509058805,2044.6508281705817,1,One year,Electronic check,No,1,No
+CUST-D-00232,26,83.9893719395274,2183.7236704277125,1,Month-to-month,Electronic check,DSL,0,No
+CUST-D-00233,22,72.5937089014644,1597.0615958322167,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00234,10,55.64099108778426,556.4099108778425,3,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00235,20,62.34361234723994,1246.872246944799,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00236,14,63.0950213801993,883.3302993227902,1,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00237,9,54.69530506565412,492.25774559088705,1,Month-to-month,Credit card,DSL,0,No
+CUST-D-00238,16,98.89996620714848,1582.3994593143757,2,Month-to-month,Electronic check,DSL,0,No
+CUST-D-00239,24,29.88010819387529,717.122596653007,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00240,23,120.0,2760.0,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00241,16,120.0,1920.0,2,One year,Credit card,Fiber optic,0,No
+CUST-D-00242,21,104.65819033413102,2197.8219970167515,2,One year,Credit card,DSL,0,No
+CUST-D-00243,21,120.0,2520.0,1,Two year,Bank transfer,Fiber optic,0,Yes
+CUST-D-00244,11,71.41563485569549,785.5719834126503,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00245,17,84.87769445706226,1442.9208057700585,2,Month-to-month,Electronic check,No,0,No
+CUST-D-00246,17,112.51906504348156,1912.8241057391865,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00247,28,53.470847726825404,1497.1837363511113,1,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00248,10,62.8677120139725,628.677120139725,3,Month-to-month,Mailed check,DSL,0,No
+CUST-D-00249,19,96.69645959269909,1837.2327322612825,1,Month-to-month,Credit card,No,1,No
+CUST-D-00250,19,50.30989476338531,955.8880005043209,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00251,12,86.9433028760858,1043.3196345130295,1,Month-to-month,Credit card,Fiber optic,1,Yes
+CUST-D-00252,28,76.63207402982707,2145.6980728351577,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00253,12,91.61950653242337,1099.4340783890805,2,Month-to-month,Bank transfer,DSL,1,No internet service
+CUST-D-00254,19,120.0,2280.0,1,One year,Bank transfer,Fiber optic,0,Yes
+CUST-D-00255,20,63.814905077379365,1276.2981015475873,2,Month-to-month,Credit card,DSL,0,No
+CUST-D-00256,18,117.70047496092432,2118.6085492966376,1,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00257,34,81.6898527622426,2777.454993916248,3,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-00258,23,120.0,2760.0,2,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00259,4,103.48174403888827,413.92697615555306,1,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-00260,1,89.10702936224013,89.10702936224013,2,One year,Credit card,No,0,No
+CUST-D-00261,1,84.64158623545912,84.64158623545912,1,Month-to-month,Electronic check,Fiber optic,1,No internet service
+CUST-D-00262,12,82.43503917453488,989.2204700944185,1,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-00263,16,101.05275159790902,1616.8440255665444,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00264,22,76.73225651664464,1688.1096433661821,1,Month-to-month,Electronic check,No,0,No
+CUST-D-00265,7,99.17138766943613,694.1997136860529,3,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00266,8,99.02127198371593,792.1701758697275,1,Month-to-month,Credit card,Fiber optic,1,No internet service
+CUST-D-00267,32,70.43379655646629,2253.8814898069213,2,One year,Credit card,Fiber optic,0,No
+CUST-D-00268,3,76.7203229487325,230.1609688461975,2,One year,Bank transfer,Fiber optic,0,No
+CUST-D-00269,20,103.0777036038309,2061.554072076618,1,One year,Electronic check,Fiber optic,0,Yes
+CUST-D-00270,17,88.75140964988633,1508.7739640480675,3,Two year,Credit card,Fiber optic,1,No
+CUST-D-00271,29,71.60536250092758,2076.5555125268997,1,One year,Credit card,Fiber optic,0,No internet service
+CUST-D-00272,5,83.91292192662941,419.56460963314703,3,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00273,29,112.78142251024303,3270.661252797048,3,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-00274,22,65.4128077160241,1439.0817697525304,2,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-00275,1,60.22670000016822,60.22670000016822,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00276,22,89.14787637829423,1961.253280322473,1,Two year,Credit card,Fiber optic,0,No
+CUST-D-00277,31,85.25201586292694,2642.8124917507353,3,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-00278,18,95.93445105198002,1726.8201189356403,3,Month-to-month,Bank transfer,Fiber optic,1,No internet service
+CUST-D-00279,15,95.43967730942494,1431.595159641374,3,Two year,Mailed check,Fiber optic,0,Yes
+CUST-D-00280,14,67.91366066421799,950.7912492990517,2,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-00281,8,85.6888533186196,685.5108265489569,1,Month-to-month,Bank transfer,Fiber optic,0,No internet service
+CUST-D-00282,10,39.12644556254464,391.2644556254464,1,Month-to-month,Electronic check,DSL,0,No
+CUST-D-00283,31,91.05702857514883,2822.767885829614,2,Month-to-month,Mailed check,DSL,0,Yes
+CUST-D-00284,15,75.81874003440504,1137.2811005160756,3,Two year,Electronic check,Fiber optic,0,Yes
+CUST-D-00285,30,120.0,3600.0,2,Two year,Credit card,Fiber optic,1,No
+CUST-D-00286,18,99.77859519001404,1796.0147134202527,1,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-00287,31,52.307474063797564,1621.5316959777244,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00288,31,89.74387179217983,2782.0600255575746,3,One year,Mailed check,No,0,No
+CUST-D-00289,32,98.19818991341788,3142.342077229372,1,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00290,9,107.5932606343351,968.3393457090159,2,One year,Bank transfer,Fiber optic,0,No
+CUST-D-00291,34,53.86553999997699,1831.4283599992177,2,Month-to-month,Electronic check,No,0,No internet service
+CUST-D-00292,7,66.08234290516876,462.57640033618134,3,One year,Bank transfer,Fiber optic,0,Yes
+CUST-D-00293,9,109.08884062180125,981.7995655962113,1,Month-to-month,Bank transfer,Fiber optic,1,Yes
+CUST-D-00294,29,59.48254154669166,1724.993704854058,3,One year,Credit card,Fiber optic,0,No
+CUST-D-00295,9,86.80752751373106,781.2677476235796,3,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-00296,32,81.92500040036951,2621.6000128118244,2,Month-to-month,Credit card,No,0,No
+CUST-D-00297,2,94.38986544190854,188.77973088381708,2,One year,Mailed check,Fiber optic,0,No
+CUST-D-00298,3,59.20356219956603,177.6106865986981,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00299,27,77.37745830995836,2089.1913743688756,3,One year,Electronic check,Fiber optic,0,No
+CUST-D-00300,27,52.22412818369358,1410.0514609597267,1,Month-to-month,Credit card,DSL,1,Yes
+CUST-D-00301,14,38.44136694197491,538.1791371876487,2,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00302,4,108.47666363426536,433.90665453706146,3,One year,Electronic check,Fiber optic,1,No
+CUST-D-00303,24,84.60583698877014,2030.5400877304833,3,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-00304,29,96.653465568521,2802.950501487109,2,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-00305,29,105.63586202072855,3063.439998601128,3,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-00306,31,109.89909457769616,3406.871931908581,3,One year,Bank transfer,Fiber optic,0,No internet service
+CUST-D-00307,9,72.68700887423509,654.1830798681158,3,One year,Credit card,Fiber optic,0,No
+CUST-D-00308,33,68.12257342455881,2248.0449230104405,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00309,35,46.60865038463492,1631.3027634622222,1,Month-to-month,Electronic check,No,0,No
+CUST-D-00310,7,97.0804720523535,679.5633043664745,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00311,21,47.29762594211633,993.250144784443,2,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-00312,17,120.0,2040.0,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00313,32,75.03294695424245,2401.0543025357583,3,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00314,6,109.65917423949712,657.9550454369827,2,Two year,Credit card,Fiber optic,0,No
+CUST-D-00315,19,117.85465618560299,2239.238467526457,3,Month-to-month,Credit card,No,1,No
+CUST-D-00316,15,78.90342883487423,1183.5514325231136,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00317,32,85.79950947836973,2745.5843033078313,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00318,31,51.92062651110318,1609.5394218441986,3,One year,Mailed check,Fiber optic,0,No
+CUST-D-00319,18,92.70759137090609,1668.7366446763097,2,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-00320,31,67.30177695661408,2086.3550856550364,3,One year,Credit card,Fiber optic,0,No
+CUST-D-00321,29,88.13225457867064,2555.8353827814485,1,Month-to-month,Credit card,DSL,0,No
+CUST-D-00322,2,88.70461898698322,177.40923797396644,1,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-00323,14,66.51306333430439,931.1828866802615,1,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00324,27,89.38555865889049,2413.4100837900432,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00325,1,67.14116504544945,67.14116504544945,3,Month-to-month,Electronic check,Fiber optic,0,No internet service
+CUST-D-00326,11,71.90906329300124,790.9996962230136,2,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-00327,26,71.01171779743608,1846.304662733338,2,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-00328,23,69.24354148954353,1592.6014542595012,1,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00329,5,78.1264456943913,390.63222847195647,1,Month-to-month,Mailed check,DSL,0,No
+CUST-D-00330,9,120.0,1080.0,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00331,34,120.0,4080.0,3,Month-to-month,Bank transfer,DSL,0,Yes
+CUST-D-00332,17,82.73747430491488,1406.537063183553,3,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00333,20,88.71833035907868,1774.3666071815735,1,Month-to-month,Electronic check,Fiber optic,1,Yes
+CUST-D-00334,21,104.42465969035742,2192.917853497506,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00335,13,71.94715914393616,935.3130688711701,3,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-00336,21,64.01148219913448,1344.241126181824,1,Month-to-month,Electronic check,Fiber optic,1,Yes
+CUST-D-00337,27,72.16080237717145,1948.341664183629,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00338,35,83.69376761078317,2929.281866377411,2,Month-to-month,Mailed check,DSL,0,No
+CUST-D-00339,34,70.93384892804869,2411.7508635536556,3,One year,Credit card,DSL,0,No
+CUST-D-00340,27,103.63841386608522,2798.237174384301,2,Two year,Electronic check,Fiber optic,0,Yes
+CUST-D-00341,15,107.49409584860567,1612.411437729085,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00342,33,120.0,3960.0,2,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-00343,25,79.76222750515582,1994.0556876288956,1,One year,Electronic check,Fiber optic,0,Yes
+CUST-D-00344,13,87.01422279386408,1131.184896320233,3,Month-to-month,Credit card,No,0,No
+CUST-D-00345,15,120.0,1800.0,2,Month-to-month,Electronic check,DSL,1,No
+CUST-D-00346,23,68.4357330203158,1574.0218594672633,1,Month-to-month,Electronic check,No,0,No
+CUST-D-00347,5,91.52654692670208,457.6327346335104,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00348,18,112.79404920528606,2030.292885695149,3,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00349,6,58.69266890188151,352.15601341128905,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00350,16,85.54252623657938,1368.68041978527,1,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-00351,30,103.78023886801024,3113.4071660403074,1,One year,Credit card,Fiber optic,0,No
+CUST-D-00352,24,58.89623340765208,1413.50960178365,2,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-00353,17,90.98933094210359,1546.818626015761,3,One year,Mailed check,Fiber optic,0,No
+CUST-D-00354,14,97.5632859150471,1365.8860028106594,3,One year,Mailed check,Fiber optic,0,No internet service
+CUST-D-00355,13,117.97371897607049,1533.6583466889163,1,One year,Electronic check,Fiber optic,1,No
+CUST-D-00356,7,74.18447184383733,519.2913029068613,1,Month-to-month,Electronic check,DSL,1,Yes
+CUST-D-00357,12,117.12169057972994,1405.4602869567593,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00358,8,120.0,960.0,3,Month-to-month,Mailed check,DSL,0,No internet service
+CUST-D-00359,13,56.94623556249695,740.3010623124603,2,One year,Electronic check,Fiber optic,0,Yes
+CUST-D-00360,3,74.57390679925398,223.72172039776194,3,Month-to-month,Bank transfer,Fiber optic,1,No internet service
+CUST-D-00361,11,71.06124299804168,781.6736729784584,2,One year,Credit card,Fiber optic,0,Yes
+CUST-D-00362,29,62.56278512470708,1814.3207686165051,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00363,28,101.14667265886433,2832.1068344482014,3,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-00364,23,84.64567468936512,1946.8505178553978,3,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-00365,25,112.16236103956362,2804.0590259890905,2,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-00366,1,52.92751225866587,52.92751225866587,2,Two year,Bank transfer,Fiber optic,0,Yes
+CUST-D-00367,21,120.0,2520.0,1,Month-to-month,Credit card,DSL,1,No
+CUST-D-00368,27,28.179481687363907,760.8460055588255,1,Two year,Electronic check,Fiber optic,0,No internet service
+CUST-D-00369,28,65.73180875212898,1840.4906450596116,1,Month-to-month,Mailed check,No,1,Yes
+CUST-D-00370,34,115.94118216443492,3942.000193590787,3,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-00371,4,90.5195612905644,362.0782451622576,2,One year,Electronic check,Fiber optic,1,No
+CUST-D-00372,19,80.30824526650308,1525.8566600635586,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00373,30,41.354339415208834,1240.630182456265,1,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00374,2,85.54972066486037,171.09944132972075,3,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00375,9,83.5837714716553,752.2539432448976,2,One year,Electronic check,DSL,0,No internet service
+CUST-D-00376,3,83.80471486305815,251.41414458917444,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00377,4,88.08491198107723,352.3396479243089,1,Two year,Electronic check,Fiber optic,0,No
+CUST-D-00378,2,71.81708364646089,143.63416729292177,2,Month-to-month,Credit card,No,0,Yes
+CUST-D-00379,19,113.86111650429164,2163.361213581541,3,One year,Bank transfer,Fiber optic,0,No
+CUST-D-00380,22,91.38079609237136,2010.3775140321698,3,Month-to-month,Credit card,DSL,0,No
+CUST-D-00381,13,82.363141236235,1070.720836071055,3,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-00382,5,62.23721970969148,311.1860985484574,2,One year,Electronic check,DSL,0,No
+CUST-D-00383,25,120.0,3000.0,1,One year,Credit card,Fiber optic,0,Yes
+CUST-D-00384,10,51.60875132101555,516.0875132101555,1,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-00385,27,99.7378799639567,2692.922759026831,3,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-00386,12,104.55124996651357,1254.6149995981627,3,One year,Bank transfer,DSL,0,No internet service
+CUST-D-00387,30,83.82765384199524,2514.8296152598573,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00388,17,109.77853647425921,1866.2351200624066,1,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00389,7,55.25176747522847,386.7623723265993,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00390,6,69.4234154686898,416.5404928121388,2,Month-to-month,Electronic check,Fiber optic,0,No internet service
+CUST-D-00391,24,73.19889474034719,1756.7734737683325,2,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-00392,32,110.57043636669596,3538.2539637342707,3,Month-to-month,Electronic check,Fiber optic,1,Yes
+CUST-D-00393,12,49.189733245443946,590.2767989453273,3,One year,Mailed check,Fiber optic,0,No internet service
+CUST-D-00394,28,66.97594022146355,1875.3263262009793,1,Month-to-month,Credit card,DSL,0,Yes
+CUST-D-00395,24,70.37316331562168,1688.9559195749202,2,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-00396,15,89.45629456900177,1341.8444185350265,2,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00397,26,99.88038247381792,2596.889944319266,2,Two year,Bank transfer,Fiber optic,1,No
+CUST-D-00398,23,94.90578414779094,2182.8330353991914,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00399,29,113.48835623325033,3291.1623307642594,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00400,29,85.9006969710067,2491.120212159194,1,Month-to-month,Bank transfer,No,0,Yes
+CUST-D-00401,16,70.01610538723554,1120.2576861957687,1,Month-to-month,Mailed check,DSL,1,Yes
+CUST-D-00402,8,104.35665680295841,834.8532544236673,1,Month-to-month,Electronic check,Fiber optic,0,No internet service
+CUST-D-00403,18,85.47260542977865,1538.5068977360158,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00404,4,84.16920392895759,336.67681571583034,1,Month-to-month,Mailed check,No,0,No
+CUST-D-00405,20,81.70782494194978,1634.1564988389955,1,One year,Mailed check,DSL,0,Yes
+CUST-D-00406,26,100.56096774922567,2614.5851614798676,2,Two year,Credit card,Fiber optic,0,No internet service
+CUST-D-00407,19,84.65665855661612,1608.4765125757062,3,Month-to-month,Credit card,DSL,0,No
+CUST-D-00408,24,28.120319859833455,674.8876766360029,3,One year,Credit card,Fiber optic,1,Yes
+CUST-D-00409,29,52.79995991648906,1531.1988375781827,2,Month-to-month,Credit card,DSL,0,No
+CUST-D-00410,21,55.93787816788559,1174.6954415255975,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00411,12,72.48377441668266,869.805293000192,2,Two year,Bank transfer,DSL,0,No
+CUST-D-00412,23,116.67706102765307,2683.5724036360207,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00413,30,80.12709152724617,2403.812745817385,3,One year,Credit card,No,0,No
+CUST-D-00414,15,60.44481521552996,906.6722282329494,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00415,6,25.0,150.0,1,Month-to-month,Electronic check,No,0,Yes
+CUST-D-00416,14,71.79529627856822,1005.134147899955,2,One year,Credit card,DSL,0,Yes
+CUST-D-00417,26,78.98154960329327,2053.5202896856254,1,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00418,27,54.58778175810189,1473.870107468751,3,Month-to-month,Bank transfer,Fiber optic,0,No internet service
+CUST-D-00419,26,92.74767988370628,2411.4396769763634,3,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-00420,31,96.10030376062943,2979.1094165795125,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00421,21,48.223243389165745,1012.6881111724806,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00422,20,80.18667560774857,1603.7335121549713,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00423,10,114.27038934360118,1142.7038934360119,2,Month-to-month,Electronic check,No,0,Yes
+CUST-D-00424,24,120.0,2880.0,1,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-00425,22,52.90569118903971,1163.9252061588736,3,One year,Credit card,Fiber optic,0,No
+CUST-D-00426,8,86.80719376838842,694.4575501471073,2,Month-to-month,Mailed check,DSL,0,No
+CUST-D-00427,8,93.85961266071023,750.8769012856818,3,Two year,Bank transfer,Fiber optic,1,No
+CUST-D-00428,11,64.09083429075406,704.9991771982947,2,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-00429,2,49.133110068344415,98.26622013668883,1,One year,Bank transfer,Fiber optic,0,No internet service
+CUST-D-00430,33,96.2364663554595,3175.8033897301634,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00431,27,69.25748207522925,1869.9520160311897,1,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-00432,11,70.30104648385523,773.3115113224076,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00433,15,92.0657645791955,1380.9864686879325,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00434,32,108.27947955866479,3464.9433458772733,2,Month-to-month,Credit card,No,0,No
+CUST-D-00435,9,64.57820603970704,581.2038543573634,3,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-00436,5,93.10105506537641,465.50527532688204,2,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00437,26,40.73957072553654,1059.22883886395,2,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-00438,21,89.23943240862974,1874.0280805812245,3,Month-to-month,Credit card,DSL,0,No
+CUST-D-00439,13,57.28551512638305,744.7116966429797,1,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-00440,4,115.9975582721617,463.9902330886468,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00441,21,95.92404511493332,2014.4049474135998,2,Month-to-month,Credit card,DSL,1,No internet service
+CUST-D-00442,8,94.7712939761427,758.1703518091416,1,Two year,Bank transfer,Fiber optic,0,No
+CUST-D-00443,11,95.19017612254588,1047.0919373480046,3,Month-to-month,Electronic check,Fiber optic,1,No internet service
+CUST-D-00444,22,97.46311186833354,2144.188461103338,3,One year,Mailed check,Fiber optic,1,No internet service
+CUST-D-00445,5,65.87389368454161,329.36946842270805,3,Month-to-month,Bank transfer,Fiber optic,0,No internet service
+CUST-D-00446,11,79.13795562213996,870.5175118435395,3,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-00447,8,115.51957749654551,924.1566199723641,2,One year,Credit card,No,0,No
+CUST-D-00448,18,85.49830552625565,1538.9694994726017,3,One year,Credit card,Fiber optic,0,No internet service
+CUST-D-00449,10,92.2667203257745,922.667203257745,1,Month-to-month,Electronic check,DSL,0,No
+CUST-D-00450,34,78.69291147505801,2675.5589901519725,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00451,18,99.60712812220495,1792.9283061996891,2,Two year,Electronic check,Fiber optic,0,Yes
+CUST-D-00452,2,97.83280632994378,195.66561265988756,1,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-00453,23,82.41711953120135,1895.593749217631,3,Two year,Credit card,DSL,0,No
+CUST-D-00454,32,120.0,3840.0,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00455,34,87.68060234839587,2981.1404798454596,3,Month-to-month,Credit card,No,1,No
+CUST-D-00456,26,120.0,3120.0,3,Month-to-month,Credit card,Fiber optic,1,Yes
+CUST-D-00457,21,91.47084299513581,1920.887702897852,3,One year,Credit card,Fiber optic,0,No
+CUST-D-00458,7,95.14170004344739,665.9919003041317,1,Month-to-month,Electronic check,DSL,0,No internet service
+CUST-D-00459,34,73.40294426612179,2495.700105048141,2,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-00460,8,59.81343196528992,478.5074557223194,3,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-00461,6,77.67517213977531,466.05103283865185,1,One year,Bank transfer,Fiber optic,0,Yes
+CUST-D-00462,9,60.70426948629132,546.3384253766219,2,Two year,Mailed check,Fiber optic,0,Yes
+CUST-D-00463,3,42.11499419508117,126.3449825852435,1,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-00464,22,106.2535461458492,2337.5780152086822,1,Month-to-month,Bank transfer,DSL,0,Yes
+CUST-D-00465,4,40.48080198375936,161.92320793503745,1,Month-to-month,Electronic check,No,1,No
+CUST-D-00466,20,57.58607131463202,1151.7214262926404,3,Month-to-month,Bank transfer,DSL,0,Yes
+CUST-D-00467,15,75.99974335431077,1139.9961503146615,2,Month-to-month,Credit card,Fiber optic,1,No internet service
+CUST-D-00468,31,120.0,3720.0,2,One year,Electronic check,Fiber optic,0,No
+CUST-D-00469,14,50.17658881905279,702.4722434667391,2,Month-to-month,Bank transfer,DSL,1,Yes
+CUST-D-00470,2,89.23449660449424,178.46899320898848,2,One year,Credit card,No,0,Yes
+CUST-D-00471,28,70.14063745105344,1963.9378486294963,1,Two year,Bank transfer,Fiber optic,1,No
+CUST-D-00472,4,73.72620231072835,294.9048092429134,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00473,2,108.25488266321278,216.50976532642557,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00474,10,81.33387116704552,813.3387116704552,2,Month-to-month,Mailed check,DSL,0,No internet service
+CUST-D-00475,21,91.58373969980414,1923.2585336958869,2,Month-to-month,Bank transfer,No,0,No
+CUST-D-00476,30,61.091242288508994,1832.7372686552699,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00477,35,76.43273555607965,2675.1457444627877,3,Month-to-month,Electronic check,Fiber optic,0,No internet service
+CUST-D-00478,19,110.33032286143388,2096.2761343672437,1,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-00479,13,50.23413431459166,653.0437460896916,2,One year,Bank transfer,Fiber optic,0,No
+CUST-D-00480,27,84.36764097286976,2277.9263062674836,1,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-00481,19,51.376221925716685,976.1482165886171,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00482,33,107.88014623324338,3560.0448256970317,3,Month-to-month,Mailed check,DSL,1,No
+CUST-D-00483,22,59.34536167183426,1305.5979567803538,3,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00484,6,73.35512002466413,440.1307201479848,1,Month-to-month,Mailed check,No,1,No
+CUST-D-00485,22,118.63045143816055,2609.8699316395323,1,Month-to-month,Credit card,DSL,0,No
+CUST-D-00486,4,110.17390974196735,440.6956389678694,1,Month-to-month,Bank transfer,No,0,No
+CUST-D-00487,20,104.27550264475867,2085.5100528951734,1,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-00488,21,75.32338349770345,1581.7910534517723,1,One year,Credit card,DSL,0,Yes
+CUST-D-00489,15,92.74291023594783,1391.1436535392174,2,One year,Credit card,Fiber optic,0,No
+CUST-D-00490,30,94.9128798416536,2847.386395249608,2,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-00491,14,119.53865505666167,1673.5411707932633,3,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-00492,3,120.0,360.0,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00493,5,73.19454028267508,365.9727014133754,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00494,28,52.04501515119828,1457.2604242335517,2,Month-to-month,Bank transfer,No,0,Yes
+CUST-D-00495,28,89.45940019712872,2504.863205519604,2,One year,Bank transfer,Fiber optic,0,No
+CUST-D-00496,23,95.93937319814478,2206.6055835573297,3,Month-to-month,Mailed check,No,1,No
+CUST-D-00497,33,57.49430727922454,1897.31214021441,2,Month-to-month,Electronic check,No,0,No
+CUST-D-00498,22,67.02867922663532,1474.630942985977,3,Month-to-month,Electronic check,DSL,0,Yes
+CUST-D-00499,6,106.0151722338211,636.0910334029267,1,Month-to-month,Mailed check,No,0,No
+CUST-D-00500,29,99.1832821474758,2876.315182276798,3,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-00501,6,94.08498606887565,564.5099164132539,2,One year,Mailed check,Fiber optic,0,No
+CUST-D-00502,15,99.88509169100324,1498.2763753650486,3,One year,Electronic check,Fiber optic,1,No
+CUST-D-00503,35,78.81126615251677,2758.394315338087,2,One year,Mailed check,Fiber optic,0,Yes
+CUST-D-00504,21,61.020312630345536,1281.4265652372562,1,Month-to-month,Mailed check,DSL,1,Yes
+CUST-D-00505,1,60.89861935831285,60.89861935831285,1,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-00506,29,88.68296953984273,2571.8061166554394,1,Month-to-month,Electronic check,DSL,1,No
+CUST-D-00507,30,120.0,3600.0,2,Month-to-month,Credit card,No,1,Yes
+CUST-D-00508,18,85.94844473172014,1547.0720051709627,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00509,34,100.5475281697815,3418.615957772571,3,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-00510,21,120.0,2520.0,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00511,27,101.82195683866101,2749.192834643847,2,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-00512,24,120.0,2880.0,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00513,9,105.71593599112612,951.443423920135,1,One year,Electronic check,Fiber optic,0,Yes
+CUST-D-00514,29,86.1747892308932,2499.0688876959025,2,One year,Electronic check,Fiber optic,0,Yes
+CUST-D-00515,28,67.00246946911,1876.06914513508,3,Month-to-month,Credit card,DSL,0,Yes
+CUST-D-00516,6,91.52815322243555,549.1689193346133,3,One year,Electronic check,Fiber optic,1,No
+CUST-D-00517,22,120.0,2640.0,2,Two year,Credit card,No,0,No
+CUST-D-00518,33,80.323731820285,2650.683150069405,1,Two year,Mailed check,Fiber optic,0,Yes
+CUST-D-00519,26,51.8068930973797,1346.9792205318722,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00520,22,80.54827297432199,1772.0620054350838,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00521,18,66.18141094971025,1191.2653970947845,1,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00522,10,78.63069616559605,786.3069616559605,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00523,11,106.91057572548056,1176.016332980286,2,Month-to-month,Credit card,No,0,Yes
+CUST-D-00524,30,80.06718512927918,2402.0155538783756,2,Month-to-month,Electronic check,No,0,No
+CUST-D-00525,33,68.03139089338164,2245.0358994815942,1,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00526,33,100.58146415411571,3319.188317085818,1,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00527,20,71.95110774709725,1439.022154941945,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00528,28,101.33094237250697,2837.266386430195,1,One year,Bank transfer,No,0,No internet service
+CUST-D-00529,12,48.888066817430236,586.6568018091629,3,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-00530,35,110.1131198397595,3853.9591943915825,2,One year,Electronic check,Fiber optic,0,Yes
+CUST-D-00531,7,61.862734286027845,433.0391400021949,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00532,6,89.04388328944835,534.2632997366901,2,Two year,Electronic check,Fiber optic,0,No
+CUST-D-00533,24,103.47993545715889,2483.5184509718133,2,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00534,33,63.12348246828057,2083.074921453259,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00535,4,115.39674637326809,461.58698549307235,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00536,23,67.76013359941551,1558.4830727865567,1,Month-to-month,Credit card,DSL,0,No
+CUST-D-00537,21,104.45959453727751,2193.6514852828277,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00538,32,80.91375648772146,2589.2402076070866,2,Month-to-month,Electronic check,Fiber optic,1,No internet service
+CUST-D-00539,19,112.8588066583973,2144.317326509549,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00540,27,101.52810218843263,2741.258759087681,3,Month-to-month,Electronic check,No,1,No
+CUST-D-00541,35,77.29295304872133,2705.2533567052465,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00542,1,114.11985328389729,114.11985328389729,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00543,29,79.42254239901277,2303.2537295713705,2,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-00544,26,115.94722627757082,3014.6278832168414,1,Two year,Credit card,Fiber optic,0,No internet service
+CUST-D-00545,12,41.04713982147273,492.56567785767277,3,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-00546,3,66.0618279758999,198.1854839276997,2,Month-to-month,Credit card,No,0,No
+CUST-D-00547,17,86.57395203334059,1471.75718456679,1,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-00548,2,38.4340591717861,76.8681183435722,2,Month-to-month,Bank transfer,No,1,Yes
+CUST-D-00549,35,70.96993496941217,2483.9477239294256,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00550,25,31.985768183582277,799.6442045895569,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00551,30,57.07869673675874,1712.360902102762,1,Month-to-month,Bank transfer,Fiber optic,1,No internet service
+CUST-D-00552,10,73.62746452906727,736.2746452906727,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00553,4,120.0,480.0,2,Month-to-month,Bank transfer,DSL,1,Yes
+CUST-D-00554,3,98.5743512706616,295.72305381198476,3,Month-to-month,Electronic check,DSL,0,Yes
+CUST-D-00555,26,103.15428580165936,2682.0114308431434,3,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-00556,21,25.0,525.0,2,Two year,Electronic check,Fiber optic,0,No
+CUST-D-00557,28,95.26253343490876,2667.3509361774454,1,One year,Credit card,Fiber optic,0,Yes
+CUST-D-00558,20,83.64298755653051,1672.8597511306102,2,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-00559,35,114.18698996083472,3996.5446486292153,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00560,10,57.13798165013027,571.3798165013027,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00561,29,120.0,3480.0,2,Two year,Bank transfer,Fiber optic,0,No internet service
+CUST-D-00562,10,114.56219062572573,1145.6219062572573,2,One year,Credit card,Fiber optic,0,No
+CUST-D-00563,33,46.343074676053774,1529.3214643097745,1,One year,Mailed check,DSL,0,No
+CUST-D-00564,29,103.93866438425404,3014.221267143367,2,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-00565,34,110.71999795451018,3764.4799304533462,2,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-00566,17,74.74299608774773,1270.6309334917114,1,One year,Bank transfer,Fiber optic,0,No
+CUST-D-00567,6,70.58367113407071,423.5020268044243,3,Month-to-month,Mailed check,No,0,No internet service
+CUST-D-00568,16,102.43615116685751,1638.9784186697202,3,One year,Bank transfer,Fiber optic,0,No
+CUST-D-00569,33,92.60013351646674,3055.8044060434027,2,Month-to-month,Mailed check,No,0,No
+CUST-D-00570,24,79.5483682251577,1909.1608374037849,2,Month-to-month,Electronic check,DSL,1,No
+CUST-D-00571,2,120.0,240.0,1,Month-to-month,Mailed check,DSL,1,Yes
+CUST-D-00572,31,102.04116017234227,3163.2759653426106,1,Month-to-month,Bank transfer,Fiber optic,1,Yes
+CUST-D-00573,24,85.99513041850975,2063.883130044234,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00574,11,97.99956229999133,1077.9951852999045,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00575,30,71.98256150646014,2159.4768451938044,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00576,22,54.7033057670449,1203.4727268749878,3,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00577,14,86.32511863850237,1208.5516609390334,2,Month-to-month,Mailed check,DSL,1,No
+CUST-D-00578,3,112.79728351491627,338.3918505447488,2,Month-to-month,Bank transfer,Fiber optic,0,No internet service
+CUST-D-00579,30,38.09300851063743,1142.790255319123,1,Month-to-month,Mailed check,No,0,No
+CUST-D-00580,22,25.0,550.0,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00581,24,106.27934672542615,2550.7043214102277,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00582,26,120.0,3120.0,1,Month-to-month,Bank transfer,No,1,No
+CUST-D-00583,23,84.55599463930952,1944.7878767041188,3,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-00584,32,104.28572556524608,3337.1432180878746,2,One year,Mailed check,DSL,1,No internet service
+CUST-D-00585,21,99.48953180051721,2089.2801678108613,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00586,3,120.0,360.0,2,Month-to-month,Bank transfer,Fiber optic,1,Yes
+CUST-D-00587,6,99.22378057169622,595.3426834301773,3,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-00588,15,63.8522843730725,957.7842655960875,3,Month-to-month,Credit card,No,0,Yes
+CUST-D-00589,35,58.42075853667724,2044.7265487837035,1,Month-to-month,Mailed check,DSL,1,Yes
+CUST-D-00590,18,85.26135502198237,1534.7043903956826,3,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00591,25,65.49758892450444,1637.439723112611,3,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-00592,26,70.14260369099941,1823.7076959659846,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00593,31,109.99221234248134,3409.7585826169216,1,Month-to-month,Electronic check,Fiber optic,1,No internet service
+CUST-D-00594,27,80.76401584882656,2180.628427918317,1,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00595,12,77.66410307896352,931.9692369475622,3,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-00596,1,120.0,120.0,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00597,6,83.52293815505357,501.1376289303214,1,Month-to-month,Mailed check,DSL,0,No
+CUST-D-00598,2,84.06235502731597,168.12471005463195,2,Month-to-month,Bank transfer,DSL,0,No internet service
+CUST-D-00599,24,109.19228573975988,2620.614857754237,1,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-00600,8,115.31592653143593,922.5274122514875,2,Month-to-month,Mailed check,DSL,0,No internet service
+CUST-D-00601,8,107.87068632264943,862.9654905811955,1,Month-to-month,Bank transfer,Fiber optic,0,No internet service
+CUST-D-00602,6,108.68466270554545,652.1079762332727,2,One year,Credit card,Fiber optic,0,Yes
+CUST-D-00603,27,57.75927093493166,1559.500315243155,1,Month-to-month,Credit card,DSL,0,No internet service
+CUST-D-00604,26,36.03825914205371,936.9947376933965,1,Two year,Mailed check,No,0,Yes
+CUST-D-00605,22,38.829918890343734,854.2582155875622,2,One year,Mailed check,Fiber optic,0,No
+CUST-D-00606,7,70.43041245916764,493.0128872141735,1,One year,Mailed check,No,1,No
+CUST-D-00607,32,97.00185036843565,3104.059211789941,2,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00608,23,92.99853595727282,2138.966327017275,2,Two year,Bank transfer,Fiber optic,0,No
+CUST-D-00609,31,120.0,3720.0,2,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00610,27,118.5332096161044,3200.3966596348187,3,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-00611,13,82.87207181051352,1077.3369335366758,1,Month-to-month,Bank transfer,Fiber optic,0,No internet service
+CUST-D-00612,6,101.23859233942075,607.4315540365245,1,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-00613,9,114.09268050427151,1026.8341245384436,2,One year,Bank transfer,DSL,0,Yes
+CUST-D-00614,25,95.54961287750456,2388.7403219376138,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00615,2,105.63742176888165,211.2748435377633,1,Month-to-month,Bank transfer,No,1,No
+CUST-D-00616,15,41.151487590379,617.272313855685,2,Month-to-month,Mailed check,DSL,0,No
+CUST-D-00617,19,65.58389668178923,1246.0940369539953,1,Month-to-month,Credit card,Fiber optic,1,Yes
+CUST-D-00618,20,58.70582784095891,1174.1165568191782,1,One year,Bank transfer,Fiber optic,0,No internet service
+CUST-D-00619,1,120.0,120.0,1,Month-to-month,Bank transfer,Fiber optic,0,No internet service
+CUST-D-00620,6,82.30966804518532,493.8580082711119,2,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00621,18,89.47071896757275,1610.4729414163096,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00622,18,50.0549494041417,900.9890892745507,1,Month-to-month,Credit card,DSL,1,No
+CUST-D-00623,12,61.14320297293558,733.718435675227,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00624,35,99.39142977092865,3478.7000419825026,3,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-00625,12,39.19881085057971,470.3857302069565,2,Month-to-month,Bank transfer,No,0,No internet service
+CUST-D-00626,14,106.91484471000909,1496.8078259401273,3,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-00627,31,78.68796186450713,2439.326817799721,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00628,25,104.03829009642435,2600.957252410609,3,Month-to-month,Bank transfer,DSL,1,No
+CUST-D-00629,27,120.0,3240.0,1,Month-to-month,Credit card,DSL,0,Yes
+CUST-D-00630,17,89.31094449719117,1518.28605645225,1,Month-to-month,Bank transfer,No,1,No
+CUST-D-00631,24,58.778391895593046,1410.681405494233,1,One year,Bank transfer,Fiber optic,0,No
+CUST-D-00632,29,61.82683125967189,1792.9781065304849,2,One year,Electronic check,Fiber optic,0,Yes
+CUST-D-00633,16,90.11057941241555,1441.7692705986487,2,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00634,32,71.80450711031874,2297.7442275301996,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00635,21,96.89552359703873,2034.8059955378135,2,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00636,34,82.9100875604824,2818.9429770564016,1,Month-to-month,Credit card,DSL,0,No
+CUST-D-00637,22,101.76715973157098,2238.877514094562,3,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00638,19,80.15263791654297,1522.9001204143165,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00639,11,79.0837807843858,869.9215886282437,2,Two year,Bank transfer,Fiber optic,0,Yes
+CUST-D-00640,21,78.03394084751723,1638.7127577978617,1,One year,Mailed check,Fiber optic,0,No
+CUST-D-00641,29,117.42753989979435,3405.3986570940365,2,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-00642,4,72.62964752907087,290.51859011628346,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00643,4,87.12066975011676,348.48267900046704,1,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-00644,15,67.37055655744834,1010.558348361725,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00645,4,94.2313365130149,376.9253460520596,2,Month-to-month,Credit card,No,1,No internet service
+CUST-D-00646,15,117.11483812484869,1756.7225718727304,1,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00647,2,56.564847192923445,113.12969438584689,2,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-00648,30,81.84976124844631,2455.4928374533893,1,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-00649,33,87.61978458565169,2891.452891326506,2,One year,Electronic check,DSL,1,No
+CUST-D-00650,4,69.21257061854513,276.8502824741805,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00651,11,86.89738459210109,955.871230513112,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00652,13,67.06964015901681,871.9053220672185,1,One year,Mailed check,Fiber optic,0,Yes
+CUST-D-00653,3,99.4135330015437,298.2405990046311,3,Month-to-month,Mailed check,DSL,0,No internet service
+CUST-D-00654,33,116.00213802463513,3828.0705548129595,2,One year,Bank transfer,DSL,0,No
+CUST-D-00655,22,59.34522489146494,1305.5949476122287,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00656,4,112.11478288709735,448.4591315483894,1,Month-to-month,Electronic check,Fiber optic,1,Yes
+CUST-D-00657,23,85.56780007510879,1968.0594017275023,3,Month-to-month,Bank transfer,No,0,No internet service
+CUST-D-00658,25,61.144049107092464,1528.6012276773115,3,Month-to-month,Credit card,DSL,1,No
+CUST-D-00659,8,52.20946596646734,417.67572773173873,3,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-00660,34,50.32297640973783,1710.9811979310862,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00661,35,81.44325243865877,2850.513835353057,2,One year,Bank transfer,No,1,No
+CUST-D-00662,31,41.709277642182606,1292.9876069076608,3,Month-to-month,Electronic check,DSL,0,Yes
+CUST-D-00663,9,99.70962735048876,897.3866461543988,3,Month-to-month,Bank transfer,Fiber optic,1,Yes
+CUST-D-00664,7,70.13157498908127,490.9210249235689,2,Month-to-month,Mailed check,DSL,0,Yes
+CUST-D-00665,15,88.63734385347301,1329.560157802095,1,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-00666,11,85.52010858204822,940.7211944025305,1,Month-to-month,Mailed check,Fiber optic,1,Yes
+CUST-D-00667,20,120.0,2400.0,1,One year,Electronic check,DSL,1,No
+CUST-D-00668,16,55.47849048946409,887.6558478314255,3,One year,Electronic check,Fiber optic,1,No
+CUST-D-00669,24,100.70831227315858,2416.999494555806,2,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00670,20,115.28277939364654,2305.6555878729305,1,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00671,14,79.13038153806626,1107.8253415329277,2,One year,Electronic check,DSL,0,No
+CUST-D-00672,15,86.10840830818822,1291.6261246228232,1,Month-to-month,Mailed check,No,0,No
+CUST-D-00673,7,81.92439653638304,573.4707757546813,3,Month-to-month,Electronic check,No,0,No internet service
+CUST-D-00674,25,88.67142606236881,2216.7856515592202,1,Month-to-month,Credit card,DSL,0,No
+CUST-D-00675,16,103.57033718843444,1657.125395014951,2,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-00676,14,78.76464582497489,1102.7050415496485,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00677,16,60.575492344526346,969.2078775124215,2,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-00678,32,98.36382088127439,3147.6422682007806,2,Month-to-month,Bank transfer,No,0,No internet service
+CUST-D-00679,24,117.48905987435181,2819.7374369844433,3,One year,Bank transfer,Fiber optic,0,No
+CUST-D-00680,15,52.82252275742205,792.3378413613308,1,Month-to-month,Electronic check,Fiber optic,1,No internet service
+CUST-D-00681,33,120.0,3960.0,3,Month-to-month,Mailed check,Fiber optic,1,Yes
+CUST-D-00682,32,94.8648171989883,3035.6741503676258,1,Month-to-month,Bank transfer,No,1,Yes
+CUST-D-00683,34,77.7399188888129,2643.1572422196386,1,One year,Credit card,Fiber optic,0,No
+CUST-D-00684,4,59.64623345068432,238.58493380273728,2,Month-to-month,Bank transfer,DSL,1,Yes
+CUST-D-00685,34,56.18362568781714,1910.2432733857827,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00686,8,100.57800140269414,804.6240112215531,2,Two year,Electronic check,Fiber optic,0,No
+CUST-D-00687,17,74.06145001719177,1259.0446502922603,1,Month-to-month,Credit card,No,1,No
+CUST-D-00688,15,74.3552760380733,1115.3291405710995,1,Month-to-month,Electronic check,No,0,No
+CUST-D-00689,8,77.13102186402986,617.0481749122389,1,One year,Mailed check,Fiber optic,0,No
+CUST-D-00690,28,80.26022558074322,2247.28631626081,1,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-00691,19,63.73558327819281,1210.9760822856636,2,Month-to-month,Electronic check,No,1,No
+CUST-D-00692,32,83.11557122226117,2659.6982791123573,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00693,12,98.98136993199606,1187.7764391839528,1,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00694,1,75.39624824677155,75.39624824677155,2,One year,Electronic check,Fiber optic,0,No internet service
+CUST-D-00695,17,32.724345939978576,556.3138809796358,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00696,23,60.98156769490653,1402.57605698285,3,Two year,Bank transfer,Fiber optic,0,No internet service
+CUST-D-00697,21,90.67118937581748,1904.094976892167,2,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-00698,25,90.96550732955554,2274.1376832388883,3,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-00699,26,54.05931562356365,1405.542206212655,1,Month-to-month,Electronic check,DSL,1,No
+CUST-D-00700,28,120.0,3360.0,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00701,21,40.124250511717186,842.609260746061,3,Month-to-month,Mailed check,Fiber optic,1,Yes
+CUST-D-00702,30,107.1750817090327,3215.252451270981,3,Month-to-month,Bank transfer,DSL,1,No
+CUST-D-00703,12,84.37347654831062,1012.4817185797274,3,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-00704,26,81.58167785908365,2121.123624336175,2,Month-to-month,Credit card,DSL,0,No
+CUST-D-00705,35,44.088908128068866,1543.1117844824103,2,Month-to-month,Mailed check,Fiber optic,1,No internet service
+CUST-D-00706,18,67.01524262455155,1206.2743672419278,3,Month-to-month,Bank transfer,Fiber optic,0,No internet service
+CUST-D-00707,13,81.19219985147323,1055.498598069152,3,One year,Bank transfer,Fiber optic,1,No
+CUST-D-00708,8,86.91315117812209,695.3052094249767,3,Month-to-month,Electronic check,DSL,0,Yes
+CUST-D-00709,35,92.7017458349713,3244.5611042239957,1,Month-to-month,Electronic check,No,0,No
+CUST-D-00710,26,86.83976944557241,2257.834005584883,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00711,9,52.22010973197416,469.98098758776746,2,Month-to-month,Electronic check,DSL,0,No internet service
+CUST-D-00712,29,42.7657090273543,1240.2055617932747,1,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00713,9,120.0,1080.0,3,One year,Mailed check,Fiber optic,0,No
+CUST-D-00714,33,66.23972246576284,2185.910841370174,2,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-00715,29,64.56068232316672,1872.2597873718348,1,One year,Electronic check,Fiber optic,0,No internet service
+CUST-D-00716,25,78.80617386002183,1970.1543465005457,3,One year,Mailed check,Fiber optic,0,No internet service
+CUST-D-00717,11,93.77094578299642,1031.4804036129606,3,Month-to-month,Bank transfer,Fiber optic,0,No internet service
+CUST-D-00718,19,120.0,2280.0,3,Month-to-month,Bank transfer,Fiber optic,1,Yes
+CUST-D-00719,1,42.54045331545651,42.54045331545651,3,Month-to-month,Credit card,DSL,0,Yes
+CUST-D-00720,21,100.65416081762105,2113.737377170042,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00721,14,53.85464385150724,753.9650139211013,3,Two year,Mailed check,DSL,0,No
+CUST-D-00722,19,72.06464077174576,1369.2281746631693,2,One year,Bank transfer,DSL,0,Yes
+CUST-D-00723,35,78.6743876858964,2753.603569006374,3,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-00724,18,97.24360329681036,1750.3848593425864,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00725,2,86.70248977585754,173.4049795517151,2,Two year,Mailed check,Fiber optic,1,No
+CUST-D-00726,13,113.12343763694517,1470.6046892802872,3,Month-to-month,Bank transfer,Fiber optic,1,Yes
+CUST-D-00727,13,57.38395012553248,745.9913516319223,2,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-00728,5,100.2003529561342,501.001764780671,1,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-00729,19,72.25522575227257,1372.8492892931788,2,Month-to-month,Mailed check,DSL,0,No
+CUST-D-00730,3,25.71119227005996,77.13357681017987,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00731,22,87.8237341265427,1932.1221507839396,3,One year,Electronic check,Fiber optic,0,No
+CUST-D-00732,2,89.76522657696994,179.53045315393987,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00733,10,98.03045407314622,980.3045407314621,2,Month-to-month,Credit card,DSL,0,Yes
+CUST-D-00734,35,120.0,4200.0,3,One year,Bank transfer,Fiber optic,0,No
+CUST-D-00735,27,120.0,3240.0,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00736,25,79.2443275995572,1981.1081899889298,3,One year,Mailed check,DSL,0,No
+CUST-D-00737,24,102.97224074598846,2471.333777903723,2,One year,Bank transfer,DSL,0,No
+CUST-D-00738,8,95.72185087560452,765.7748070048361,2,One year,Bank transfer,Fiber optic,0,No
+CUST-D-00739,32,110.23550268407074,3527.5360858902636,3,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00740,11,59.05316645939296,649.5848310533225,2,Month-to-month,Credit card,Fiber optic,1,Yes
+CUST-D-00741,34,104.30913842711385,3546.510706521871,3,Month-to-month,Bank transfer,Fiber optic,1,Yes
+CUST-D-00742,12,89.5331968898956,1074.3983626787472,2,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00743,15,52.28853123432593,784.327968514889,1,One year,Mailed check,Fiber optic,0,No
+CUST-D-00744,14,73.18264035183769,1024.5569649257277,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00745,5,49.402945025751855,247.01472512875927,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00746,16,48.56322986481346,777.0116778370153,3,Month-to-month,Electronic check,Fiber optic,1,Yes
+CUST-D-00747,7,75.3295143878621,527.3066007150347,1,One year,Mailed check,Fiber optic,0,Yes
+CUST-D-00748,27,85.51883735224828,2309.0086085107037,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00749,25,107.79219306638636,2694.804826659659,2,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-00750,5,91.35959620601069,456.79798103005345,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00751,16,97.08253897043325,1553.320623526932,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00752,17,92.17855099399459,1567.035366897908,1,One year,Bank transfer,Fiber optic,0,Yes
+CUST-D-00753,20,98.83794979246129,1976.7589958492258,3,One year,Bank transfer,Fiber optic,0,Yes
+CUST-D-00754,15,86.24205564965011,1293.6308347447516,1,One year,Bank transfer,DSL,0,No
+CUST-D-00755,35,79.65115674560727,2787.7904860962544,2,One year,Electronic check,Fiber optic,0,No
+CUST-D-00756,20,55.76323467260157,1115.2646934520315,1,Two year,Electronic check,Fiber optic,1,No internet service
+CUST-D-00757,27,78.49656227566234,2119.407181442883,1,Month-to-month,Mailed check,DSL,1,No
+CUST-D-00758,5,41.09739894123248,205.4869947061624,3,One year,Electronic check,DSL,1,No
+CUST-D-00759,10,46.816243912992434,468.16243912992434,3,Month-to-month,Electronic check,No,0,No
+CUST-D-00760,17,101.87694949103597,1731.9081413476115,3,Two year,Mailed check,Fiber optic,0,Yes
+CUST-D-00761,35,106.444461974691,3725.5561691141847,1,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-00762,35,54.81504193464326,1918.5264677125142,3,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-00763,12,59.058881878184664,708.706582538216,1,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00764,26,82.08469093706401,2134.201964363664,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00765,27,120.0,3240.0,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00766,5,98.94368328476162,494.7184164238081,1,Month-to-month,Electronic check,Fiber optic,1,No internet service
+CUST-D-00767,13,96.32771918929711,1252.2603494608625,1,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00768,29,91.47322749764083,2652.723597431584,3,Month-to-month,Bank transfer,DSL,0,No internet service
+CUST-D-00769,26,82.3045521724143,2139.9183564827717,1,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-00770,15,68.01409274703546,1020.211391205532,2,Month-to-month,Electronic check,Fiber optic,0,No internet service
+CUST-D-00771,17,77.56173218576151,1318.5494471579457,1,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00772,17,113.43444520534634,1928.3855684908876,3,Month-to-month,Mailed check,No,1,No
+CUST-D-00773,17,80.50324697647534,1368.5551986000808,3,Month-to-month,Electronic check,No,1,No
+CUST-D-00774,10,120.0,1200.0,3,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00775,13,120.0,1560.0,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00776,23,75.29856638091634,1731.8670267610757,3,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-00777,19,63.19343494295591,1200.6752639161623,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00778,17,44.56084126334088,757.534301476795,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00779,35,111.82932222662885,3914.0262779320096,2,Month-to-month,Bank transfer,DSL,0,Yes
+CUST-D-00780,27,67.66383227089375,1826.9234713141313,2,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00781,7,77.26228420363279,540.8359894254295,1,One year,Bank transfer,DSL,1,No
+CUST-D-00782,7,117.23935102940642,820.675457205845,3,Month-to-month,Electronic check,Fiber optic,1,Yes
+CUST-D-00783,31,65.74440011723257,2038.0764036342098,1,Two year,Mailed check,Fiber optic,0,No
+CUST-D-00784,15,99.94270598916776,1499.1405898375165,2,Two year,Credit card,Fiber optic,0,No
+CUST-D-00785,1,87.24448648517352,87.24448648517352,2,One year,Credit card,Fiber optic,0,No
+CUST-D-00786,35,60.2961840823515,2110.3664428823026,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00787,7,51.75746756393553,362.3022729475487,2,One year,Mailed check,Fiber optic,0,No internet service
+CUST-D-00788,28,116.45149864070677,3260.64196193979,3,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-00789,31,55.80585938273434,1729.9816408647646,3,One year,Mailed check,Fiber optic,0,No
+CUST-D-00790,26,103.8180378842417,2699.2689849902845,1,Month-to-month,Bank transfer,No,0,No
+CUST-D-00791,33,86.99601957921426,2870.8686461140705,3,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-00792,2,76.36736133683469,152.73472267366938,1,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-00793,12,106.73925316956196,1280.8710380347436,2,Month-to-month,Mailed check,Fiber optic,1,No internet service
+CUST-D-00794,19,54.05809975377261,1027.1038953216796,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00795,8,112.76171111477609,902.0936889182087,1,Month-to-month,Mailed check,DSL,0,Yes
+CUST-D-00796,19,91.28593252706715,1734.4327180142757,3,Two year,Credit card,Fiber optic,0,Yes
+CUST-D-00797,25,46.56044935232756,1164.011233808189,2,Month-to-month,Bank transfer,Fiber optic,1,Yes
+CUST-D-00798,5,68.67722218447975,343.38611092239876,2,Month-to-month,Electronic check,Fiber optic,1,Yes
+CUST-D-00799,28,119.07797011416154,3334.1831631965233,3,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-00800,25,116.38974815221171,2909.7437038052926,3,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-00801,4,88.26815956845154,353.07263827380615,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00802,19,74.55443076942376,1416.5341846190515,2,One year,Credit card,Fiber optic,1,No
+CUST-D-00803,20,120.0,2400.0,2,One year,Bank transfer,DSL,0,No
+CUST-D-00804,18,89.30479677538973,1607.4863419570152,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00805,7,120.0,840.0,2,One year,Credit card,DSL,0,No
+CUST-D-00806,10,103.53780877153659,1035.3780877153658,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00807,21,68.78347588043577,1444.4529934891511,1,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-00808,20,103.17824257018256,2063.564851403651,3,Month-to-month,Electronic check,DSL,0,No
+CUST-D-00809,27,80.10410482368572,2162.8108302395144,1,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-00810,27,58.320588871804766,1574.6558995387286,3,Month-to-month,Mailed check,Fiber optic,1,Yes
+CUST-D-00811,11,115.26819569743289,1267.9501526717618,3,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-00812,25,101.26189925008839,2531.5474812522098,1,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-00813,31,76.93018465275402,2384.8357242353745,2,Month-to-month,Credit card,Fiber optic,1,Yes
+CUST-D-00814,6,94.39222088343627,566.3533253006176,1,Two year,Mailed check,DSL,1,No
+CUST-D-00815,4,58.91698012116601,235.66792048466405,3,Month-to-month,Mailed check,No,0,No internet service
+CUST-D-00816,26,75.79219289383165,1970.597015239623,3,Month-to-month,Electronic check,DSL,1,No
+CUST-D-00817,7,115.38669540461616,807.7068678323132,3,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-00818,27,98.01840476329335,2646.4969286089204,1,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-00819,1,83.07906405704092,83.07906405704092,2,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-00820,6,79.15371877941449,474.92231267648697,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00821,34,44.84915844747493,1524.8713872141475,3,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-00822,33,75.30137191571959,2484.9452732187465,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00823,19,107.57595626617018,2043.9431690572335,1,Two year,Credit card,Fiber optic,0,No
+CUST-D-00824,25,66.80314200799526,1670.0785501998816,3,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-00825,29,104.06050781042526,3017.7547265023327,3,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00826,14,120.0,1680.0,2,One year,Credit card,DSL,0,No
+CUST-D-00827,29,57.31581489216605,1662.1586318728155,3,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00828,6,79.81993140918334,478.91958845510004,1,One year,Mailed check,Fiber optic,1,No
+CUST-D-00829,24,87.65027795519062,2103.6066709245747,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00830,10,102.72381833284717,1027.2381833284717,3,Month-to-month,Bank transfer,No,0,Yes
+CUST-D-00831,29,103.98773536738896,3015.64432565428,1,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-00832,14,88.6990008229451,1241.7860115212313,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00833,14,39.10954943690117,547.5336921166164,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00834,10,48.53318530692534,485.3318530692534,3,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-00835,12,120.0,1440.0,3,Month-to-month,Electronic check,Fiber optic,1,Yes
+CUST-D-00836,13,79.9774840722834,1039.7072929396843,2,Month-to-month,Credit card,DSL,0,No
+CUST-D-00837,28,101.93554536548986,2854.195270233716,3,One year,Credit card,Fiber optic,0,No
+CUST-D-00838,23,120.0,2760.0,1,One year,Electronic check,Fiber optic,0,No
+CUST-D-00839,13,69.6044585084124,904.8579606093613,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00840,24,93.3350283123895,2240.040679497348,3,Month-to-month,Electronic check,Fiber optic,0,No internet service
+CUST-D-00841,11,63.41245647383899,697.537021212229,2,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-00842,31,76.43744786813335,2369.5608839121337,3,Month-to-month,Mailed check,DSL,0,No internet service
+CUST-D-00843,26,75.27237018122656,1957.0816247118905,3,Month-to-month,Credit card,No,1,No internet service
+CUST-D-00844,1,93.31380521506992,93.31380521506992,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00845,11,88.37818648803199,972.1600513683518,3,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-00846,7,79.70095344246892,557.9066740972823,2,One year,Mailed check,DSL,0,No
+CUST-D-00847,28,59.26591718379946,1659.445681146385,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00848,32,103.7459549905636,3319.8705596980353,3,Month-to-month,Credit card,DSL,0,Yes
+CUST-D-00849,34,80.01068763355279,2720.363379540795,1,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-00850,28,60.430806370963744,1692.0625783869848,3,Month-to-month,Credit card,Fiber optic,1,No internet service
+CUST-D-00851,8,68.10451304070908,544.8361043256726,1,One year,Mailed check,DSL,1,No
+CUST-D-00852,15,118.37013364047564,1775.5520046071347,2,Month-to-month,Credit card,DSL,0,No
+CUST-D-00853,8,98.65429007791218,789.2343206232974,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00854,32,109.21687429237606,3494.939977356034,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00855,13,120.0,1560.0,3,Month-to-month,Credit card,No,1,Yes
+CUST-D-00856,27,120.0,3240.0,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00857,1,93.06517624238425,93.06517624238425,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00858,1,82.17339538737862,82.17339538737862,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00859,4,118.36171366228595,473.4468546491438,3,Month-to-month,Credit card,DSL,0,Yes
+CUST-D-00860,10,58.567108063936445,585.6710806393644,3,Month-to-month,Credit card,No,0,No
+CUST-D-00861,12,81.14708571025022,973.7650285230027,2,Month-to-month,Bank transfer,DSL,1,No
+CUST-D-00862,11,60.848173816445076,669.3299119808959,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00863,24,81.19136967470727,1948.5928721929745,2,Two year,Electronic check,No,1,No
+CUST-D-00864,3,66.13890456743576,198.41671370230728,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00865,28,54.655852978508015,1530.3638833982245,3,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-00866,8,117.85338015506338,942.827041240507,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00867,23,44.615774502393094,1026.162813555041,1,One year,Electronic check,Fiber optic,0,No
+CUST-D-00868,1,57.94397096110424,57.94397096110424,3,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-00869,23,80.61281591803902,1854.0947661148975,1,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-00870,8,106.14291224853977,849.1432979883182,2,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-00871,28,88.21309445485817,2469.9666447360287,3,Month-to-month,Credit card,DSL,0,Yes
+CUST-D-00872,19,91.31690491811915,1735.0211934442639,1,Month-to-month,Credit card,DSL,1,No
+CUST-D-00873,12,118.25571520114597,1419.0685824137518,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00874,32,74.84990724557208,2395.1970318583067,2,Two year,Mailed check,DSL,1,No
+CUST-D-00875,22,84.66004958689453,1862.5210909116797,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00876,28,47.519363393090956,1330.5421750065468,1,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00877,31,32.275583613307994,1000.5430920125478,1,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-00878,34,104.66982449048618,3558.77403267653,1,One year,Electronic check,Fiber optic,0,No internet service
+CUST-D-00879,5,71.47773280672428,357.38866403362135,1,Month-to-month,Credit card,DSL,1,No internet service
+CUST-D-00880,4,93.17835443295522,372.71341773182087,1,Month-to-month,Mailed check,No,0,Yes
+CUST-D-00881,23,84.62414467331767,1946.3553274863066,1,Two year,Mailed check,Fiber optic,0,Yes
+CUST-D-00882,9,46.9418697430437,422.4768276873933,1,One year,Mailed check,Fiber optic,0,Yes
+CUST-D-00883,17,107.96274071267297,1835.3665921154404,1,Month-to-month,Electronic check,Fiber optic,1,Yes
+CUST-D-00884,16,41.78094351707051,668.4950962731282,2,One year,Mailed check,Fiber optic,1,Yes
+CUST-D-00885,17,53.479047239562234,909.143803072558,2,Month-to-month,Electronic check,DSL,0,No
+CUST-D-00886,14,91.99134324446123,1287.8788054224574,1,Month-to-month,Electronic check,DSL,0,No
+CUST-D-00887,18,120.0,2160.0,3,One year,Electronic check,No,0,No
+CUST-D-00888,14,99.9272944688845,1398.982122564383,2,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-00889,15,73.59096723998306,1103.864508599746,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00890,8,78.53651515192857,628.2921212154286,3,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-00891,26,69.5896941298364,1809.3320473757465,1,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-00892,29,78.53897763826352,2277.630351509642,3,Month-to-month,Mailed check,Fiber optic,1,No internet service
+CUST-D-00893,12,102.9103031763493,1234.9236381161916,2,One year,Mailed check,DSL,0,No
+CUST-D-00894,3,63.92439988474781,191.77319965424343,1,One year,Credit card,Fiber optic,1,Yes
+CUST-D-00895,9,120.0,1080.0,1,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-00896,16,97.50817417408264,1560.1307867853222,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00897,19,55.27682286282878,1050.2596343937469,1,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-00898,15,62.44503514631379,936.6755271947069,2,Two year,Credit card,Fiber optic,0,No
+CUST-D-00899,28,106.75516370833732,2989.144583833445,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00900,24,88.45711559551616,2122.970774292388,1,One year,Bank transfer,Fiber optic,0,No
+CUST-D-00901,30,41.26994524791634,1238.0983574374902,2,Month-to-month,Credit card,DSL,1,Yes
+CUST-D-00902,11,62.00170834024942,682.0187917427436,1,Month-to-month,Bank transfer,No,0,No
+CUST-D-00903,8,62.448638182457266,499.58910545965813,1,Month-to-month,Credit card,DSL,1,No
+CUST-D-00904,31,50.97334512501779,1580.1736988755513,3,One year,Electronic check,No,0,No
+CUST-D-00905,14,98.90371001934177,1384.6519402707847,1,Two year,Mailed check,Fiber optic,0,Yes
+CUST-D-00906,17,109.21278906902837,1856.6174141734823,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00907,9,81.82369829090138,736.4132846181124,3,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00908,28,85.02482643341959,2380.6951401357487,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00909,1,107.3592017680919,107.3592017680919,3,Month-to-month,Credit card,No,0,No
+CUST-D-00910,4,80.49759565856053,321.9903826342421,3,Two year,Electronic check,Fiber optic,0,No
+CUST-D-00911,11,99.6881401853313,1096.5695420386444,1,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-00912,35,71.9506662029579,2518.2733171035266,2,Month-to-month,Mailed check,Fiber optic,1,Yes
+CUST-D-00913,10,84.92143106180235,849.2143106180235,3,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-00914,18,120.0,2160.0,3,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-00915,31,113.53594440977618,3519.6142767030615,3,Month-to-month,Mailed check,DSL,0,Yes
+CUST-D-00916,28,120.0,3360.0,2,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00917,8,83.07842779481649,664.6274223585319,1,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-00918,17,99.72639664539723,1695.348742971753,2,Two year,Bank transfer,Fiber optic,1,Yes
+CUST-D-00919,35,40.43368397954039,1415.1789392839137,2,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-00920,35,63.36422735192911,2217.7479573175187,1,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-00921,3,79.54088929394949,238.62266788184849,1,Month-to-month,Mailed check,DSL,0,No
+CUST-D-00922,25,60.85957076179417,1521.4892690448542,3,Month-to-month,Credit card,Fiber optic,1,Yes
+CUST-D-00923,1,54.75487161341021,54.75487161341021,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00924,22,76.42893229556991,1681.4365105025379,2,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-00925,28,109.56833536583473,3067.9133902433723,3,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-00926,32,88.0149447101665,2816.478230725328,1,One year,Bank transfer,Fiber optic,0,No
+CUST-D-00927,9,57.98745181290754,521.8870663161679,3,One year,Credit card,Fiber optic,1,No
+CUST-D-00928,30,78.7069555580003,2361.208666740009,1,Month-to-month,Credit card,DSL,0,No
+CUST-D-00929,7,49.59711072410983,347.17977506876883,2,Month-to-month,Electronic check,Fiber optic,0,No internet service
+CUST-D-00930,26,69.23556510829937,1800.1246928157836,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00931,34,50.61007871828084,1720.7426764215486,2,Month-to-month,Bank transfer,No,1,Yes
+CUST-D-00932,10,120.0,1200.0,2,One year,Mailed check,Fiber optic,0,No
+CUST-D-00933,32,44.7101917990804,1430.7261375705727,3,Two year,Credit card,No,1,No
+CUST-D-00934,5,62.604372539753655,313.02186269876825,3,One year,Bank transfer,No,0,No
+CUST-D-00935,11,87.64020133405461,964.0422146746007,3,Month-to-month,Bank transfer,No,1,Yes
+CUST-D-00936,35,63.042682741436636,2206.4938959502824,3,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-00937,16,120.0,1920.0,2,Month-to-month,Electronic check,No,0,No
+CUST-D-00938,30,94.2576937650396,2827.730812951188,3,Month-to-month,Mailed check,Fiber optic,1,No internet service
+CUST-D-00939,7,76.57485195597093,536.0239636917966,2,Month-to-month,Mailed check,No,0,No
+CUST-D-00940,11,90.9632100220905,1000.5953102429954,2,One year,Bank transfer,No,0,No internet service
+CUST-D-00941,24,86.84943380271886,2084.3864112652527,1,Month-to-month,Credit card,No,0,Yes
+CUST-D-00942,27,105.3481031613943,2844.3987853576464,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00943,35,47.492928882839024,1662.252510899366,3,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-00944,33,103.50103837186069,3415.534266271403,2,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-00945,3,73.50765699805474,220.5229709941642,1,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00946,30,89.82422907933581,2694.7268723800744,3,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-00947,1,92.06837780908597,92.06837780908597,3,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00948,27,113.51333451351562,3064.8600318649214,3,Month-to-month,Bank transfer,Fiber optic,1,Yes
+CUST-D-00949,1,84.0872591022793,84.0872591022793,3,Month-to-month,Electronic check,No,0,Yes
+CUST-D-00950,25,110.48137051965101,2762.034262991275,3,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-00951,24,53.739714049083354,1289.7531371780005,1,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-00952,22,99.39963871568332,2186.792051745033,2,Month-to-month,Electronic check,No,0,No internet service
+CUST-D-00953,13,82.4334240699815,1071.6345129097595,3,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-00954,35,64.33866511900945,2251.8532791653306,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00955,35,72.65451820590577,2542.908137206702,3,One year,Credit card,Fiber optic,0,No
+CUST-D-00956,28,82.68534140227793,2315.189559263782,3,Month-to-month,Credit card,DSL,1,No internet service
+CUST-D-00957,32,56.528496246978214,1808.9118799033029,2,One year,Credit card,Fiber optic,0,No
+CUST-D-00958,23,46.55715377790321,1070.8145368917737,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00959,5,47.715832618284445,238.57916309142223,2,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-00960,11,98.21115881803661,1080.3227469984026,1,Month-to-month,Electronic check,DSL,1,Yes
+CUST-D-00961,35,110.66037215177133,3873.1130253119964,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00962,22,70.11880523076752,1542.6137150768855,1,Month-to-month,Electronic check,DSL,1,No
+CUST-D-00963,32,117.85769710535641,3771.446307371405,3,Month-to-month,Bank transfer,DSL,0,Yes
+CUST-D-00964,14,79.02372961485428,1106.33221460796,1,Month-to-month,Mailed check,No,0,Yes
+CUST-D-00965,16,62.98267504753314,1007.7228007605303,2,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00966,33,53.6558122278943,1770.641803520512,2,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-00967,23,70.89002280709036,1630.4705245630782,1,Month-to-month,Credit card,Fiber optic,1,No internet service
+CUST-D-00968,8,55.76627132538045,446.1301706030436,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00969,21,104.34695647664999,2191.28608600965,1,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-00970,5,109.13401686911814,545.6700843455907,3,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-00971,20,100.43693799756834,2008.7387599513668,2,Month-to-month,Electronic check,Fiber optic,1,Yes
+CUST-D-00972,17,92.183617094287,1567.121490602879,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00973,6,107.86236654860204,647.1741992916122,2,Month-to-month,Electronic check,Fiber optic,0,No internet service
+CUST-D-00974,6,64.66793930660553,388.00763583963317,2,Month-to-month,Electronic check,No,0,Yes
+CUST-D-00975,31,25.0,775.0,3,Month-to-month,Mailed check,Fiber optic,1,No internet service
+CUST-D-00976,33,106.33756464435753,3509.1396332637983,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-00977,3,115.29146981494307,345.8744094448292,1,One year,Mailed check,No,1,Yes
+CUST-D-00978,29,76.72050102589007,2224.894529750812,1,One year,Mailed check,Fiber optic,0,No internet service
+CUST-D-00979,31,95.79769737965297,2969.728618769242,3,One year,Credit card,Fiber optic,0,Yes
+CUST-D-00980,3,73.95051036884331,221.85153110652993,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00981,1,41.94186180261498,41.94186180261498,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00982,21,107.26934772280867,2252.656302178982,2,Two year,Bank transfer,No,0,Yes
+CUST-D-00983,27,46.84960174408576,1264.9392470903156,3,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00984,15,120.0,1800.0,1,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-00985,31,87.30523232907325,2706.462202201271,2,One year,Electronic check,DSL,1,Yes
+CUST-D-00986,30,61.51026639869372,1845.3079919608117,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00987,32,74.84613447094439,2395.0763030702205,2,Month-to-month,Bank transfer,Fiber optic,1,Yes
+CUST-D-00988,17,91.51330119191822,1555.7261202626096,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00989,22,101.91318668057117,2242.090106972566,2,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-00990,23,74.06168754953549,1703.4188136393163,3,One year,Mailed check,Fiber optic,0,No
+CUST-D-00991,5,88.92710828087701,444.63554140438504,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-00992,21,79.25703838781041,1664.3978061440187,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-00993,17,78.98308535628824,1342.7124510569001,1,One year,Credit card,Fiber optic,0,Yes
+CUST-D-00994,31,70.36309302789923,2181.255883864876,1,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-00995,11,95.68136927012772,1052.495061971405,3,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-00996,6,96.93331942473193,581.5999165483915,3,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-00997,35,119.98572443455473,4199.500355209416,1,Two year,Electronic check,DSL,0,No
+CUST-D-00998,24,111.59604808660869,2678.3051540786087,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-00999,2,75.23506557673885,150.4701311534777,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01000,20,36.40408525535193,728.0817051070386,3,Month-to-month,Bank transfer,DSL,0,Yes
+CUST-D-01001,21,57.76820851783988,1213.1323788746374,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01002,2,60.766749870736824,121.53349974147365,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01003,11,67.06413491848741,737.7054841033615,1,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-01004,11,75.72819355085777,833.0101290594355,2,One year,Mailed check,DSL,0,No
+CUST-D-01005,10,107.5064020417924,1075.064020417924,3,Two year,Mailed check,Fiber optic,0,Yes
+CUST-D-01006,17,111.49419069795135,1895.401241865173,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01007,4,117.62996503317895,470.5198601327158,1,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-01008,1,92.16754365526484,92.16754365526484,1,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-01009,6,106.19581280594811,637.1748768356887,1,Two year,Mailed check,Fiber optic,0,No
+CUST-D-01010,19,80.58870714688865,1531.1854357908844,2,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-01011,27,97.54628433136004,2633.749676946721,1,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-01012,15,70.69819107142752,1060.4728660714127,2,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-01013,21,83.17453269138855,1746.6651865191595,3,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-01014,9,69.14362679620709,622.2926411658638,2,Month-to-month,Credit card,DSL,0,No
+CUST-D-01015,14,69.99070861358675,979.8699205902144,2,Month-to-month,Bank transfer,DSL,1,Yes
+CUST-D-01016,4,90.32770570681024,361.31082282724094,3,Month-to-month,Credit card,DSL,0,No
+CUST-D-01017,27,69.69156758063886,1881.6723246772492,1,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-01018,11,100.69622236242253,1107.6584459866478,2,Month-to-month,Electronic check,Fiber optic,0,No internet service
+CUST-D-01019,9,78.43170831700941,705.8853748530847,2,Two year,Electronic check,Fiber optic,0,No internet service
+CUST-D-01020,29,79.11858600285119,2294.4389940826845,1,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-01021,20,87.6896740865831,1753.7934817316618,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01022,23,49.14450354434907,1130.3235815200287,2,Month-to-month,Credit card,DSL,0,No
+CUST-D-01023,22,97.09624425439294,2136.117373596645,1,Two year,Mailed check,Fiber optic,0,No
+CUST-D-01024,6,90.02896693448608,540.1738016069164,1,One year,Electronic check,Fiber optic,0,No
+CUST-D-01025,5,94.78818064410778,473.9409032205389,2,One year,Mailed check,DSL,0,Yes
+CUST-D-01026,13,98.96168381880892,1286.501889644516,2,One year,Mailed check,Fiber optic,0,No internet service
+CUST-D-01027,33,120.0,3960.0,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01028,8,71.93845771257818,575.5076617006255,1,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-01029,12,112.40572659216022,1348.8687191059225,3,One year,Bank transfer,Fiber optic,1,Yes
+CUST-D-01030,20,48.098529192450854,961.9705838490171,3,One year,Electronic check,Fiber optic,0,No
+CUST-D-01031,4,105.36986217918525,421.479448716741,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01032,27,90.53861336411389,2444.5425608310748,2,Month-to-month,Electronic check,DSL,1,Yes
+CUST-D-01033,7,100.1573352751683,701.101346926178,2,Month-to-month,Bank transfer,DSL,1,No
+CUST-D-01034,4,113.51518719895735,454.0607487958294,2,Month-to-month,Bank transfer,No,0,No
+CUST-D-01035,21,120.0,2520.0,3,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-01036,17,115.448827095112,1962.6300606169038,3,One year,Bank transfer,Fiber optic,0,No
+CUST-D-01037,26,65.84394854219634,1711.9426620971049,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01038,28,56.93790894905238,1594.2614505734666,1,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-01039,16,107.07095583195775,1713.135293311324,2,Month-to-month,Electronic check,DSL,0,Yes
+CUST-D-01040,35,93.00110395996788,3255.038638598876,1,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-01041,6,94.95940989526143,569.7564593715686,3,Month-to-month,Mailed check,Fiber optic,1,No internet service
+CUST-D-01042,26,56.76024580709355,1475.7663909844323,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01043,26,79.28944262450314,2061.525508237082,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01044,5,79.6826058189434,398.413029094717,1,Two year,Bank transfer,No,1,No
+CUST-D-01045,27,48.65324865874412,1313.6377137860911,1,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-01046,1,97.94431966722578,97.94431966722578,3,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-01047,19,91.75428213162533,1743.3313605008814,3,One year,Electronic check,No,0,Yes
+CUST-D-01048,21,38.42986806895755,807.0272294481086,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01049,13,79.68402914937977,1035.892378941937,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01050,9,120.0,1080.0,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01051,26,117.76202444780388,3061.812635642901,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01052,19,105.15390190083562,1997.9241361158768,2,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-01053,8,120.0,960.0,3,Month-to-month,Credit card,Fiber optic,1,No internet service
+CUST-D-01054,14,70.82794819206296,991.5912746888814,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01055,4,120.0,480.0,2,Month-to-month,Mailed check,No,0,No
+CUST-D-01056,15,108.66615381670165,1629.9923072505248,3,Month-to-month,Credit card,DSL,0,No internet service
+CUST-D-01057,15,108.50191657632169,1627.5287486448253,3,One year,Bank transfer,DSL,0,No
+CUST-D-01058,32,58.711498172963935,1878.767941534846,3,Two year,Credit card,Fiber optic,0,Yes
+CUST-D-01059,33,65.93587436249,2175.8838539621697,1,Month-to-month,Credit card,Fiber optic,1,Yes
+CUST-D-01060,7,106.72775911018792,747.0943137713155,1,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-01061,9,108.58673997696862,977.2806597927175,1,Month-to-month,Electronic check,No,0,No
+CUST-D-01062,28,115.69854131739594,3239.5591568870864,1,One year,Electronic check,DSL,0,No
+CUST-D-01063,7,120.0,840.0,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01064,25,77.33705975590145,1933.4264938975361,1,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-01065,7,87.84583210225988,614.9208247158191,2,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-01066,1,120.0,120.0,2,Month-to-month,Electronic check,DSL,0,No
+CUST-D-01067,30,103.7268692197788,3111.806076593364,2,Month-to-month,Electronic check,Fiber optic,1,Yes
+CUST-D-01068,2,120.0,240.0,2,Month-to-month,Electronic check,Fiber optic,0,No internet service
+CUST-D-01069,19,111.92847933481929,2126.6411073615664,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01070,27,116.30651052304663,3140.2757841222588,2,Month-to-month,Electronic check,No,0,No
+CUST-D-01071,31,106.86451219455186,3312.7998780311077,3,Two year,Credit card,Fiber optic,0,Yes
+CUST-D-01072,11,114.54471351824391,1259.991848700683,1,Month-to-month,Credit card,DSL,0,No
+CUST-D-01073,27,98.95601242236764,2671.812335403926,2,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-01074,9,96.29067557494504,866.6160801745053,3,One year,Mailed check,DSL,0,Yes
+CUST-D-01075,16,120.0,1920.0,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01076,14,120.0,1680.0,3,One year,Electronic check,Fiber optic,0,No
+CUST-D-01077,27,110.01428960265203,2970.3858192716048,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01078,4,69.21419588575252,276.85678354301007,1,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-01079,28,68.02990834933456,1904.8374337813677,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01080,18,93.09225928327574,1675.6606670989634,3,One year,Electronic check,Fiber optic,1,No
+CUST-D-01081,31,90.61693568675427,2809.1250062893823,2,Two year,Bank transfer,DSL,0,No
+CUST-D-01082,19,74.68192875942555,1418.9566464290854,1,One year,Bank transfer,Fiber optic,0,No
+CUST-D-01083,20,36.694751289490405,733.8950257898081,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01084,27,120.0,3240.0,3,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-01085,29,27.486754005170702,797.1158661499504,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01086,21,114.88444466299089,2412.5733379228086,3,One year,Electronic check,DSL,0,No internet service
+CUST-D-01087,20,110.23375746863822,2204.6751493727643,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01088,25,118.27138426564997,2956.7846066412494,1,Month-to-month,Mailed check,No,0,No
+CUST-D-01089,13,41.445782265072516,538.7951694459427,2,Month-to-month,Mailed check,DSL,0,No
+CUST-D-01090,32,115.84231520031472,3706.954086410071,1,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-01091,30,72.76118312753148,2182.8354938259445,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01092,21,48.06472610809289,1009.3592482699507,3,Month-to-month,Credit card,Fiber optic,1,Yes
+CUST-D-01093,10,58.89306222425639,588.9306222425639,2,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-01094,29,102.30397157289268,2966.8151756138877,3,Month-to-month,Mailed check,No,0,Yes
+CUST-D-01095,2,80.06375691557894,160.12751383115787,2,Month-to-month,Electronic check,No,1,No internet service
+CUST-D-01096,12,86.82881327247341,1041.9457592696808,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01097,17,52.21211084727984,887.6058844037573,2,Month-to-month,Electronic check,Fiber optic,0,No internet service
+CUST-D-01098,1,85.01412402983736,85.01412402983736,3,Month-to-month,Credit card,DSL,1,No
+CUST-D-01099,20,51.88787614160911,1037.7575228321823,3,Month-to-month,Credit card,DSL,0,No internet service
+CUST-D-01100,34,92.4160832734491,3142.1468312972697,2,One year,Mailed check,No,1,No
+CUST-D-01101,7,41.66047541364629,291.623327895524,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01102,20,112.95115054184164,2259.023010836833,3,One year,Credit card,Fiber optic,0,No internet service
+CUST-D-01103,31,81.65441498668305,2531.2868645871745,2,Month-to-month,Electronic check,Fiber optic,0,No internet service
+CUST-D-01104,4,79.30673333548278,317.2269333419311,3,One year,Electronic check,No,1,Yes
+CUST-D-01105,13,78.4183930867568,1019.4391101278384,2,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-01106,25,74.85011974980317,1871.2529937450793,3,Month-to-month,Mailed check,No,0,No
+CUST-D-01107,11,87.95539238668745,967.5093162535619,2,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-01108,14,81.96770639217071,1147.54788949039,3,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-01109,33,120.0,3960.0,3,Month-to-month,Mailed check,DSL,0,Yes
+CUST-D-01110,21,49.50336070593973,1039.5705748247342,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01111,7,107.22253251836229,750.557727628536,2,Month-to-month,Electronic check,DSL,0,No internet service
+CUST-D-01112,6,49.8269496781066,298.96169806863963,1,Month-to-month,Electronic check,Fiber optic,1,No internet service
+CUST-D-01113,8,83.48514469381298,667.8811575505039,1,Month-to-month,Bank transfer,No,1,No
+CUST-D-01114,13,96.66684945584286,1256.6690429259572,3,One year,Mailed check,Fiber optic,0,Yes
+CUST-D-01115,12,77.46228923940477,929.5474708728573,2,Month-to-month,Credit card,DSL,0,Yes
+CUST-D-01116,6,85.04254056117999,510.25524336707997,1,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-01117,30,62.06951330071981,1862.0853990215944,3,One year,Credit card,Fiber optic,0,Yes
+CUST-D-01118,10,72.88081853008903,728.8081853008903,1,One year,Mailed check,DSL,1,No
+CUST-D-01119,26,78.42776305914242,2039.121839537703,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01120,13,93.42104042877149,1214.4735255740293,2,Month-to-month,Electronic check,No,0,No internet service
+CUST-D-01121,31,71.46939065130147,2215.5511101903453,2,Month-to-month,Credit card,No,0,No
+CUST-D-01122,15,96.65044271044721,1449.7566406567082,1,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-01123,15,46.597299753148285,698.9594962972243,1,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-01124,22,81.09238305176906,1784.0324271389193,2,Month-to-month,Credit card,No,0,No
+CUST-D-01125,26,104.87110513568173,2726.648733527725,1,Month-to-month,Bank transfer,Fiber optic,0,No internet service
+CUST-D-01126,23,81.59578498822908,1876.7030547292688,1,Month-to-month,Credit card,DSL,1,No internet service
+CUST-D-01127,16,93.4737934922543,1495.5806958760688,2,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-01128,25,94.73316343691236,2368.329085922809,3,Month-to-month,Credit card,Fiber optic,1,Yes
+CUST-D-01129,9,90.51226955319048,814.6104259787143,1,Month-to-month,Electronic check,Fiber optic,0,No internet service
+CUST-D-01130,17,56.47472948267922,960.0704012055468,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01131,6,75.74186576415426,454.45119458492553,1,Month-to-month,Electronic check,DSL,0,No
+CUST-D-01132,25,93.70703015800743,2342.6757539501855,2,Month-to-month,Mailed check,No,0,No internet service
+CUST-D-01133,33,101.68689459535915,3355.667521646852,1,Month-to-month,Mailed check,DSL,0,No
+CUST-D-01134,31,74.72024030336284,2316.327449404248,3,Month-to-month,Bank transfer,Fiber optic,0,No internet service
+CUST-D-01135,23,102.89483469024634,2366.581197875666,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01136,33,46.81251925396589,1544.8131353808744,3,Month-to-month,Credit card,DSL,0,Yes
+CUST-D-01137,14,120.0,1680.0,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01138,28,90.32466687201847,2529.090672416517,2,Two year,Credit card,Fiber optic,0,Yes
+CUST-D-01139,4,66.82068027980579,267.28272111922314,1,One year,Credit card,Fiber optic,0,Yes
+CUST-D-01140,13,98.83005203989708,1284.7906765186622,1,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-01141,28,39.11322549681865,1095.1703139109222,1,One year,Mailed check,Fiber optic,0,No internet service
+CUST-D-01142,3,53.249001547072574,159.74700464121773,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01143,8,102.79128280226497,822.3302624181198,2,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-01144,6,94.28405670296928,565.7043402178157,3,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-01145,22,101.59634730018473,2235.119640604064,1,Month-to-month,Mailed check,No,0,No
+CUST-D-01146,8,87.23461644095826,697.8769315276661,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01147,20,91.03492730458093,1820.6985460916187,2,Month-to-month,Mailed check,DSL,1,Yes
+CUST-D-01148,27,119.47818710818632,3225.911051921031,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01149,33,36.988737970424594,1220.6283530240116,3,Month-to-month,Electronic check,Fiber optic,1,Yes
+CUST-D-01150,24,99.89940214924795,2397.5856515819505,1,Month-to-month,Bank transfer,Fiber optic,1,No internet service
+CUST-D-01151,32,94.3890794284219,3020.4505417095006,3,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-01152,2,82.2288133317851,164.4576266635702,1,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-01153,35,74.46748381018342,2606.3619333564197,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01154,16,104.69309731548789,1675.0895570478062,3,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-01155,21,120.0,2520.0,3,Month-to-month,Bank transfer,Fiber optic,1,Yes
+CUST-D-01156,22,98.36670840702119,2164.0675849544664,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01157,25,89.4282495468842,2235.706238672105,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01158,29,116.09823906823443,3366.8489329787985,2,Month-to-month,Electronic check,DSL,1,Yes
+CUST-D-01159,5,90.04643587746526,450.23217938732625,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01160,34,120.0,4080.0,1,Month-to-month,Mailed check,DSL,0,No internet service
+CUST-D-01161,24,85.64640944162493,2055.513826598998,3,One year,Bank transfer,Fiber optic,1,No
+CUST-D-01162,18,120.0,2160.0,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01163,32,70.52179404287435,2256.697409371979,3,Month-to-month,Electronic check,No,0,No
+CUST-D-01164,10,77.95044416967485,779.5044416967485,3,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-01165,1,71.29398753931176,71.29398753931176,3,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-01166,23,84.1348941591481,1935.1025656604063,1,One year,Bank transfer,Fiber optic,1,Yes
+CUST-D-01167,24,88.72727035358896,2129.4544884861352,1,One year,Electronic check,Fiber optic,0,Yes
+CUST-D-01168,24,96.5521979408414,2317.2527505801936,3,Two year,Electronic check,No,0,No
+CUST-D-01169,22,80.7530274963526,1776.5666049197573,1,Month-to-month,Credit card,No,0,No
+CUST-D-01170,31,111.74308145799657,3464.0355251978935,3,One year,Credit card,Fiber optic,0,No
+CUST-D-01171,31,120.0,3720.0,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01172,19,93.44934516319992,1775.5375581007986,1,Month-to-month,Credit card,No,0,No
+CUST-D-01173,30,73.7912158138468,2213.7364744154042,3,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-01174,14,110.0212091706114,1540.2969283885595,3,One year,Credit card,Fiber optic,0,No
+CUST-D-01175,19,96.48494307848824,1833.2139184912767,1,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-01176,31,87.39532899018928,2709.255198695868,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01177,13,117.70318129618596,1530.1413568504174,2,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-01178,28,100.45853838488183,2812.839074776691,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01179,20,120.0,2400.0,1,Month-to-month,Electronic check,No,0,No
+CUST-D-01180,7,79.75922363905703,558.3145654733992,1,One year,Bank transfer,Fiber optic,0,No
+CUST-D-01181,26,62.16128917196686,1616.1935184711383,1,Month-to-month,Bank transfer,DSL,0,No internet service
+CUST-D-01182,3,42.94153730763822,128.82461192291467,3,One year,Credit card,DSL,0,No
+CUST-D-01183,19,120.0,2280.0,2,One year,Mailed check,Fiber optic,0,No internet service
+CUST-D-01184,23,77.16814498371929,1774.8673346255437,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01185,30,68.60055061374213,2058.016518412264,2,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-01186,2,120.0,240.0,2,Month-to-month,Mailed check,DSL,0,No
+CUST-D-01187,13,104.27418285057213,1355.5643770574377,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01188,20,71.28006115074025,1425.601223014805,1,Month-to-month,Credit card,No,0,No internet service
+CUST-D-01189,28,81.70480590568778,2287.734565359258,2,Month-to-month,Credit card,Fiber optic,1,Yes
+CUST-D-01190,15,53.02208504751355,795.3312757127032,2,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-01191,17,73.28468352641818,1245.839619949109,2,One year,Credit card,No,0,Yes
+CUST-D-01192,22,73.31625090526134,1612.9575199157496,3,Month-to-month,Electronic check,Fiber optic,1,Yes
+CUST-D-01193,13,82.87738645518496,1077.4060239174046,2,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-01194,23,96.38863641702947,2216.938637591678,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01195,19,72.08395387530597,1369.5951236308133,1,Two year,Bank transfer,Fiber optic,0,No
+CUST-D-01196,33,109.03171451228677,3598.0465789054633,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01197,30,113.71456098261191,3411.4368294783576,2,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-01198,23,63.1294836204342,1451.9781232699866,3,Month-to-month,Electronic check,DSL,0,No
+CUST-D-01199,27,42.71249380472552,1153.237332727589,2,Month-to-month,Mailed check,DSL,0,No
+CUST-D-01200,9,79.14202774993853,712.2782497494468,1,Month-to-month,Credit card,DSL,1,No
+CUST-D-01201,19,47.677426749678254,905.8711082438869,2,Two year,Mailed check,DSL,0,No
+CUST-D-01202,9,30.356075545234376,273.2046799071094,1,Two year,Bank transfer,Fiber optic,0,No
+CUST-D-01203,23,88.89206841303033,2044.5175734996976,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01204,1,86.31951552913232,86.31951552913232,3,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-01205,3,67.80926764172445,203.42780292517335,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01206,30,81.31657301703738,2439.4971905111215,2,Month-to-month,Bank transfer,Fiber optic,1,Yes
+CUST-D-01207,29,62.836587597050595,1822.2610403144672,2,Month-to-month,Bank transfer,No,0,No
+CUST-D-01208,22,92.7963789496744,2041.520336892837,2,One year,Mailed check,No,0,No
+CUST-D-01209,34,32.06744903306564,1090.2932671242318,2,Month-to-month,Electronic check,DSL,0,Yes
+CUST-D-01210,35,89.61148900885081,3136.4021153097783,2,Two year,Bank transfer,DSL,0,No internet service
+CUST-D-01211,31,67.07765635323172,2079.407346950183,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01212,27,66.94450206638001,1807.5015557922602,3,One year,Bank transfer,DSL,0,No
+CUST-D-01213,32,81.68812165002102,2614.0198928006726,3,One year,Bank transfer,Fiber optic,0,No
+CUST-D-01214,14,47.1047662155835,659.4667270181691,1,Month-to-month,Electronic check,No,1,Yes
+CUST-D-01215,8,77.16355250211367,617.3084200169094,1,One year,Credit card,DSL,0,No
+CUST-D-01216,24,93.16970527119685,2236.0729265087243,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01217,19,88.04517513224675,1672.8583275126884,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01218,24,69.21576616779927,1661.1783880271826,2,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-01219,21,99.69815443851631,2093.6612432088427,2,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-01220,9,25.0,225.0,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01221,27,89.69961913750093,2421.889716712525,3,Month-to-month,Mailed check,DSL,0,Yes
+CUST-D-01222,8,120.0,960.0,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01223,35,43.43006634544392,1520.0523220905372,3,Month-to-month,Electronic check,No,0,Yes
+CUST-D-01224,28,95.29128475195856,2668.1559730548397,2,Month-to-month,Bank transfer,Fiber optic,1,Yes
+CUST-D-01225,20,40.65371265472825,813.074253094565,3,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-01226,20,118.48514905196738,2369.702981039348,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01227,10,73.79453869736747,737.9453869736747,1,One year,Mailed check,Fiber optic,0,No internet service
+CUST-D-01228,27,119.76394510429245,3233.626517815896,2,One year,Bank transfer,Fiber optic,1,No internet service
+CUST-D-01229,34,119.07578487657138,4048.5766858034267,3,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-01230,20,107.90843246058739,2158.168649211748,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01231,11,54.7141886706731,601.8560753774042,1,One year,Electronic check,Fiber optic,0,No
+CUST-D-01232,33,95.70416441569661,3158.237425717988,1,Two year,Bank transfer,Fiber optic,0,No
+CUST-D-01233,22,77.26567738158764,1699.8449023949279,1,One year,Bank transfer,Fiber optic,0,No
+CUST-D-01234,31,73.09628581658507,2265.984860314137,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01235,23,71.36397714124173,1641.37147424856,1,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-01236,23,63.73554138191251,1465.9174517839879,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01237,5,80.65481146396795,403.2740573198397,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01238,23,82.34033587837907,1893.8277252027185,2,One year,Credit card,Fiber optic,0,Yes
+CUST-D-01239,34,115.92413952212874,3941.4207437523773,3,One year,Credit card,DSL,0,No
+CUST-D-01240,8,93.93101844336583,751.4481475469266,3,One year,Bank transfer,Fiber optic,1,Yes
+CUST-D-01241,14,102.80197868296112,1439.2277015614557,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01242,15,56.69343533442529,850.4015300163793,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01243,16,118.00501584376654,1888.0802535002647,3,Month-to-month,Credit card,Fiber optic,1,Yes
+CUST-D-01244,3,85.80074019716764,257.4022205915029,3,One year,Mailed check,Fiber optic,0,No
+CUST-D-01245,3,97.45025677628831,292.35077032886494,2,Month-to-month,Mailed check,No,1,No
+CUST-D-01246,30,62.93404121286503,1888.021236385951,1,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-01247,2,119.27262033638056,238.5452406727611,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01248,11,120.0,1320.0,1,Month-to-month,Electronic check,DSL,0,No
+CUST-D-01249,14,52.14974309536251,730.0964033350751,3,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-01250,15,95.64260147415925,1434.6390221123888,2,Two year,Mailed check,Fiber optic,1,Yes
+CUST-D-01251,34,83.67014273231791,2844.784852898809,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01252,12,86.39273049333576,1036.7127659200291,3,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-01253,34,43.879020605112835,1491.8867005738364,2,Month-to-month,Mailed check,No,0,No
+CUST-D-01254,33,58.01272142136996,1914.4198069052086,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01255,15,120.0,1800.0,3,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-01256,23,88.78550173751023,2042.0665399627353,2,Month-to-month,Mailed check,Fiber optic,1,No internet service
+CUST-D-01257,32,120.0,3840.0,1,One year,Mailed check,Fiber optic,0,No internet service
+CUST-D-01258,28,101.72014555559946,2848.164075556785,2,Month-to-month,Mailed check,DSL,0,No
+CUST-D-01259,22,80.95155040794045,1780.9341089746897,2,One year,Credit card,Fiber optic,0,Yes
+CUST-D-01260,17,76.41872961232315,1299.1184034094936,2,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-01261,23,91.03794000749365,2093.872620172354,3,Month-to-month,Credit card,No,1,No
+CUST-D-01262,12,102.29387846710821,1227.5265416052985,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01263,13,87.99159380028128,1143.8907194036567,2,Month-to-month,Bank transfer,Fiber optic,1,No internet service
+CUST-D-01264,21,98.48768168781034,2068.241315444017,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01265,33,109.19685277617229,3603.4961416136857,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01266,32,51.80219748583098,1657.6703195465914,3,Month-to-month,Mailed check,No,0,Yes
+CUST-D-01267,6,70.13194389369008,420.79166336214047,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01268,13,69.85303988713873,908.0895185328036,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01269,8,84.73003445626725,677.840275650138,1,Month-to-month,Bank transfer,Fiber optic,0,No internet service
+CUST-D-01270,34,120.0,4080.0,3,Month-to-month,Electronic check,DSL,0,Yes
+CUST-D-01271,16,74.38256516131051,1190.1210425809682,3,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-01272,30,98.19812365660678,2945.9437096982033,2,Month-to-month,Bank transfer,Fiber optic,1,Yes
+CUST-D-01273,8,120.0,960.0,2,Month-to-month,Bank transfer,Fiber optic,0,No internet service
+CUST-D-01274,29,35.29129859064646,1023.4476591287474,3,Month-to-month,Electronic check,No,1,No
+CUST-D-01275,15,69.83886893904837,1047.5830340857256,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01276,32,96.90948893135635,3101.103645803403,3,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-01277,5,83.33313263700788,416.6656631850394,3,One year,Bank transfer,Fiber optic,0,No
+CUST-D-01278,33,77.53305127280271,2558.5906920024895,2,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-01279,8,65.34030434374114,522.7224347499291,3,Month-to-month,Bank transfer,No,0,No
+CUST-D-01280,9,78.485661466919,706.370953202271,1,Two year,Mailed check,DSL,0,No
+CUST-D-01281,17,72.97589153944335,1240.590156170537,2,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-01282,1,83.30193519222132,83.30193519222132,1,Month-to-month,Bank transfer,DSL,1,No
+CUST-D-01283,15,85.18253250645851,1277.7379875968777,2,Month-to-month,Bank transfer,No,0,Yes
+CUST-D-01284,10,105.34532554130745,1053.4532554130744,1,Month-to-month,Credit card,No,0,No
+CUST-D-01285,20,90.75771538324113,1815.1543076648227,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01286,23,110.20079219361459,2534.6182204531356,1,Month-to-month,Mailed check,No,1,No
+CUST-D-01287,28,72.29929620069476,2024.3802936194531,3,One year,Electronic check,No,0,No internet service
+CUST-D-01288,14,114.54113259848475,1603.5758563787865,1,Month-to-month,Bank transfer,Fiber optic,1,Yes
+CUST-D-01289,15,86.58038965987873,1298.705844898181,3,One year,Electronic check,DSL,0,No
+CUST-D-01290,30,120.0,3600.0,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01291,32,98.7794813156144,3160.943402099661,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01292,24,78.53456808001961,1884.8296339204708,2,Two year,Electronic check,Fiber optic,0,Yes
+CUST-D-01293,11,86.22433208814249,948.4676529695673,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01294,17,120.0,2040.0,1,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-01295,26,43.48143407540542,1130.517285960541,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01296,3,75.68783789570756,227.06351368712268,2,One year,Mailed check,DSL,0,Yes
+CUST-D-01297,12,89.87824193496806,1078.5389032196167,1,Month-to-month,Electronic check,Fiber optic,1,Yes
+CUST-D-01298,35,112.3829870533722,3933.404546868027,3,Month-to-month,Electronic check,Fiber optic,1,Yes
+CUST-D-01299,21,94.42299369997146,1982.8828676994005,1,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-01300,15,85.96064976298217,1289.4097464447325,3,Month-to-month,Bank transfer,Fiber optic,0,No internet service
+CUST-D-01301,13,64.70507422514093,841.1659649268321,3,One year,Bank transfer,No,0,No
+CUST-D-01302,27,76.75895564762038,2072.49180248575,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01303,35,120.0,4200.0,3,Two year,Mailed check,DSL,1,No internet service
+CUST-D-01304,19,44.956391459788975,854.1714377359905,3,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-01305,2,57.47631682183929,114.95263364367858,3,Month-to-month,Bank transfer,Fiber optic,1,Yes
+CUST-D-01306,15,54.30083367311313,814.5125050966969,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01307,14,79.09107887309608,1107.2751042233451,3,Two year,Mailed check,Fiber optic,0,Yes
+CUST-D-01308,26,92.71770151954111,2410.660239508069,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01309,16,107.31533407282248,1717.0453451651597,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01310,35,75.01768224134432,2625.618878447051,1,Month-to-month,Electronic check,DSL,1,No
+CUST-D-01311,25,36.18592610970896,904.6481527427239,2,Month-to-month,Credit card,No,1,No
+CUST-D-01312,16,47.01660437012416,752.2656699219866,2,Two year,Bank transfer,Fiber optic,0,No
+CUST-D-01313,31,78.60937615691476,2436.890660864358,3,Month-to-month,Credit card,No,0,No
+CUST-D-01314,34,31.064756018948582,1056.2017046442518,1,One year,Credit card,Fiber optic,0,No
+CUST-D-01315,35,99.75824769827884,3491.5386694397594,3,One year,Electronic check,Fiber optic,0,No
+CUST-D-01316,22,67.64353119329417,1488.1576862524716,3,Month-to-month,Bank transfer,DSL,0,Yes
+CUST-D-01317,20,45.629835233241415,912.5967046648283,1,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-01318,11,78.06763677633693,858.7440045397062,3,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-01319,18,85.82164856970671,1544.7896742547207,2,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-01320,8,94.03597764539133,752.2878211631306,1,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-01321,33,120.0,3960.0,3,One year,Electronic check,Fiber optic,0,No
+CUST-D-01322,18,117.77753332480458,2119.9955998464825,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01323,24,61.74492063531235,1481.8780952474963,2,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-01324,11,78.85861553233934,867.4447708557327,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01325,9,51.13938936189086,460.25450425701774,1,Month-to-month,Mailed check,No,0,No
+CUST-D-01326,30,104.48258270526303,3134.477481157891,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01327,34,81.56301554734836,2773.1425286098442,1,One year,Electronic check,Fiber optic,1,No
+CUST-D-01328,19,89.29348813153727,1696.5762744992082,3,Two year,Electronic check,Fiber optic,0,Yes
+CUST-D-01329,14,91.0608748792966,1274.8522483101524,2,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-01330,9,90.73051538671915,816.5746384804723,3,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-01331,15,36.27066901502946,544.0600352254419,2,Two year,Mailed check,Fiber optic,0,No
+CUST-D-01332,11,100.83018796497556,1109.132067614731,2,Month-to-month,Credit card,No,0,Yes
+CUST-D-01333,29,91.92475113075788,2665.8177827919785,3,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-01334,19,94.92364641467766,1803.5492818788755,2,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-01335,4,114.60917973117527,458.4367189247011,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01336,22,65.12166959581143,1432.6767311078513,2,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-01337,35,28.442865921946815,995.5003072681385,2,Month-to-month,Electronic check,DSL,0,Yes
+CUST-D-01338,7,91.8157389417817,642.710172592472,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01339,23,63.928758944964805,1470.3614557341905,2,Month-to-month,Mailed check,DSL,0,Yes
+CUST-D-01340,23,72.98700030428387,1678.701006998529,3,Month-to-month,Mailed check,No,0,No internet service
+CUST-D-01341,26,81.45656186087686,2117.8706083827983,1,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-01342,21,87.68024803881221,1841.2852088150564,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01343,28,98.12695364023563,2747.5547019265978,1,Month-to-month,Bank transfer,Fiber optic,1,Yes
+CUST-D-01344,14,86.11035020062333,1205.5449028087266,2,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-01345,21,59.9327059806522,1258.5868255936962,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01346,30,118.1394037308274,3544.182111924822,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01347,29,88.50986810987972,2566.7861751865116,3,Month-to-month,Credit card,DSL,0,No
+CUST-D-01348,17,70.45899420866049,1197.8029015472282,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01349,32,80.0067052149016,2560.214566876851,1,Month-to-month,Credit card,DSL,0,No
+CUST-D-01350,26,107.80041934375883,2802.8109029377297,3,Month-to-month,Credit card,DSL,0,No
+CUST-D-01351,31,70.97493595481772,2200.2230145993494,2,Month-to-month,Bank transfer,DSL,0,No internet service
+CUST-D-01352,29,47.655646379575664,1382.0137450076943,2,One year,Bank transfer,DSL,0,No
+CUST-D-01353,24,114.39655508948293,2745.51732214759,3,Month-to-month,Bank transfer,DSL,1,No
+CUST-D-01354,14,75.72672206044689,1060.1741088462563,2,Month-to-month,Credit card,DSL,0,Yes
+CUST-D-01355,3,84.02936077242695,252.08808231728085,3,Month-to-month,Bank transfer,No,0,Yes
+CUST-D-01356,15,59.83770703497779,897.5656055246668,3,Month-to-month,Mailed check,DSL,0,No
+CUST-D-01357,16,52.43030370963131,838.884859354101,1,One year,Mailed check,Fiber optic,0,No internet service
+CUST-D-01358,33,67.95335826973279,2242.460822901182,2,Month-to-month,Bank transfer,DSL,1,No internet service
+CUST-D-01359,16,64.17452330718436,1026.7923729149497,1,Month-to-month,Credit card,DSL,0,No
+CUST-D-01360,32,109.20668179215313,3494.6138173489003,3,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-01361,13,80.08684487071979,1041.1289833193573,2,Two year,Bank transfer,Fiber optic,1,Yes
+CUST-D-01362,15,112.48685968731517,1687.3028953097275,1,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-01363,26,117.83597547994465,3063.735362478561,2,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-01364,2,79.71839775938886,159.43679551877773,1,One year,Credit card,Fiber optic,1,No
+CUST-D-01365,11,25.0,275.0,2,Month-to-month,Bank transfer,Fiber optic,1,No internet service
+CUST-D-01366,16,74.35228802325337,1189.6366083720538,2,One year,Bank transfer,Fiber optic,1,Yes
+CUST-D-01367,21,100.37564566179863,2107.8885588977714,1,Month-to-month,Mailed check,No,0,No internet service
+CUST-D-01368,34,68.3363837542798,2323.437047645513,3,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-01369,31,115.43186658561027,3578.387864153918,1,Month-to-month,Bank transfer,DSL,0,Yes
+CUST-D-01370,2,94.30698663222371,188.61397326444742,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01371,22,99.04028628164077,2178.886298196097,2,Month-to-month,Electronic check,DSL,0,No internet service
+CUST-D-01372,2,93.48430413661066,186.96860827322132,1,Month-to-month,Mailed check,No,0,No internet service
+CUST-D-01373,27,25.0,675.0,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01374,33,53.06888923196946,1751.2733446549921,3,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-01375,16,112.74298695320597,1803.8877912512955,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01376,5,120.0,600.0,2,Two year,Credit card,Fiber optic,0,No internet service
+CUST-D-01377,6,59.19209273990265,355.1525564394159,2,Month-to-month,Mailed check,Fiber optic,1,Yes
+CUST-D-01378,9,94.7787321853046,853.0085896677415,3,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-01379,26,98.22328814034913,2553.8054916490773,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01380,25,76.31980286515892,1907.995071628973,1,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-01381,28,64.83685727555809,1815.4320037156265,3,One year,Electronic check,DSL,0,No internet service
+CUST-D-01382,29,60.225140611145214,1746.5290777232112,1,One year,Bank transfer,Fiber optic,1,Yes
+CUST-D-01383,33,87.26241369152174,2879.6596518202177,1,Month-to-month,Credit card,DSL,0,No
+CUST-D-01384,1,82.9252562671652,82.9252562671652,1,Month-to-month,Mailed check,Fiber optic,1,No internet service
+CUST-D-01385,21,114.07042469783886,2395.478918654616,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01386,3,113.17716477799873,339.5314943339962,3,One year,Credit card,Fiber optic,0,Yes
+CUST-D-01387,14,96.6225742375705,1352.7160393259871,3,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-01388,12,80.68086824401917,968.17041892823,3,Month-to-month,Electronic check,Fiber optic,0,No internet service
+CUST-D-01389,32,46.27900991327095,1480.9283172246703,1,One year,Credit card,Fiber optic,0,Yes
+CUST-D-01390,18,86.17936681720172,1551.228602709631,3,Month-to-month,Credit card,Fiber optic,1,No internet service
+CUST-D-01391,32,100.20715723286138,3206.629031451564,2,Two year,Mailed check,Fiber optic,0,No
+CUST-D-01392,18,86.02135652664417,1548.384417479595,1,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-01393,11,72.80696047515256,800.8765652266782,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01394,5,101.14208917930017,505.71044589650086,3,Month-to-month,Bank transfer,Fiber optic,1,Yes
+CUST-D-01395,30,101.68789739556621,3050.636921866986,1,Month-to-month,Credit card,No,0,No
+CUST-D-01396,7,120.0,840.0,1,Month-to-month,Credit card,DSL,0,No
+CUST-D-01397,7,93.21810975958104,652.5267683170673,1,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-01398,4,83.40657610821677,333.6263044328671,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01399,21,64.76560843571592,1360.0777771500343,3,Month-to-month,Credit card,Fiber optic,1,No internet service
+CUST-D-01400,31,74.87388017489383,2321.090285421709,3,Month-to-month,Credit card,Fiber optic,1,Yes
+CUST-D-01401,7,33.21251923276741,232.48763462937188,1,One year,Credit card,Fiber optic,0,No
+CUST-D-01402,1,109.25592064727336,109.25592064727336,2,Month-to-month,Credit card,DSL,1,No internet service
+CUST-D-01403,10,88.53614574844562,885.3614574844562,2,Month-to-month,Mailed check,DSL,0,No
+CUST-D-01404,15,99.82704336322237,1497.4056504483356,2,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-01405,7,56.1183681950328,392.8285773652296,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01406,24,67.46341723294275,1619.122013590626,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01407,20,86.69836580850765,1733.967316170153,2,Month-to-month,Mailed check,No,1,No internet service
+CUST-D-01408,5,86.32177403960965,431.60887019804824,3,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-01409,21,74.66819884324367,1568.0321757081172,2,One year,Credit card,Fiber optic,0,Yes
+CUST-D-01410,32,33.83822649388432,1082.8232478042983,1,Month-to-month,Bank transfer,Fiber optic,1,Yes
+CUST-D-01411,35,68.85211541928109,2409.8240396748383,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01412,29,68.1543984361074,1976.4775546471146,2,Month-to-month,Bank transfer,DSL,0,Yes
+CUST-D-01413,8,61.61029423268895,492.8823538615116,1,One year,Credit card,No,0,Yes
+CUST-D-01414,3,90.55788809931659,271.67366429794976,1,Month-to-month,Credit card,Fiber optic,1,Yes
+CUST-D-01415,25,102.30304679302616,2557.576169825654,1,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-01416,16,61.73986130756437,987.8377809210299,3,Month-to-month,Electronic check,DSL,0,No
+CUST-D-01417,30,45.23053344416732,1356.9160033250196,2,Two year,Mailed check,No,0,No internet service
+CUST-D-01418,20,72.44259811962156,1448.8519623924312,3,Two year,Mailed check,DSL,0,No
+CUST-D-01419,31,92.10304340292507,2855.1943454906773,3,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-01420,9,102.3333084383533,920.9997759451796,3,One year,Electronic check,No,0,No internet service
+CUST-D-01421,2,119.28200165280627,238.56400330561254,3,One year,Credit card,No,0,No
+CUST-D-01422,12,79.59359642598726,955.1231571118471,2,Month-to-month,Electronic check,Fiber optic,0,No internet service
+CUST-D-01423,7,51.4511683192748,360.1581782349236,1,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-01424,6,105.67242266484593,634.0345359890755,3,Month-to-month,Credit card,Fiber optic,1,Yes
+CUST-D-01425,12,85.70725213394039,1028.4870256072845,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01426,26,92.07081845070152,2393.8412797182395,1,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-01427,20,80.40766101685325,1608.153220337065,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01428,14,30.99288847689067,433.9004386764694,3,Two year,Credit card,Fiber optic,0,Yes
+CUST-D-01429,14,97.85679039603681,1369.9950655445155,2,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-01430,33,67.02741973379408,2211.9048512152044,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01431,34,53.01299954521817,1802.4419845374177,3,One year,Credit card,Fiber optic,0,No
+CUST-D-01432,6,96.19809815084697,577.1885889050818,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01433,24,88.8101001855693,2131.442404453663,3,One year,Mailed check,No,0,No internet service
+CUST-D-01434,27,105.31918925722117,2843.6181099449714,2,Month-to-month,Credit card,DSL,0,No
+CUST-D-01435,10,87.83717214143705,878.3717214143705,2,One year,Mailed check,DSL,0,No
+CUST-D-01436,11,50.01571987742179,550.1729186516396,1,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-01437,35,119.64551703079024,4187.593096077659,2,Month-to-month,Credit card,DSL,0,No
+CUST-D-01438,12,114.22269402812077,1370.6723283374492,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01439,29,68.15309068184072,1976.439629773381,2,Month-to-month,Electronic check,DSL,0,No internet service
+CUST-D-01440,22,100.3950029969903,2208.6900659337866,2,One year,Credit card,No,0,Yes
+CUST-D-01441,28,95.97164336964126,2687.2060143499552,3,Two year,Mailed check,DSL,1,No
+CUST-D-01442,29,30.703937386516426,890.4141842089764,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01443,13,92.66973732831326,1204.7065852680723,3,Two year,Credit card,Fiber optic,0,No
+CUST-D-01444,12,90.61855450621013,1087.4226540745217,2,One year,Mailed check,No,0,No
+CUST-D-01445,32,53.17657760325515,1701.6504833041647,2,Month-to-month,Bank transfer,DSL,0,Yes
+CUST-D-01446,2,95.14796766546728,190.29593533093455,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01447,26,93.13183852798753,2421.4278017276756,3,One year,Mailed check,DSL,0,No
+CUST-D-01448,22,74.1841273793405,1632.0508023454909,2,Month-to-month,Credit card,DSL,0,Yes
+CUST-D-01449,3,27.768750312069503,83.30625093620851,2,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-01450,10,118.24511601228305,1182.4511601228305,3,One year,Mailed check,No,1,No internet service
+CUST-D-01451,28,83.6558287651518,2342.3632054242503,3,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-01452,7,107.63042936702713,753.41300556919,3,One year,Bank transfer,No,0,Yes
+CUST-D-01453,34,77.76453667093496,2643.994246811789,2,One year,Electronic check,Fiber optic,0,No
+CUST-D-01454,23,115.16046114006173,2648.69060622142,2,Two year,Electronic check,Fiber optic,0,No
+CUST-D-01455,26,83.1439442593287,2161.7425507425464,2,One year,Mailed check,Fiber optic,0,No
+CUST-D-01456,32,65.48546668202077,2095.5349338246647,3,Month-to-month,Credit card,DSL,0,No
+CUST-D-01457,19,64.75155062372563,1230.2794618507871,1,Month-to-month,Bank transfer,No,0,Yes
+CUST-D-01458,12,96.23366026476474,1154.8039231771768,2,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-01459,33,120.0,3960.0,3,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-01460,27,71.74246050192338,1937.0464335519312,2,Month-to-month,Mailed check,Fiber optic,1,No internet service
+CUST-D-01461,18,89.29076467916603,1607.2337642249886,3,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-01462,3,98.55240243719862,295.65720731159587,3,Two year,Credit card,DSL,0,No
+CUST-D-01463,24,60.60788149637061,1454.5891559128945,2,Month-to-month,Bank transfer,Fiber optic,0,No internet service
+CUST-D-01464,2,93.43071289689703,186.86142579379407,3,Two year,Bank transfer,Fiber optic,0,No internet service
+CUST-D-01465,34,120.0,4080.0,2,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-01466,14,82.51888301962867,1155.2643622748014,2,One year,Electronic check,DSL,0,No
+CUST-D-01467,11,56.63848515265047,623.0233366791551,3,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-01468,18,68.00054178054951,1224.0097520498912,2,One year,Credit card,Fiber optic,0,No
+CUST-D-01469,32,75.70675379892458,2422.6161215655866,2,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-01470,1,63.62360293959707,63.62360293959707,3,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-01471,13,74.29308855849736,965.8101512604657,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01472,4,93.61185262271864,374.4474104908746,3,Month-to-month,Electronic check,No,1,No
+CUST-D-01473,23,39.0090140781174,897.2073237967003,1,Month-to-month,Mailed check,Fiber optic,1,Yes
+CUST-D-01474,3,78.320842910539,234.962528731617,2,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-01475,27,94.43256375693333,2549.6792214372,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01476,15,100.18124116720661,1502.7186175080992,3,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-01477,22,63.94958262259936,1406.8908176971859,3,Month-to-month,Electronic check,DSL,0,Yes
+CUST-D-01478,34,72.84398479249874,2476.6954829449573,1,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-01479,25,96.35637010717026,2408.9092526792565,2,One year,Bank transfer,Fiber optic,0,No
+CUST-D-01480,25,70.39154273848528,1759.7885684621322,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01481,14,120.0,1680.0,1,Month-to-month,Mailed check,DSL,0,No
+CUST-D-01482,19,90.83028322291713,1725.7753812354256,1,One year,Bank transfer,Fiber optic,1,No
+CUST-D-01483,18,75.18609130056713,1353.3496434102083,1,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-01484,11,38.60645207374552,424.6709728112007,3,Month-to-month,Credit card,Fiber optic,1,No internet service
+CUST-D-01485,29,62.80319017152544,1821.2925149742377,1,Month-to-month,Credit card,DSL,0,No
+CUST-D-01486,14,62.71976073018492,878.0766502225889,3,One year,Mailed check,DSL,0,No
+CUST-D-01487,33,62.1308557821727,2050.318240811699,1,Two year,Electronic check,DSL,0,No
+CUST-D-01488,28,79.45479055157614,2224.734135444132,1,Two year,Electronic check,DSL,1,Yes
+CUST-D-01489,1,88.74690966248683,88.74690966248683,3,Month-to-month,Bank transfer,No,0,No
+CUST-D-01490,6,25.0,150.0,3,Month-to-month,Credit card,Fiber optic,1,No internet service
+CUST-D-01491,19,88.63027853917443,1683.975292244314,2,Two year,Mailed check,Fiber optic,0,No
+CUST-D-01492,10,120.0,1200.0,1,One year,Bank transfer,Fiber optic,1,Yes
+CUST-D-01493,10,68.11864214845659,681.1864214845659,1,One year,Credit card,Fiber optic,1,Yes
+CUST-D-01494,27,99.09782002022675,2675.641140546122,2,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-01495,23,83.41319577766231,1918.503502886233,3,One year,Electronic check,DSL,0,Yes
+CUST-D-01496,22,68.37055751994941,1504.152265438887,1,Month-to-month,Bank transfer,Fiber optic,1,Yes
+CUST-D-01497,8,98.45388745226272,787.6310996181018,3,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-01498,20,91.10976492019674,1822.1952984039349,1,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-01499,2,109.21984580625997,218.43969161251994,2,One year,Electronic check,Fiber optic,1,No
+CUST-D-01500,21,86.57895065742973,1818.1579638060243,3,Month-to-month,Mailed check,No,1,No
+CUST-D-01501,5,83.85403735763667,419.27018678818337,3,Month-to-month,Bank transfer,Fiber optic,1,Yes
+CUST-D-01502,14,80.41532760614156,1125.8145864859819,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01503,31,110.82086330346502,3435.4467624074155,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01504,31,64.13733425624844,1988.2573619437017,1,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-01505,11,92.16203431604387,1013.7823774764826,1,Month-to-month,Mailed check,DSL,0,Yes
+CUST-D-01506,26,63.887561630788184,1661.076602400493,3,One year,Mailed check,Fiber optic,1,No
+CUST-D-01507,16,86.77928581690423,1388.4685730704678,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01508,17,69.7089315114736,1185.051835695051,3,One year,Credit card,DSL,0,Yes
+CUST-D-01509,2,86.99206227777684,173.98412455555368,3,One year,Credit card,No,0,Yes
+CUST-D-01510,26,89.48792246960421,2326.6859842097097,1,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-01511,26,105.31962820076656,2738.3103332199307,2,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-01512,29,66.58685958845851,1931.0189280652967,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01513,16,101.30048549282121,1620.8077678851394,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01514,13,88.66580877920688,1152.6555141296894,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01515,32,82.6651584857114,2645.285071542765,1,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-01516,26,96.6552713042578,2513.0370539107025,1,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-01517,10,102.23193730231166,1022.3193730231167,3,One year,Credit card,Fiber optic,0,Yes
+CUST-D-01518,32,86.52589983936598,2768.8287948597113,3,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-01519,4,120.0,480.0,1,Two year,Credit card,Fiber optic,0,No
+CUST-D-01520,33,82.38719729548974,2718.7775107511616,3,One year,Mailed check,Fiber optic,1,No
+CUST-D-01521,25,120.0,3000.0,1,One year,Credit card,Fiber optic,0,No
+CUST-D-01522,25,78.05963553498628,1951.490888374657,2,One year,Bank transfer,Fiber optic,0,No
+CUST-D-01523,19,61.94317442041779,1176.920313987938,1,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-01524,24,75.35711510099038,1808.5707624237693,3,Month-to-month,Credit card,Fiber optic,1,No internet service
+CUST-D-01525,7,105.0355890771339,735.2491235399374,1,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-01526,25,120.0,3000.0,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01527,5,69.45740140149175,347.2870070074588,3,Month-to-month,Mailed check,No,1,No
+CUST-D-01528,31,102.02645571361057,3162.8201271219277,3,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-01529,31,55.32772381112283,1715.1594381448078,3,Month-to-month,Bank transfer,Fiber optic,0,No internet service
+CUST-D-01530,29,113.71430755003794,3297.7149189511006,3,Month-to-month,Electronic check,No,1,No internet service
+CUST-D-01531,17,115.34397795560322,1960.8476252452547,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01532,21,83.87839351447114,1761.446263803894,1,Month-to-month,Bank transfer,No,1,No
+CUST-D-01533,3,105.8211755962459,317.4635267887377,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01534,9,85.65088227349553,770.8579404614597,1,Month-to-month,Electronic check,Fiber optic,0,No internet service
+CUST-D-01535,1,74.08857238059622,74.08857238059622,3,One year,Electronic check,Fiber optic,0,No
+CUST-D-01536,20,91.82058608916076,1836.4117217832152,1,Month-to-month,Credit card,Fiber optic,1,Yes
+CUST-D-01537,35,70.77891028305973,2477.2618599070906,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01538,34,97.86664106851636,3327.4657963295563,1,Two year,Electronic check,Fiber optic,0,Yes
+CUST-D-01539,23,120.0,2760.0,1,One year,Mailed check,Fiber optic,0,No internet service
+CUST-D-01540,29,79.56422355852796,2307.3624831973107,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01541,9,84.75486390144835,762.793775113035,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01542,26,102.32866917357295,2660.5453985128966,3,Month-to-month,Credit card,Fiber optic,1,Yes
+CUST-D-01543,29,88.52042055014293,2567.092195954145,1,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-01544,5,60.0471338714335,300.2356693571675,3,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-01545,33,51.49936270677262,1699.4789693234966,2,One year,Mailed check,DSL,0,No
+CUST-D-01546,34,66.6127001913811,2264.831806506957,1,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-01547,23,95.09011242770782,2187.07258583728,3,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-01548,22,90.0132085909072,1980.2905889999583,2,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-01549,4,25.0,100.0,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01550,25,76.626520681744,1915.6630170436,1,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-01551,30,64.68454722723254,1940.5364168169763,2,Month-to-month,Electronic check,DSL,0,No
+CUST-D-01552,25,103.5929915674251,2589.8247891856277,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01553,35,102.78157281449246,3597.355048507236,1,Month-to-month,Credit card,No,0,Yes
+CUST-D-01554,16,59.904843216890285,958.4774914702446,2,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-01555,16,117.00410917128673,1872.0657467405877,1,Month-to-month,Credit card,No,0,No
+CUST-D-01556,10,99.82588558481389,998.2588558481389,1,One year,Bank transfer,Fiber optic,1,No
+CUST-D-01557,27,51.22529283216068,1383.0829064683385,1,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-01558,1,118.81759577555567,118.81759577555567,2,Month-to-month,Credit card,No,0,No internet service
+CUST-D-01559,20,116.72207320346281,2334.441464069256,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01560,16,51.23938807732508,819.8302092372013,2,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-01561,25,46.037573101245655,1150.9393275311413,3,Two year,Bank transfer,Fiber optic,1,No
+CUST-D-01562,35,115.5792835047772,4045.2749226672017,3,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-01563,26,94.12739911532414,2447.3123769984277,3,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-01564,31,106.29546585544426,3295.159441518772,2,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-01565,27,74.3166414888186,2006.5493201981024,2,Month-to-month,Electronic check,Fiber optic,0,No internet service
+CUST-D-01566,25,78.83657217626596,1970.914304406649,2,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-01567,9,108.66971623165384,978.0274460848846,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01568,5,65.81176368139334,329.05881840696674,3,One year,Credit card,Fiber optic,1,No
+CUST-D-01569,22,31.202147744248066,686.4472503734575,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01570,16,56.36444451258349,901.8311122013358,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01571,14,77.87206287486035,1090.2088802480448,3,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-01572,11,100.90317042447805,1109.9348746692585,2,One year,Electronic check,Fiber optic,0,No internet service
+CUST-D-01573,7,89.22776043940652,624.5943230758456,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01574,35,73.82624751674328,2583.918663086015,2,Month-to-month,Credit card,DSL,0,Yes
+CUST-D-01575,32,120.0,3840.0,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01576,5,113.37424929106834,566.8712464553416,1,Month-to-month,Bank transfer,DSL,1,No
+CUST-D-01577,35,81.85494648591676,2864.9231270070864,2,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-01578,34,112.26950690200073,3817.163234668025,2,Month-to-month,Credit card,Fiber optic,1,Yes
+CUST-D-01579,7,51.04913810977847,357.34396676844926,2,Two year,Credit card,Fiber optic,0,No
+CUST-D-01580,7,67.3306985622765,471.31488993593547,2,One year,Bank transfer,No,0,Yes
+CUST-D-01581,2,95.083627133495,190.16725426699,1,One year,Bank transfer,Fiber optic,0,No
+CUST-D-01582,22,66.97634619563874,1473.4796163040523,2,Month-to-month,Electronic check,DSL,0,No
+CUST-D-01583,34,120.0,4080.0,1,Month-to-month,Credit card,No,0,Yes
+CUST-D-01584,8,84.50505515071752,676.0404412057402,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01585,10,88.6822436257957,886.8224362579571,2,Month-to-month,Mailed check,DSL,0,No
+CUST-D-01586,12,96.47583118904636,1157.7099742685564,1,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-01587,26,79.45875810802595,2065.9277108086744,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01588,17,120.0,2040.0,3,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-01589,11,113.03535110468823,1243.3888621515705,1,Two year,Bank transfer,Fiber optic,0,Yes
+CUST-D-01590,7,120.0,840.0,2,One year,Bank transfer,DSL,0,No internet service
+CUST-D-01591,22,59.411858312831875,1307.0608828823013,1,Month-to-month,Bank transfer,DSL,0,Yes
+CUST-D-01592,24,95.45007406594686,2290.8017775827248,3,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-01593,23,83.7990227181524,1927.3775225175052,1,Month-to-month,Mailed check,No,0,No internet service
+CUST-D-01594,9,76.82461206514269,691.4215085862842,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01595,20,45.73011475323418,914.6022950646836,3,Month-to-month,Mailed check,DSL,0,No
+CUST-D-01596,5,80.38326990457556,401.9163495228778,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01597,32,113.07166735764953,3618.293355444785,2,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-01598,29,48.736810015627476,1413.3674904531968,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01599,6,112.54717066934838,675.2830240160903,3,One year,Electronic check,Fiber optic,1,No internet service
+CUST-D-01600,5,100.96072773686184,504.8036386843092,1,Month-to-month,Electronic check,DSL,0,No
+CUST-D-01601,10,120.0,1200.0,3,Month-to-month,Bank transfer,Fiber optic,0,No internet service
+CUST-D-01602,1,100.32595451471029,100.32595451471029,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01603,10,84.1271306398822,841.2713063988219,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01604,18,76.27856448747818,1373.0141607746073,1,One year,Mailed check,No,0,No
+CUST-D-01605,4,84.38328029411149,337.53312117644595,1,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-01606,18,120.0,2160.0,2,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-01607,24,120.0,2880.0,2,Month-to-month,Bank transfer,No,0,No internet service
+CUST-D-01608,29,86.45294859804393,2507.135509343274,1,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-01609,3,102.25634679499832,306.769040384995,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01610,2,91.41116646459857,182.82233292919713,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01611,28,90.7724991302852,2541.6299756479857,3,Month-to-month,Bank transfer,DSL,1,No
+CUST-D-01612,17,87.16751613457019,1481.8477742876933,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01613,1,25.0,25.0,1,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-01614,17,83.43617820699184,1418.4150295188613,1,Month-to-month,Electronic check,No,0,No
+CUST-D-01615,11,63.1086656859068,694.1953225449748,3,Month-to-month,Bank transfer,DSL,1,Yes
+CUST-D-01616,10,54.58400657710567,545.8400657710567,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01617,2,85.8812732087905,171.762546417581,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01618,34,67.72287213440408,2302.577652569739,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01619,4,64.84134844655058,259.36539378620233,2,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-01620,23,103.6061881581878,2382.9423276383195,2,One year,Electronic check,Fiber optic,0,No
+CUST-D-01621,17,36.33722759226879,617.7328690685695,1,One year,Bank transfer,Fiber optic,0,No
+CUST-D-01622,2,58.74022729915506,117.48045459831012,2,Month-to-month,Mailed check,DSL,0,Yes
+CUST-D-01623,24,43.04719821082511,1033.1327570598025,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01624,29,83.49396848245028,2421.325085991058,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01625,33,106.00556254730671,3498.1835640611216,2,Two year,Credit card,Fiber optic,0,No
+CUST-D-01626,3,79.79561924927174,239.3868577478152,3,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-01627,5,80.2654969582387,401.3274847911935,2,One year,Electronic check,No,0,No
+CUST-D-01628,33,60.42542262432251,1994.0389466026427,3,One year,Mailed check,Fiber optic,0,Yes
+CUST-D-01629,31,120.0,3720.0,3,Month-to-month,Electronic check,Fiber optic,0,No internet service
+CUST-D-01630,28,100.0510430825565,2801.429206311582,2,Month-to-month,Bank transfer,DSL,0,Yes
+CUST-D-01631,21,50.190347533164676,1053.9972981964581,1,Month-to-month,Electronic check,DSL,0,No
+CUST-D-01632,4,57.43492104636985,229.7396841854794,3,Two year,Mailed check,Fiber optic,0,No
+CUST-D-01633,6,92.19303987788557,553.1582392673134,2,One year,Credit card,Fiber optic,0,No
+CUST-D-01634,18,28.374365687550565,510.73858237591014,2,Two year,Bank transfer,Fiber optic,0,Yes
+CUST-D-01635,21,78.13628728076047,1640.8620328959698,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01636,17,64.59749939671383,1098.157489744135,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01637,22,56.90908944050182,1251.9999676910402,3,Month-to-month,Credit card,Fiber optic,1,Yes
+CUST-D-01638,17,94.57115242803071,1607.7095912765221,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01639,21,118.48781807927404,2488.244179664755,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01640,25,88.31495937072391,2207.873984268098,3,Month-to-month,Bank transfer,No,0,No
+CUST-D-01641,2,90.78796274846104,181.57592549692208,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01642,13,36.96644389476959,480.56377063200466,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01643,10,69.42454214235853,694.2454214235853,2,Two year,Mailed check,Fiber optic,0,No
+CUST-D-01644,9,108.71123103418562,978.4010793076706,2,Month-to-month,Electronic check,No,1,Yes
+CUST-D-01645,20,79.45458776708398,1589.0917553416796,1,One year,Mailed check,Fiber optic,0,No
+CUST-D-01646,33,67.88110948344618,2240.076612953724,1,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-01647,30,66.19271036964537,1985.781311089361,3,Month-to-month,Bank transfer,No,1,Yes
+CUST-D-01648,9,96.86511011070132,871.785990996312,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01649,28,85.78658177072175,2402.024289580209,2,One year,Electronic check,Fiber optic,0,No
+CUST-D-01650,10,120.0,1200.0,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01651,13,98.11684434576976,1275.5189764950069,3,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-01652,2,70.63933103931535,141.2786620786307,1,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-01653,35,86.82283311246,3038.7991589361,2,One year,Electronic check,DSL,1,No internet service
+CUST-D-01654,33,67.61440934436312,2231.275508363983,3,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-01655,4,120.0,480.0,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01656,12,69.40807156364042,832.896858763685,1,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-01657,16,68.84994004128868,1101.5990406606188,2,Month-to-month,Mailed check,No,1,No
+CUST-D-01658,3,96.66597727443134,289.99793182329404,1,Month-to-month,Mailed check,DSL,1,Yes
+CUST-D-01659,17,93.0194691235923,1581.330975101069,2,Two year,Credit card,Fiber optic,0,No internet service
+CUST-D-01660,5,88.50652267319826,442.5326133659913,3,Month-to-month,Bank transfer,DSL,0,No internet service
+CUST-D-01661,11,72.82800122364402,801.1080134600843,1,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-01662,23,102.045584515138,2347.048443848174,2,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-01663,20,120.0,2400.0,2,Month-to-month,Mailed check,No,1,No
+CUST-D-01664,19,90.16481734238221,1713.1315295052618,3,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-01665,32,64.93587898033066,2077.948127370581,3,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-01666,3,102.33354463614707,307.0006339084412,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01667,12,68.47383206258453,821.6859847510144,2,Two year,Credit card,Fiber optic,0,Yes
+CUST-D-01668,26,107.3923615103932,2792.201399270223,3,One year,Credit card,Fiber optic,0,No
+CUST-D-01669,26,45.13193371412335,1173.430276567207,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01670,30,44.68790293460561,1340.6370880381683,3,Month-to-month,Bank transfer,Fiber optic,0,No internet service
+CUST-D-01671,22,120.0,2640.0,1,Two year,Credit card,DSL,0,No
+CUST-D-01672,11,114.14843752441917,1255.6328127686108,2,One year,Electronic check,No,0,No
+CUST-D-01673,5,119.45381929701226,597.2690964850613,3,Month-to-month,Credit card,DSL,0,No
+CUST-D-01674,34,93.90613241896865,3192.808502244934,1,One year,Bank transfer,Fiber optic,0,Yes
+CUST-D-01675,4,85.44219532193958,341.7687812877583,3,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-01676,17,86.14119965055909,1464.4003940595044,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01677,20,97.33156707765177,1946.6313415530353,1,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-01678,28,85.32460077859722,2389.088821800722,1,One year,Mailed check,Fiber optic,0,No internet service
+CUST-D-01679,28,100.13417180075928,2803.7568104212596,3,Month-to-month,Electronic check,Fiber optic,0,No internet service
+CUST-D-01680,17,46.426023860665474,789.2424056313131,1,One year,Mailed check,No,0,No
+CUST-D-01681,33,82.88826486397484,2735.3127405111695,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01682,8,97.57323973412078,780.5859178729662,1,Month-to-month,Bank transfer,No,1,Yes
+CUST-D-01683,18,100.06113847975116,1801.100492635521,2,Month-to-month,Electronic check,No,0,No
+CUST-D-01684,31,70.76341196979752,2193.665771063723,3,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-01685,32,64.20272501925238,2054.4872006160763,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01686,32,100.11552055716633,3203.6966578293227,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01687,8,45.43851215639137,363.50809725113095,1,Month-to-month,Mailed check,DSL,0,No
+CUST-D-01688,5,63.769857424873294,318.84928712436647,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01689,13,69.89783886278587,908.6719052162164,1,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-01690,4,77.11352636412006,308.45410545648025,3,Month-to-month,Bank transfer,DSL,0,Yes
+CUST-D-01691,12,103.95547750353032,1247.4657300423637,2,Month-to-month,Credit card,DSL,0,No
+CUST-D-01692,11,66.02429443230795,726.2672387553876,1,One year,Bank transfer,Fiber optic,0,Yes
+CUST-D-01693,28,65.8787838907486,1844.6059489409606,3,One year,Credit card,DSL,0,No
+CUST-D-01694,22,106.81598517721874,2349.9516738988123,1,One year,Bank transfer,Fiber optic,1,No
+CUST-D-01695,12,81.87512111077162,982.5014533292594,2,One year,Credit card,Fiber optic,0,Yes
+CUST-D-01696,18,110.92933279261243,1996.7279902670236,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01697,30,82.21610085429637,2466.483025628891,3,Month-to-month,Electronic check,Fiber optic,0,No internet service
+CUST-D-01698,13,89.15986371853255,1159.078228340923,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01699,5,120.0,600.0,2,Month-to-month,Credit card,DSL,0,No
+CUST-D-01700,15,96.28179679815028,1444.2269519722543,2,Month-to-month,Electronic check,Fiber optic,1,Yes
+CUST-D-01701,11,66.75501477482906,734.3051625231197,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01702,24,82.9378748439953,1990.5089962558873,3,Month-to-month,Bank transfer,DSL,0,Yes
+CUST-D-01703,31,104.96242747353865,3253.835251679698,2,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-01704,7,73.04495029504662,511.3146520653263,1,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-01705,5,52.55130962505333,262.75654812526665,3,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-01706,26,78.0280535791916,2028.7293930589817,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01707,26,79.99146053569696,2079.777973928121,3,Two year,Bank transfer,No,0,No
+CUST-D-01708,26,90.67283403629561,2357.493684943686,3,One year,Credit card,Fiber optic,0,No
+CUST-D-01709,14,92.10211519373354,1289.4296127122695,2,Month-to-month,Electronic check,DSL,1,No
+CUST-D-01710,31,76.71501132108952,2378.165350953775,1,Month-to-month,Mailed check,Fiber optic,1,No internet service
+CUST-D-01711,2,100.09057286206871,200.18114572413742,2,One year,Mailed check,Fiber optic,0,No
+CUST-D-01712,14,110.36833496010696,1545.1566894414975,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01713,28,71.02453707338562,1988.6870380547973,1,One year,Bank transfer,DSL,0,No
+CUST-D-01714,1,102.86111733076051,102.86111733076051,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01715,29,105.19822974617028,3050.748662638938,3,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-01716,27,93.8181492621188,2533.0900300772073,2,One year,Credit card,Fiber optic,0,No
+CUST-D-01717,9,94.70036309831595,852.3032678848435,2,Month-to-month,Electronic check,No,1,No
+CUST-D-01718,9,120.0,1080.0,1,One year,Electronic check,Fiber optic,0,No
+CUST-D-01719,8,79.11599661779262,632.927972942341,3,Month-to-month,Electronic check,Fiber optic,1,Yes
+CUST-D-01720,1,25.0,25.0,2,Month-to-month,Electronic check,No,0,Yes
+CUST-D-01721,1,113.13221438983129,113.13221438983129,2,Two year,Mailed check,DSL,1,No internet service
+CUST-D-01722,14,36.7919377151379,515.0871280119305,2,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-01723,31,64.46854885654423,1998.5250145528712,3,Month-to-month,Credit card,No,1,No
+CUST-D-01724,26,49.92086311046837,1297.9424408721775,2,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-01725,8,95.79318187647483,766.3454550117987,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01726,28,84.29694396621697,2360.314431054075,1,One year,Mailed check,DSL,0,No
+CUST-D-01727,21,93.52849409088648,1964.0983759086162,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01728,17,107.5991588771564,1829.1857009116588,3,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-01729,5,99.19094615614107,495.95473078070535,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01730,6,70.0435834083344,420.2615004500064,2,Month-to-month,Electronic check,DSL,0,No
+CUST-D-01731,34,75.17407723068216,2555.9186258431932,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01732,25,76.95759388573687,1923.9398471434217,2,One year,Mailed check,No,0,No
+CUST-D-01733,20,80.44550340396516,1608.9100680793033,1,One year,Credit card,DSL,0,No
+CUST-D-01734,19,81.69260299111757,1552.1594568312337,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01735,31,96.50098988134938,2991.5306863218307,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01736,24,54.80713932673802,1315.3713438417124,3,Month-to-month,Electronic check,Fiber optic,0,No internet service
+CUST-D-01737,18,78.8922659137491,1420.0607864474837,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01738,34,103.03041703942822,3503.034179340559,1,Month-to-month,Electronic check,DSL,1,Yes
+CUST-D-01739,27,120.0,3240.0,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01740,26,87.51785137722844,2275.4641358079393,1,One year,Electronic check,DSL,0,Yes
+CUST-D-01741,27,101.49859402702322,2740.462038729627,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01742,34,94.56776202486684,3215.3039088454725,2,Month-to-month,Bank transfer,Fiber optic,0,No internet service
+CUST-D-01743,15,79.61641240728581,1194.246186109287,2,One year,Bank transfer,Fiber optic,1,No
+CUST-D-01744,28,60.29685318534948,1688.3118891897852,1,One year,Credit card,Fiber optic,0,Yes
+CUST-D-01745,34,112.91133836001268,3838.985504240431,3,One year,Electronic check,Fiber optic,1,No
+CUST-D-01746,4,72.06797745376473,288.2719098150589,1,One year,Electronic check,Fiber optic,0,No
+CUST-D-01747,14,73.74203790282226,1032.3885306395116,2,Month-to-month,Credit card,Fiber optic,1,No internet service
+CUST-D-01748,17,118.93213833767557,2021.8463517404846,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01749,14,38.67751253232401,541.4851754525362,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01750,2,86.65191080848784,173.30382161697568,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01751,26,111.5098472564351,2899.2560286673124,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01752,9,80.8415771759515,727.5741945835634,3,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-01753,9,77.30196750952716,695.7177075857444,1,Two year,Mailed check,Fiber optic,1,No
+CUST-D-01754,35,40.28559959483032,1409.9959858190614,2,Month-to-month,Credit card,No,0,No
+CUST-D-01755,27,92.66366681195835,2501.9190039228756,3,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-01756,26,72.52979562275902,1885.7746861917346,3,One year,Mailed check,Fiber optic,0,Yes
+CUST-D-01757,4,59.10732873747652,236.4293149499061,1,One year,Bank transfer,DSL,0,No internet service
+CUST-D-01758,16,120.0,1920.0,3,Month-to-month,Credit card,DSL,0,No
+CUST-D-01759,3,107.46095731630815,322.38287194892445,2,One year,Bank transfer,No,1,No
+CUST-D-01760,20,88.5482206489235,1770.9644129784701,1,One year,Mailed check,DSL,0,No internet service
+CUST-D-01761,22,52.0656574076412,1145.4444629681063,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01762,6,97.915545274264,587.4932716455841,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01763,8,105.18481700974112,841.478536077929,1,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-01764,3,32.537030917695475,97.61109275308642,3,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-01765,4,76.43831280819205,305.7532512327682,1,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-01766,1,103.24782139185285,103.24782139185285,3,Two year,Electronic check,Fiber optic,0,No internet service
+CUST-D-01767,12,41.30607863274466,495.6729435929359,1,Month-to-month,Mailed check,No,0,Yes
+CUST-D-01768,24,120.0,2880.0,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01769,23,92.79356445084105,2134.251982369344,1,Month-to-month,Electronic check,DSL,0,No
+CUST-D-01770,12,59.446600651781736,713.3592078213808,1,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-01771,9,93.82820168063155,844.453815125684,2,Month-to-month,Electronic check,Fiber optic,1,Yes
+CUST-D-01772,10,120.0,1200.0,3,Month-to-month,Credit card,No,0,Yes
+CUST-D-01773,19,103.47937717894932,1966.1081664000371,3,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-01774,31,112.1157546806606,3475.5883951004785,1,Month-to-month,Electronic check,DSL,0,No
+CUST-D-01775,2,42.05580390568182,84.11160781136364,2,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-01776,33,94.55635277750234,3120.3596416575774,3,Month-to-month,Bank transfer,Fiber optic,1,Yes
+CUST-D-01777,24,68.95116198997158,1654.827887759318,1,Month-to-month,Bank transfer,DSL,1,No
+CUST-D-01778,14,72.48394236253284,1014.7751930754598,1,One year,Mailed check,Fiber optic,0,No
+CUST-D-01779,6,84.42175991171462,506.5305594702877,2,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-01780,15,74.41969551790336,1116.2954327685504,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01781,5,85.85339603168431,429.2669801584216,2,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-01782,11,80.3459889073679,883.8058779810468,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01783,24,120.0,2880.0,2,Month-to-month,Mailed check,DSL,1,No internet service
+CUST-D-01784,1,111.93066981439263,111.93066981439263,2,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-01785,19,92.72129480664208,1761.7046013261995,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01786,9,96.91320784331161,872.2188705898045,3,One year,Bank transfer,Fiber optic,0,No
+CUST-D-01787,15,69.44970903103628,1041.7456354655442,1,Month-to-month,Mailed check,Fiber optic,1,Yes
+CUST-D-01788,27,80.67299553444552,2178.170879430029,3,Month-to-month,Electronic check,Fiber optic,0,No internet service
+CUST-D-01789,20,103.90627346380715,2078.125469276143,2,Month-to-month,Credit card,No,1,Yes
+CUST-D-01790,17,120.0,2040.0,2,Month-to-month,Electronic check,DSL,0,No
+CUST-D-01791,24,120.0,2880.0,2,Month-to-month,Electronic check,Fiber optic,0,No internet service
+CUST-D-01792,24,52.610034418465034,1262.6408260431608,2,One year,Mailed check,Fiber optic,0,No
+CUST-D-01793,8,85.36384678807268,682.9107743045814,3,One year,Electronic check,Fiber optic,1,No internet service
+CUST-D-01794,19,94.03779700281548,1786.718143053494,2,One year,Bank transfer,Fiber optic,1,No
+CUST-D-01795,20,94.81415942870622,1896.2831885741243,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01796,22,62.80288248340771,1381.6634146349695,1,Month-to-month,Mailed check,DSL,1,No
+CUST-D-01797,4,56.57648684821233,226.30594739284933,2,Month-to-month,Credit card,Fiber optic,1,Yes
+CUST-D-01798,33,120.0,3960.0,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01799,9,91.26708681821285,821.4037813639156,1,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-01800,16,91.16123285950238,1458.579725752038,2,Month-to-month,Electronic check,No,0,No
+CUST-D-01801,27,70.45189517483169,1902.2011697204557,2,One year,Mailed check,Fiber optic,0,No
+CUST-D-01802,30,100.51813236807327,3015.543971042198,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01803,2,85.27999729282115,170.5599945856423,3,Month-to-month,Bank transfer,Fiber optic,0,No internet service
+CUST-D-01804,10,84.83223394351748,848.3223394351749,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01805,19,82.72849818677288,1571.8414655486847,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01806,11,120.0,1320.0,2,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-01807,30,86.74215122234344,2602.264536670303,3,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-01808,15,93.46876918395718,1402.0315377593577,1,Month-to-month,Electronic check,No,1,No
+CUST-D-01809,20,112.75102657022998,2255.0205314045998,2,One year,Credit card,Fiber optic,0,No
+CUST-D-01810,21,86.29446075986736,1812.1836759572145,3,Two year,Mailed check,Fiber optic,0,Yes
+CUST-D-01811,6,88.48531504856214,530.9118902913729,2,Month-to-month,Mailed check,DSL,0,No
+CUST-D-01812,6,70.58726300846786,423.52357805080715,3,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-01813,13,91.43169488278288,1188.6120334761774,3,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01814,21,67.43971539433299,1416.234023280993,1,Month-to-month,Electronic check,Fiber optic,1,Yes
+CUST-D-01815,15,113.44855535371492,1701.7283303057238,3,One year,Mailed check,Fiber optic,0,No
+CUST-D-01816,19,65.02269897719486,1235.4312805667023,2,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-01817,14,90.17298969560156,1262.4218557384218,2,Month-to-month,Electronic check,DSL,0,Yes
+CUST-D-01818,15,89.0502116322922,1335.753174484383,1,Month-to-month,Credit card,DSL,0,No
+CUST-D-01819,10,84.78345769486874,847.8345769486874,1,Month-to-month,Mailed check,DSL,0,No
+CUST-D-01820,28,89.0963987896019,2494.699166108853,2,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-01821,25,43.813426396966854,1095.3356599241713,1,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-01822,12,47.56046471119861,570.7255765343833,3,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-01823,31,109.08305260011385,3381.5746306035294,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01824,28,72.2178244960231,2022.0990858886466,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01825,23,41.08455372872155,944.9447357605957,3,Month-to-month,Credit card,No,0,No internet service
+CUST-D-01826,31,109.65669733431037,3399.357617363621,1,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-01827,32,79.06161438844573,2529.9716604302635,2,Month-to-month,Mailed check,No,0,No internet service
+CUST-D-01828,23,101.30198091856529,2329.945561127002,1,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-01829,21,106.62310834856738,2239.085275319915,2,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-01830,17,58.10766367130033,987.8302824121056,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01831,6,120.0,720.0,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01832,15,66.20604782693836,993.0907174040753,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01833,34,113.94124316001319,3874.002267440448,3,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-01834,27,83.18215720214425,2245.9182444578946,3,Two year,Electronic check,DSL,0,No
+CUST-D-01835,5,91.88645343225505,459.43226716127526,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01836,24,91.40014293678784,2193.603430482908,3,One year,Mailed check,Fiber optic,0,No internet service
+CUST-D-01837,15,93.75325157847602,1406.2987736771404,1,Month-to-month,Electronic check,DSL,0,No
+CUST-D-01838,3,78.65564884914696,235.96694654744087,1,Month-to-month,Bank transfer,Fiber optic,1,Yes
+CUST-D-01839,15,75.34583937964744,1130.1875906947116,1,One year,Mailed check,Fiber optic,1,No
+CUST-D-01840,12,79.7157807865044,956.5893694380527,2,Month-to-month,Mailed check,No,1,No
+CUST-D-01841,15,92.79411207125351,1391.9116810688026,3,Month-to-month,Credit card,DSL,0,No
+CUST-D-01842,35,100.76291273887026,3526.701945860459,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01843,19,95.2507164208325,1809.7636119958177,3,One year,Mailed check,No,0,Yes
+CUST-D-01844,14,86.80014047535319,1215.2019666549447,2,Month-to-month,Electronic check,DSL,0,Yes
+CUST-D-01845,7,62.976633199716346,440.83643239801444,3,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-01846,10,111.8416884890213,1118.416884890213,2,Month-to-month,Electronic check,DSL,1,No
+CUST-D-01847,6,25.0,150.0,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01848,3,101.7361957112556,305.2085871337668,3,One year,Bank transfer,Fiber optic,0,Yes
+CUST-D-01849,24,89.49687970807003,2147.9251129936806,1,Month-to-month,Electronic check,DSL,0,Yes
+CUST-D-01850,20,79.25689805043328,1585.1379610086656,1,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-01851,7,98.04125860498685,686.2888102349079,2,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01852,18,76.74521085385952,1381.4137953694712,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01853,28,62.63832181522771,1753.873010826376,3,Two year,Credit card,Fiber optic,1,No
+CUST-D-01854,10,93.8653656004886,938.653656004886,1,One year,Electronic check,Fiber optic,0,No internet service
+CUST-D-01855,6,83.37463267152987,500.2477960291792,1,Month-to-month,Credit card,Fiber optic,1,Yes
+CUST-D-01856,33,108.09315520881859,3567.0741218910134,2,One year,Bank transfer,Fiber optic,0,No
+CUST-D-01857,25,58.75658042803964,1468.914510700991,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01858,35,80.57722343016181,2820.2028200556633,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01859,11,80.30099876079838,883.3109863687822,3,Month-to-month,Bank transfer,DSL,0,Yes
+CUST-D-01860,15,42.228977461359854,633.4346619203978,3,One year,Mailed check,No,0,No internet service
+CUST-D-01861,20,70.08737023218363,1401.7474046436726,2,Month-to-month,Mailed check,DSL,0,No internet service
+CUST-D-01862,29,120.0,3480.0,2,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-01863,32,82.93640177986903,2653.964856955809,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01864,11,83.89436423370482,922.838006570753,3,Month-to-month,Bank transfer,Fiber optic,0,No internet service
+CUST-D-01865,33,25.0,825.0,1,Month-to-month,Credit card,No,0,No
+CUST-D-01866,10,120.0,1200.0,2,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-01867,17,71.08186368767839,1208.3916826905327,1,Month-to-month,Electronic check,Fiber optic,1,Yes
+CUST-D-01868,15,103.44911619809882,1551.7367429714823,1,Month-to-month,Mailed check,Fiber optic,1,No internet service
+CUST-D-01869,29,85.87689380701347,2490.429920403391,1,Month-to-month,Credit card,DSL,0,No
+CUST-D-01870,19,71.39167667897246,1356.4418569004768,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01871,18,120.0,2160.0,1,Month-to-month,Credit card,Fiber optic,1,Yes
+CUST-D-01872,26,80.46246622850647,2092.0241219411682,2,Month-to-month,Credit card,DSL,1,No internet service
+CUST-D-01873,21,70.63876698947641,1483.4141067790047,2,Month-to-month,Credit card,No,0,No
+CUST-D-01874,30,88.01211698535255,2640.3635095605764,3,Month-to-month,Bank transfer,DSL,0,No internet service
+CUST-D-01875,6,95.13627066867618,570.8176240120571,1,One year,Electronic check,Fiber optic,1,No
+CUST-D-01876,4,91.56417893210572,366.2567157284229,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01877,6,92.25723064962158,553.5433838977294,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01878,20,120.0,2400.0,3,Month-to-month,Bank transfer,No,0,No internet service
+CUST-D-01879,8,52.41531562158116,419.32252497264926,3,Month-to-month,Electronic check,DSL,0,Yes
+CUST-D-01880,22,102.15098645550799,2247.321702021176,2,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01881,26,90.01863373696813,2340.4844771611715,3,Month-to-month,Electronic check,DSL,0,Yes
+CUST-D-01882,17,53.38300130715825,907.5110222216903,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01883,16,103.32284734349624,1653.1655574959398,3,Month-to-month,Electronic check,No,1,No internet service
+CUST-D-01884,6,75.81841990392905,454.9105194235743,3,Month-to-month,Credit card,Fiber optic,1,No internet service
+CUST-D-01885,7,111.61581572133416,781.3107100493391,2,One year,Credit card,Fiber optic,1,Yes
+CUST-D-01886,16,69.31747046698143,1109.079527471703,1,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-01887,32,120.0,3840.0,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01888,16,69.38186527065025,1110.109844330404,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01889,9,51.023449503377584,459.2110455303983,2,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-01890,32,98.83586580224214,3162.7477056717485,1,Month-to-month,Electronic check,DSL,0,Yes
+CUST-D-01891,17,57.480665657094264,977.1713161706025,3,Month-to-month,Credit card,No,0,Yes
+CUST-D-01892,24,74.25912599173209,1782.21902380157,1,Two year,Mailed check,Fiber optic,1,No internet service
+CUST-D-01893,10,64.89036211076963,648.9036211076963,3,Month-to-month,Bank transfer,Fiber optic,1,Yes
+CUST-D-01894,21,112.3482988646001,2359.314276156602,1,Month-to-month,Electronic check,Fiber optic,0,No internet service
+CUST-D-01895,11,77.77290658451791,855.501972429697,2,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01896,19,102.23998342675324,1942.5596851083117,3,Month-to-month,Bank transfer,No,1,No
+CUST-D-01897,9,80.89893229599636,728.0903906639672,2,Month-to-month,Credit card,Fiber optic,1,No
+CUST-D-01898,2,103.67093257484392,207.34186514968783,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01899,24,81.08003002458102,1945.9207205899445,1,One year,Bank transfer,Fiber optic,0,No
+CUST-D-01900,28,84.78651671904443,2374.022468133244,3,Month-to-month,Mailed check,DSL,0,No
+CUST-D-01901,14,63.739803066247894,892.3572429274706,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01902,16,91.93486642835109,1470.9578628536174,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01903,19,56.600882830110876,1075.4167737721066,2,Month-to-month,Mailed check,DSL,0,No
+CUST-D-01904,7,91.57017175859364,640.9912023101555,2,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-01905,14,120.0,1680.0,2,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-01906,34,93.64808491030587,3184.0348869503996,2,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-01907,15,70.47005642338962,1057.0508463508443,2,Month-to-month,Mailed check,DSL,0,No
+CUST-D-01908,24,100.55878244825136,2413.410778758033,2,Month-to-month,Credit card,Fiber optic,0,No internet service
+CUST-D-01909,23,39.77128155018123,914.7394756541682,2,Two year,Bank transfer,Fiber optic,0,No
+CUST-D-01910,30,106.9773543616834,3209.320630850502,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01911,34,87.90777251754226,2988.864265596437,1,One year,Mailed check,Fiber optic,0,No
+CUST-D-01912,5,93.30849124019272,466.5424562009636,2,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-01913,15,46.79328367696315,701.8992551544472,3,One year,Bank transfer,No,0,No
+CUST-D-01914,6,62.31266095548964,373.87596573293786,2,Month-to-month,Credit card,Fiber optic,1,Yes
+CUST-D-01915,10,55.42381971650285,554.2381971650285,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01916,24,119.23907753671126,2861.7378608810704,1,Month-to-month,Electronic check,DSL,0,No
+CUST-D-01917,8,120.0,960.0,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01918,10,47.781990220719656,477.81990220719655,1,Month-to-month,Mailed check,DSL,0,No
+CUST-D-01919,18,65.37618940938891,1176.7714093690004,1,Month-to-month,Bank transfer,DSL,1,No internet service
+CUST-D-01920,11,90.202168569628,992.223854265908,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01921,28,56.830066340055964,1591.241857521567,1,One year,Credit card,No,1,No
+CUST-D-01922,13,59.863027509905706,778.2193576287742,2,Month-to-month,Mailed check,No,0,No
+CUST-D-01923,30,80.71381990876864,2421.4145972630595,3,Month-to-month,Credit card,DSL,0,No internet service
+CUST-D-01924,20,97.81425054765302,1956.2850109530605,3,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-01925,17,109.93943700527525,1868.9704290896793,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01926,25,113.69972915364633,2842.4932288411583,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01927,6,95.69071267803531,574.1442760682119,2,Month-to-month,Credit card,DSL,0,No
+CUST-D-01928,31,54.036548752770464,1675.1330113358845,2,One year,Mailed check,Fiber optic,0,Yes
+CUST-D-01929,26,93.1141868666803,2420.9688585336876,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01930,1,37.063477632172436,37.063477632172436,2,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-01931,10,104.77316133358175,1047.7316133358177,1,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-01932,31,33.360140473415605,1034.1643546758837,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01933,4,120.0,480.0,3,Month-to-month,Bank transfer,No,1,No
+CUST-D-01934,29,120.0,3480.0,1,Month-to-month,Credit card,Fiber optic,0,No
+CUST-D-01935,8,90.36451082798438,722.916086623875,3,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01936,23,102.33226496248669,2353.642094137194,3,One year,Mailed check,Fiber optic,0,No
+CUST-D-01937,21,105.43482324935638,2214.131288236484,2,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-01938,34,65.346384088477,2221.7770590082177,2,One year,Bank transfer,Fiber optic,0,Yes
+CUST-D-01939,15,93.46204145443558,1401.9306218165336,1,Month-to-month,Electronic check,Fiber optic,1,No internet service
+CUST-D-01940,29,116.37467777390735,3374.8656554433132,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01941,28,89.09743149014234,2494.7280817239857,2,Month-to-month,Electronic check,No,0,No internet service
+CUST-D-01942,30,104.6637070742793,3139.911212228379,1,Month-to-month,Mailed check,DSL,1,No
+CUST-D-01943,20,106.39362662825776,2127.8725325651553,1,Month-to-month,Bank transfer,No,0,No
+CUST-D-01944,14,64.02111792602581,896.2956509643614,1,One year,Credit card,Fiber optic,1,No
+CUST-D-01945,14,66.08280617545596,925.1592864563834,3,One year,Electronic check,Fiber optic,0,No internet service
+CUST-D-01946,28,75.25523961183643,2107.14670913142,3,Two year,Electronic check,Fiber optic,0,No
+CUST-D-01947,7,76.50137668019794,535.5096367613855,1,Month-to-month,Credit card,Fiber optic,1,No internet service
+CUST-D-01948,24,87.93614329144566,2110.467438994696,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01949,30,68.93590563096448,2068.0771689289345,2,Month-to-month,Bank transfer,No,0,Yes
+CUST-D-01950,7,86.77891271274872,607.4523889892411,1,One year,Mailed check,Fiber optic,0,No
+CUST-D-01951,6,120.0,720.0,1,Month-to-month,Electronic check,Fiber optic,1,No
+CUST-D-01952,3,87.49220286512276,262.4766085953683,1,Month-to-month,Electronic check,Fiber optic,0,No
+CUST-D-01953,34,120.0,4080.0,1,Month-to-month,Mailed check,Fiber optic,1,No internet service
+CUST-D-01954,22,104.22955082498294,2293.0501181496247,3,Month-to-month,Electronic check,DSL,0,No internet service
+CUST-D-01955,17,120.0,2040.0,2,Month-to-month,Mailed check,DSL,1,No
+CUST-D-01956,11,66.96947702797743,736.6642473077518,2,Month-to-month,Mailed check,Fiber optic,0,Yes
+CUST-D-01957,22,101.4815784690745,2232.594726319639,2,Month-to-month,Credit card,No,0,No
+CUST-D-01958,15,111.19735001804577,1667.9602502706866,1,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-01959,34,94.88507675521524,3226.0926096773183,2,Month-to-month,Credit card,DSL,0,No
+CUST-D-01960,6,64.36199090289898,386.1719454173939,2,Month-to-month,Bank transfer,Fiber optic,1,Yes
+CUST-D-01961,32,70.84433550946812,2267.01873630298,2,Month-to-month,Bank transfer,No,0,No
+CUST-D-01962,24,70.58116668611233,1693.9480004666957,1,Month-to-month,Credit card,DSL,0,No
+CUST-D-01963,15,81.88880629876091,1228.3320944814136,3,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-01964,10,85.39448885822681,853.944888582268,2,One year,Electronic check,Fiber optic,1,No
+CUST-D-01965,33,86.11314213637797,2841.733690500473,3,Month-to-month,Electronic check,Fiber optic,0,Yes
+CUST-D-01966,29,120.0,3480.0,2,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-01967,15,94.77332667111814,1421.599900066772,3,One year,Bank transfer,Fiber optic,0,No
+CUST-D-01968,16,101.43231438993219,1622.917030238915,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01969,5,77.06490237000791,385.3245118500396,1,Month-to-month,Mailed check,Fiber optic,0,No internet service
+CUST-D-01970,34,38.89728234456456,1322.507599715195,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01971,4,97.79810802405869,391.19243209623477,2,Month-to-month,Electronic check,DSL,0,No
+CUST-D-01972,30,113.070481145523,3392.11443436569,1,One year,Mailed check,DSL,0,No
+CUST-D-01973,25,74.02961915759613,1850.7404789399034,2,Month-to-month,Credit card,Fiber optic,0,Yes
+CUST-D-01974,19,76.65532270482602,1456.4511313916944,2,Month-to-month,Credit card,No,0,No
+CUST-D-01975,19,120.0,2280.0,2,One year,Credit card,Fiber optic,0,No
+CUST-D-01976,12,120.0,1440.0,3,Month-to-month,Bank transfer,Fiber optic,1,Yes
+CUST-D-01977,32,48.91407045842674,1565.2502546696558,2,Month-to-month,Mailed check,Fiber optic,1,No
+CUST-D-01978,26,120.0,3120.0,1,One year,Electronic check,Fiber optic,0,No
+CUST-D-01979,19,110.22166036026007,2094.2115468449415,3,Month-to-month,Bank transfer,Fiber optic,0,Yes
+CUST-D-01980,20,75.04676211190062,1500.9352422380125,3,Month-to-month,Credit card,No,0,No internet service
+CUST-D-01981,28,69.43219297272042,1944.1014032361716,3,Month-to-month,Bank transfer,DSL,0,No
+CUST-D-01982,24,69.15238521955992,1659.6572452694381,2,One year,Bank transfer,No,0,No
+CUST-D-01983,34,67.98269552362837,2311.4116478033643,3,One year,Credit card,Fiber optic,0,No
+CUST-D-01984,6,80.7087517277551,484.2525103665306,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01985,35,108.28032324124612,3789.8113134436144,1,One year,Credit card,DSL,1,No
+CUST-D-01986,33,82.36079127579048,2717.906112101086,2,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01987,3,53.51405591886383,160.54216775659148,3,Month-to-month,Credit card,No,0,Yes
+CUST-D-01988,10,28.242343583293174,282.4234358329317,3,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01989,35,68.7588628897121,2406.5602011399237,3,Month-to-month,Bank transfer,Fiber optic,1,No
+CUST-D-01990,35,67.35639332265056,2357.4737662927696,3,Month-to-month,Credit card,DSL,0,No
+CUST-D-01991,19,68.40537316239397,1299.7020900854855,1,Month-to-month,Electronic check,DSL,1,No
+CUST-D-01992,4,75.52000963516186,302.0800385406474,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01993,15,74.35525930817452,1115.328889622618,2,Month-to-month,Credit card,DSL,1,No
+CUST-D-01994,5,120.0,600.0,3,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01995,29,30.220304480211183,876.3888299261243,3,Two year,Mailed check,Fiber optic,0,No
+CUST-D-01996,11,120.0,1320.0,1,Month-to-month,Mailed check,Fiber optic,0,No
+CUST-D-01997,28,89.2346105077199,2498.5690942161573,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01998,21,120.0,2520.0,1,Month-to-month,Bank transfer,Fiber optic,0,No
+CUST-D-01999,31,95.20870482102312,2951.4698494517165,3,One year,Bank transfer,Fiber optic,0,No
