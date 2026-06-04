@@ -1,0 +1,255 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Color-scheme hints ─────────────────────────────────────────────────── */
+html.dark  { color-scheme: dark; }
+html.light { color-scheme: light; }
+
+/* ─── Light-mode overrides ───────────────────────────────────────────────────
+ * The app is dark-first. All components use hardcoded zinc-* and neutral-*
+ * utilities. When html.light is active, we remap the dark-side of both scales
+ * to a slate-based light palette so components render correctly without
+ * per-file changes.
+ *
+ * Scale inversion (dark → light):
+ *   950 / page root          →  #f8fafc  slate-50
+ *   900 / primary panels     →  #ffffff  white
+ *   800 / card / input bg    →  #f1f5f9  slate-100
+ *   700 / accent / dividers  →  #e2e8f0  slate-200
+ *   600 / stronger accent    →  #cbd5e1  slate-300
+ *   500 / midpoint           →  #94a3b8  slate-400
+ *   400 / muted text         →  #64748b  slate-500
+ *   300 / secondary text     →  #475569  slate-600
+ *   200 / body text          →  #1e293b  slate-800
+ *   100 / primary text       →  #0f172a  slate-900
+ * ──────────────────────────────────────────────────────────────────────────── */
+
+/* ── body ────────────────────────────────────────────────────────────────── */
+html.light body {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   NEUTRAL
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* solid backgrounds */
+html.light .bg-neutral-950 { background-color: #f8fafc !important; }
+html.light .bg-neutral-900 { background-color: #ffffff !important; }
+html.light .bg-neutral-800 { background-color: #f1f5f9 !important; }
+html.light .bg-neutral-700 { background-color: #e2e8f0 !important; }
+html.light .bg-neutral-600 { background-color: #cbd5e1 !important; }
+html.light .bg-neutral-500 { background-color: #94a3b8 !important; }
+html.light .bg-neutral-400 { background-color: #64748b !important; }
+html.light .bg-neutral-200 { background-color: #1e293b !important; }
+html.light .bg-neutral-100 { background-color: #0f172a !important; }
+
+/* opacity variants */
+html.light .bg-neutral-950\/50 { background-color: rgba(248,250,252,.50) !important; }
+html.light .bg-neutral-900\/70 { background-color: rgba(255,255,255,.70) !important; }
+html.light .bg-neutral-900\/50 { background-color: rgba(255,255,255,.50) !important; }
+html.light .bg-neutral-900\/40 { background-color: rgba(255,255,255,.40) !important; }
+html.light .bg-neutral-900\/30 { background-color: rgba(255,255,255,.30) !important; }
+html.light .bg-neutral-800\/60 { background-color: rgba(241,245,249,.60) !important; }
+html.light .bg-neutral-800\/50 { background-color: rgba(241,245,249,.50) !important; }
+html.light .bg-neutral-800\/40 { background-color: rgba(241,245,249,.40) !important; }
+html.light .bg-neutral-800\/20 { background-color: rgba(241,245,249,.20) !important; }
+
+/* text */
+html.light .text-neutral-100 { color: #0f172a !important; }
+html.light .text-neutral-200 { color: #1e293b !important; }
+html.light .text-neutral-300 { color: #334155 !important; }
+html.light .text-neutral-400 { color: #475569 !important; }
+html.light .text-neutral-500 { color: #64748b !important; }
+html.light .text-neutral-600 { color: #94a3b8 !important; }
+html.light .text-neutral-700 { color: #cbd5e1 !important; }
+html.light .text-neutral-900 { color: #f8fafc !important; }
+
+/* borders */
+html.light .border-neutral-800      { border-color: #e2e8f0 !important; }
+html.light .border-neutral-700      { border-color: #cbd5e1 !important; }
+html.light .border-neutral-600      { border-color: #94a3b8 !important; }
+html.light .border-neutral-500      { border-color: #64748b !important; }
+html.light .border-neutral-400      { border-color: #475569 !important; }
+html.light .border-neutral-800\/50  { border-color: rgba(226,232,240,.50) !important; }
+
+/* divide */
+html.light .divide-neutral-800 > * + * { border-color: #e2e8f0 !important; }
+html.light .divide-neutral-700 > * + * { border-color: #cbd5e1 !important; }
+
+/* ring */
+html.light .ring-neutral-500       { --tw-ring-color: #64748b !important; }
+
+/* placeholder */
+html.light .placeholder-neutral-600::placeholder { color: #94a3b8 !important; }
+
+/* hover */
+html.light .hover\:bg-neutral-800:hover      { background-color: #f1f5f9 !important; }
+html.light .hover\:bg-neutral-800\/40:hover  { background-color: rgba(241,245,249,.40) !important; }
+html.light .hover\:bg-neutral-600:hover      { background-color: #cbd5e1 !important; }
+html.light .hover\:bg-neutral-200:hover      { background-color: #1e293b !important; }
+html.light .hover\:text-neutral-100:hover    { color: #0f172a !important; }
+html.light .hover\:text-neutral-200:hover    { color: #1e293b !important; }
+html.light .hover\:text-neutral-300:hover    { color: #334155 !important; }
+html.light .hover\:border-neutral-600:hover  { border-color: #94a3b8 !important; }
+html.light .hover\:border-neutral-500:hover  { border-color: #64748b !important; }
+
+/* focus */
+html.light .focus\:border-neutral-500:focus  { border-color: #64748b !important; }
+html.light .focus\:ring-neutral-500:focus    { --tw-ring-color: #64748b !important; }
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ZINC  (same scale mapping as neutral)
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* solid backgrounds */
+html.light .bg-zinc-950 { background-color: #f8fafc !important; }
+html.light .bg-zinc-900 { background-color: #ffffff !important; }
+html.light .bg-zinc-800 { background-color: #f1f5f9 !important; }
+html.light .bg-zinc-700 { background-color: #e2e8f0 !important; }
+html.light .bg-zinc-600 { background-color: #cbd5e1 !important; }
+html.light .bg-zinc-500 { background-color: #94a3b8 !important; }
+html.light .bg-zinc-400 { background-color: #64748b !important; }
+
+/* opacity variants */
+html.light .bg-zinc-950\/40  { background-color: rgba(248,250,252,.40) !important; }
+html.light .bg-zinc-900\/60  { background-color: rgba(255,255,255,.60) !important; }
+html.light .bg-zinc-900\/50  { background-color: rgba(255,255,255,.50) !important; }
+html.light .bg-zinc-900\/30  { background-color: rgba(255,255,255,.30) !important; }
+html.light .bg-zinc-800\/70  { background-color: rgba(241,245,249,.70) !important; }
+html.light .bg-zinc-800\/60  { background-color: rgba(241,245,249,.60) !important; }
+html.light .bg-zinc-800\/50  { background-color: rgba(241,245,249,.50) !important; }
+html.light .bg-zinc-800\/40  { background-color: rgba(241,245,249,.40) !important; }
+html.light .bg-zinc-800\/30  { background-color: rgba(241,245,249,.30) !important; }
+
+/* text */
+html.light .text-zinc-100 { color: #0f172a !important; }
+html.light .text-zinc-200 { color: #1e293b !important; }
+html.light .text-zinc-300 { color: #334155 !important; }
+html.light .text-zinc-400 { color: #475569 !important; }
+html.light .text-zinc-500 { color: #64748b !important; }
+html.light .text-zinc-600 { color: #94a3b8 !important; }
+html.light .text-zinc-700 { color: #cbd5e1 !important; }
+
+/* borders */
+html.light .border-zinc-800      { border-color: #e2e8f0 !important; }
+html.light .border-zinc-700      { border-color: #cbd5e1 !important; }
+html.light .border-zinc-600      { border-color: #94a3b8 !important; }
+html.light .border-zinc-500      { border-color: #64748b !important; }
+html.light .border-zinc-800\/60  { border-color: rgba(226,232,240,.60) !important; }
+
+/* divide */
+html.light .divide-zinc-800 > * + * { border-color: #e2e8f0 !important; }
+html.light .divide-zinc-700 > * + * { border-color: #cbd5e1 !important; }
+
+/* placeholder */
+html.light .placeholder-zinc-600::placeholder { color: #94a3b8 !important; }
+
+/* hover */
+html.light .hover\:bg-zinc-800:hover     { background-color: #f1f5f9 !important; }
+html.light .hover\:border-zinc-600:hover { border-color: #94a3b8 !important; }
+html.light .hover\:text-zinc-100:hover   { color: #0f172a !important; }
+html.light .hover\:text-zinc-200:hover   { color: #1e293b !important; }
+html.light .hover\:text-zinc-300:hover   { color: #334155 !important; }
+
+/* focus */
+html.light .focus\:border-zinc-500:focus { border-color: #64748b !important; }
+html.light .focus\:ring-zinc-500:focus   { --tw-ring-color: #64748b !important; }
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   SPECIAL CASES
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/*
+ * text-white inside neutral/zinc-800 containers (e.g. chat message <strong>).
+ * Keep text-white on colored backgrounds (indigo, red…) untouched.
+ */
+html.light .bg-neutral-800 .text-white,
+html.light .bg-zinc-800 .text-white { color: #0f172a !important; }
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   MARKDOWN - InsightReport (.markdown-insight) and MarkdownBody
+   ══════════════════════════════════════════════════════════════════════════
+ * InsightReport uses Tailwind arbitrary-variant selectors like
+ * [&_h1]:text-zinc-100 which compile to unique class names that cannot be
+ * matched by the generic zinc/neutral overrides above.
+ * We target the .markdown-insight wrapper directly instead.
+ * ══════════════════════════════════════════════════════════════════════════ */
+
+html.light .markdown-insight {
+  color: #334155;
+}
+
+html.light .markdown-insight h1,
+html.light .markdown-insight h2 {
+  color: #0f172a;
+}
+
+html.light .markdown-insight h3 {
+  color: #1e293b;
+}
+
+html.light .markdown-insight p,
+html.light .markdown-insight li {
+  color: #334155;
+}
+
+html.light .markdown-insight strong {
+  color: #0f172a;
+}
+
+html.light .markdown-insight em {
+  color: #475569;
+}
+
+html.light .markdown-insight hr {
+  border-color: #e2e8f0;
+}
+
+html.light .markdown-insight blockquote {
+  border-left-color: #94a3b8;
+  color: #64748b;
+}
+
+html.light .markdown-insight code {
+  background-color: #f1f5f9;
+  color: #2563eb;
+}
+
+html.light .markdown-insight pre {
+  background-color: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+html.light .markdown-insight pre code {
+  background-color: transparent;
+  color: #334155;
+}
+
+html.light .markdown-insight th {
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #334155;
+}
+
+html.light .markdown-insight td {
+  border-color: #e2e8f0;
+  color: #475569;
+}
+
+html.light .markdown-insight tr:nth-child(even) td {
+  background-color: rgba(248, 250, 252, 0.5);
+}
+
+html.light .markdown-insight a {
+  color: #2563eb;
+}
+
+html.light .markdown-insight a:hover {
+  color: #1d4ed8;
+}
