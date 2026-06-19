@@ -141,3 +141,97 @@ def test_response_text_empty_content_returns_empty_string():
 def test_response_text_none_content_returns_empty_string():
     resp = _FakeResponse(None)
     assert _response_text(resp, 4096) == ""
+
+
+# ── call_claude_stream: re-roll empty completions before surfacing "" ────────
+
+
+class _FakeStreamCM:
+    """Mimics `client.messages.stream(...)` - an async CM yielding `self`."""
+
+    def __init__(self, chunks, stop_reason="end_turn"):
+        self._chunks = chunks
+        self._stop_reason = stop_reason
+
+    async def __aenter__(self):
+        return self
+
+    async def __aexit__(self, *exc):
+        return False
+
+    @property
+    def text_stream(self):
+        async def _gen():
+            for c in self._chunks:
+                yield c
+        return _gen()
+
+    async def get_final_message(self):
+        return _FakeResponse([], stop_reason=self._stop_reason)
+
+
+class _FakeClientCM:
+    """Mimics `_make_client()` - an async CM yielding a client with .messages."""
+
+    def __init__(self, stream_cm):
+        from unittest.mock import MagicMock
+        self.messages = MagicMock()
+        self.messages.stream = MagicMock(return_value=stream_cm)
+
+    async def __aenter__(self):
+        return self
+
+    async def __aexit__(self, *exc):
+        return False
+
+
+async def test_call_claude_stream_rerolls_empty_then_succeeds():
+    """An empty completion is re-rolled; the next non-empty attempt is returned.
+    Because the empty attempt emitted nothing, on_chunk sees only the real text."""
+    from unittest.mock import AsyncMock, patch
+
+    from backend.agents.base import call_claude_stream
+
+    clients = [
+        _FakeClientCM(_FakeStreamCM([])),                 # attempt 1: empty
+        _FakeClientCM(_FakeStreamCM(["real ", "answer"])),  # attempt 2: real text
+    ]
+    chunks: list[str] = []
+
+    async def on_chunk(text: str) -> None:
+        chunks.append(text)
+
+    with (
+        patch("backend.agents.base._make_client", side_effect=clients) as mk,
+        patch("backend.agents.base.asyncio.sleep", new=AsyncMock()),
+    ):
+        out = await call_claude_stream(
+            messages=[{"role": "user", "content": "hi"}],
+            model="claude-sonnet-4-6",
+            on_chunk=on_chunk,
+        )
+
+    assert out == "real answer"
+    assert chunks == ["real ", "answer"], "the empty attempt must not emit chunks"
+    assert mk.call_count == 2, "an empty completion must trigger exactly one re-roll here"
+
+
+async def test_call_claude_stream_returns_empty_after_all_rerolls():
+    """If every attempt is empty, "" is surfaced for the caller's fallback."""
+    from unittest.mock import AsyncMock, patch
+
+    from backend.agents.base import _MAX_ATTEMPTS, call_claude_stream
+
+    clients = [_FakeClientCM(_FakeStreamCM([])) for _ in range(_MAX_ATTEMPTS)]
+
+    with (
+        patch("backend.agents.base._make_client", side_effect=clients) as mk,
+        patch("backend.agents.base.asyncio.sleep", new=AsyncMock()),
+    ):
+        out = await call_claude_stream(
+            messages=[{"role": "user", "content": "hi"}],
+            model="claude-sonnet-4-6",
+        )
+
+    assert out == ""
+    assert mk.call_count == _MAX_ATTEMPTS

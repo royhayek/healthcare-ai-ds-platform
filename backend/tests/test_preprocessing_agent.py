@@ -134,6 +134,85 @@ class TestRunPreprocessingAgent:
         assert call_kwargs["category"] == "preprocessing"
 
 
+class TestUserDirectives:
+    @pytest.mark.asyncio
+    async def test_directive_injected_into_prompt(self, mock_session, mock_emitter):
+        with (
+            patch("backend.agents.preprocessing_agent.call_claude") as mock_call,
+            patch("backend.agents.preprocessing_agent.audit") as mock_audit,
+        ):
+            mock_call.return_value = VALID_RESPONSE
+            mock_audit.append = AsyncMock()
+
+            await run_preprocessing_agent(
+                session=mock_session,
+                run_id="dir-run-1",
+                compressed_profile={},
+                eda_report={},
+                target_column="Churn",
+                task_type="binary_classification",
+                emitter=mock_emitter,
+                user_directives=[
+                    {"instruction": "drop both clinical_syndrome and clade - relabeled targets",
+                     "columns_to_drop": ["clinical_syndrome", "clade"]}
+                ],
+            )
+
+        prompt_text = mock_call.call_args.kwargs["messages"][0]["content"]
+        assert "Human overrides" in prompt_text
+        assert "drop both clinical_syndrome and clade" in prompt_text
+
+    @pytest.mark.asyncio
+    async def test_backstop_forces_drop_even_if_agent_keeps(self, mock_session, mock_emitter):
+        # The agent's response (VALID_RESPONSE) KEEPS tenure, but the human asked to
+        # drop it. The deterministic backstop must force action=drop regardless.
+        with (
+            patch("backend.agents.preprocessing_agent.call_claude") as mock_call,
+            patch("backend.agents.preprocessing_agent.audit") as mock_audit,
+        ):
+            mock_call.return_value = VALID_RESPONSE
+            mock_audit.append = AsyncMock()
+
+            strategy = await run_preprocessing_agent(
+                session=mock_session,
+                run_id="dir-run-2",
+                compressed_profile={},
+                eda_report={},
+                target_column="Churn",
+                task_type="binary_classification",
+                emitter=mock_emitter,
+                user_directives=[{"instruction": "drop tenure", "columns_to_drop": ["tenure"]}],
+            )
+
+        assert strategy.columns["tenure"].action == "drop"
+        assert "tenure" not in strategy.feature_columns()
+        actions = [c.kwargs.get("action") for c in mock_audit.append.call_args_list]
+        assert "directive_drop_enforced" in actions
+
+    @pytest.mark.asyncio
+    async def test_no_directives_emits_no_backstop_audit(self, mock_session, mock_emitter):
+        # First-pass run (no overrides) must not emit a directive-enforcement event.
+        with (
+            patch("backend.agents.preprocessing_agent.call_claude") as mock_call,
+            patch("backend.agents.preprocessing_agent.audit") as mock_audit,
+        ):
+            mock_call.return_value = VALID_RESPONSE
+            mock_audit.append = AsyncMock()
+
+            await run_preprocessing_agent(
+                session=mock_session,
+                run_id="dir-run-3",
+                compressed_profile={},
+                eda_report={},
+                target_column="Churn",
+                task_type="binary_classification",
+                emitter=mock_emitter,
+            )
+
+        actions = [c.kwargs.get("action") for c in mock_audit.append.call_args_list]
+        assert "directive_drop_enforced" not in actions
+
+
 class TestSafeFallback:
     def test_numeric_column_gets_standard_scaling(self):
         profile = {

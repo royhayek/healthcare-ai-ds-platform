@@ -44,3 +44,43 @@ def test_mean_abs_values_are_scalars_not_lists():
     # Each entry must be a plain float so SHAPSummary rounding works.
     for v in out.tolist():
         assert isinstance(v, float)
+
+
+def test_compute_shap_linear_model_with_column_transformer():
+    """Regression: a linear model (e.g. forced logistic_regression) goes through
+    the LinearExplainer path, which transforms the background set. The preprocessor
+    is a ColumnTransformer with string column selectors, so the background must
+    stay a DataFrame - converting to numpy first raised "Specifying the columns
+    using strings is only supported for dataframes" and crashed the pipeline.
+    """
+    import pandas as pd
+    from sklearn.compose import ColumnTransformer
+    from sklearn.linear_model import LogisticRegression
+    from sklearn.pipeline import Pipeline
+    from sklearn.preprocessing import OneHotEncoder, StandardScaler
+
+    from backend.ml.explainer import compute_shap
+
+    rng = np.random.default_rng(0)
+    n = 60
+    df = pd.DataFrame({
+        "age": rng.normal(50, 10, n),
+        "score": rng.normal(0, 1, n),
+        "region": rng.choice(["north", "south", "east"], n),
+    })
+    y = (df["age"] + df["score"] * 5 > 50).astype(int)
+
+    pre = ColumnTransformer([
+        ("num", StandardScaler(), ["age", "score"]),
+        ("cat", OneHotEncoder(handle_unknown="ignore"), ["region"]),
+    ])
+    pipe = Pipeline([("preprocessor", pre), ("model", LogisticRegression(max_iter=500))])
+    pipe.fit(df, y)
+
+    summary = compute_shap(
+        pipe, df, ["age", "score", "region"], "binary_classification", background_data=df
+    )
+
+    assert summary.explainer_type == "linear"
+    assert summary.n_samples > 0
+    assert len(summary.mean_abs_shap) == len(summary.feature_names)

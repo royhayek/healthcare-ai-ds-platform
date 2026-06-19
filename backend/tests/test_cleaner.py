@@ -6,13 +6,91 @@ import pytest
 
 from backend.ml.cleaner import (
     apply_preprocessor,
+    apply_target_hygiene,
     build_preprocessor,
     prepare_data,
     resolve_task_type,
     split_cal_val,
     split_train_test,
 )
-from backend.models.strategy import ColumnPreprocessingStrategy, PreprocessingStrategy
+from backend.models.strategy import (
+    ColumnPreprocessingStrategy,
+    PreprocessingStrategy,
+    TargetStrategy,
+)
+
+
+class TestTargetHygiene:
+    """Target-level hygiene: drop unlabelled rows + collapse to binary (§7, §10)."""
+
+    def _df(self):
+        return pd.DataFrame({
+            "f1": np.arange(8, dtype=float),
+            "pathogenicity_class": [
+                "high", "low", "moderate", "unknown",
+                "high", "unknown", "low", "high",
+            ],
+        })
+
+    def test_drop_unlabelled_rows(self):
+        out = apply_target_hygiene(
+            self._df(), "pathogenicity_class", TargetStrategy(drop_labels=["unknown"])
+        )
+        assert len(out) == 6
+        assert "unknown" not in out["pathogenicity_class"].tolist()
+
+    def test_collapse_to_binary_high_vs_rest(self):
+        # Drop unknown, then collapse: high → 1, low/moderate → 0.
+        out = apply_target_hygiene(
+            self._df(), "pathogenicity_class",
+            TargetStrategy(drop_labels=["unknown"], positive_labels=["high"]),
+        )
+        assert set(out["pathogenicity_class"].unique()) == {0, 1}
+        assert out["pathogenicity_class"].sum() == 3  # three "high" rows
+
+    def test_case_insensitive_matching(self):
+        df = self._df()
+        df.loc[0, "pathogenicity_class"] = "HIGH"
+        out = apply_target_hygiene(
+            df, "pathogenicity_class",
+            TargetStrategy(drop_labels=["UNKNOWN"], positive_labels=["High"]),
+        )
+        assert "unknown" not in [str(v).lower() for v in out["pathogenicity_class"]]
+        assert out["pathogenicity_class"].sum() == 3
+
+    def test_empty_strategy_is_noop(self):
+        df = self._df()
+        out = apply_target_hygiene(df, "pathogenicity_class", TargetStrategy())
+        assert out.equals(df)
+        assert apply_target_hygiene(df, "pathogenicity_class", None).equals(df)
+
+    def test_accepts_dict(self):
+        out = apply_target_hygiene(
+            self._df(), "pathogenicity_class", {"drop_labels": ["unknown"]}
+        )
+        assert len(out) == 6
+
+    def test_positive_label_no_match_skips_collapse(self):
+        # A positive label that matches nothing must NOT produce an all-zero target.
+        df = self._df()
+        out = apply_target_hygiene(
+            df, "pathogenicity_class", TargetStrategy(positive_labels=["nonexistent"])
+        )
+        assert out["pathogenicity_class"].tolist() == df["pathogenicity_class"].tolist()
+
+    def test_prepare_data_applies_hygiene(self):
+        df = self._df()
+        strategy = PreprocessingStrategy(
+            columns={"f1": ColumnPreprocessingStrategy(action="keep", dtype_hint="numeric")},
+            target_column="pathogenicity_class",
+            task_type="binary_classification",
+        )
+        X, y = prepare_data(
+            df, strategy,
+            target_strategy=TargetStrategy(drop_labels=["unknown"], positive_labels=["high"]),
+        )
+        assert len(y) == 6
+        assert set(y.unique()) == {0, 1}
 
 
 class TestTaskTypeResolution:
