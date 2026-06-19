@@ -446,7 +446,7 @@ function NarrativeStep({
   // many lines or a lot of text overall (some sections emit one very long line,
   // e.g. preprocessing notes), so both shapes get clamped uniformly.
   const totalChars = event.lines.reduce((sum, l) => sum + l.length, 0)
-  const isLong = event.lines.length > 4 || totalChars > 320
+  const isLong = event.lines.length > 6 || totalChars > 480
   const showLines = event.lines.length > 0 && event.status !== "pending"
 
   return (
@@ -463,7 +463,7 @@ function NarrativeStep({
           <>
             <div
               className={`mt-1 space-y-0.5 relative ${
-                isLong && !expanded ? "max-h-24 overflow-hidden" : ""
+                isLong && !expanded ? "max-h-36 overflow-hidden" : ""
               }`}
             >
               {event.lines.map((line, i) => (

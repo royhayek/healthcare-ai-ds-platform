@@ -27,7 +27,21 @@ interface PendingFile {
 }
 
 export default function ProjectsPage() {
-  const { data: projects, mutate } = useSWR<Project[]>("/api/proxy/projects", fetcher)
+  const { data: projects, mutate } = useSWR<Project[]>("/api/proxy/projects", fetcher, {
+    // Brief parsing runs in a backend background task that finishes after the
+    // create response returns. Poll while any project's brief is still unparsed
+    // so the "Brief parsing…" state resolves on its own; stop once all are done.
+    refreshInterval: (data) =>
+      data?.some(
+        (p) =>
+          p.case_brief &&
+          !p.case_brief.parsed &&
+          !p.case_brief.parse_failed &&
+          p.case_brief.raw_text
+      )
+        ? 3000
+        : 0,
+  })
   const [open, setOpen] = useState(false)
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
@@ -340,8 +354,16 @@ export default function ProjectsPage() {
                           : "brief attached"}
                       </p>
                     )}
-                    {p.case_brief && !p.case_brief.parsed && p.case_brief.raw_text && (
-                      <p className="text-xs text-neutral-700 mt-1">Brief parsing…</p>
+                    {p.case_brief &&
+                      !p.case_brief.parsed &&
+                      !p.case_brief.parse_failed &&
+                      p.case_brief.raw_text && (
+                        <p className="text-xs text-neutral-700 mt-1">Brief parsing…</p>
+                      )}
+                    {p.case_brief?.parse_failed && p.case_brief.raw_text && (
+                      <p className="text-xs text-neutral-700 mt-1">
+                        Brief attached · auto-parse unavailable, set objectives in chat
+                      </p>
                     )}
                   </CardHeader>
                 </Card>

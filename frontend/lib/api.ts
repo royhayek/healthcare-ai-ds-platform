@@ -1,6 +1,6 @@
 /** Typed API wrappers - all calls route through /api/proxy. Never fetch FASTAPI_URL directly. */
 
-import type { AuditEvent, AuditVerifyResult, Dataset, DatasetPlot, DatasetPreview, DeliverableItem, JoinKeyCandidate, JoinRecord, JoinSuggestResponse, PredictRequest, PredictResponse, PredictionListItem, Project, Run } from "@/lib/types"
+import type { AuditEvent, AuditVerifyResult, Dataset, DatasetPlot, DatasetPreview, DeliverableItem, JoinKeyCandidate, JoinRecord, JoinSuggestResponse, PlotManifest, PredictRequest, PredictResponse, PredictionListItem, Project, Run } from "@/lib/types"
 
 const BASE = "/api/proxy"
 
@@ -41,6 +41,9 @@ export const deleteProject = (id: string) => apiDelete(`projects/${id}`)
 // Datasets
 export const getDatasets = (projectId: string) =>
   apiGet<Dataset[]>(`projects/${projectId}/datasets`)
+
+export const deleteDataset = (projectId: string, datasetId: string) =>
+  apiDelete(`projects/${projectId}/datasets/${datasetId}`)
 
 export async function uploadDataset(
   projectId: string,
@@ -116,7 +119,7 @@ export const getDatasetPreview = (projectId: string, datasetId: string, rows = 2
   apiGet<DatasetPreview>(`projects/${projectId}/datasets/${datasetId}/preview?rows=${rows}`)
 
 export const getDatasetPlots = (projectId: string, datasetId: string) =>
-  apiGet<DatasetPlot[]>(`projects/${projectId}/datasets/${datasetId}/plots`)
+  apiGet<PlotManifest>(`projects/${projectId}/datasets/${datasetId}/plots`)
 
 export const getDatasetPlot = (projectId: string, datasetId: string, plotId: string) =>
   apiGet<DatasetPlot & { image_b64: string }>(`projects/${projectId}/datasets/${datasetId}/plots/${plotId}`)
@@ -126,7 +129,7 @@ export const getComparisonPlots = (projectId: string, datasetId: string, referen
 
 // Run-level plots (pipeline stages)
 export const getRunPlots = (runId: string, stage?: string) =>
-  apiGet<DatasetPlot[]>(`runs/${runId}/plots${stage ? `?stage=${stage}` : ""}`)
+  apiGet<PlotManifest>(`runs/${runId}/plots${stage ? `?stage=${stage}` : ""}`)
 
 export const getRunPlot = (runId: string, plotId: string) =>
   apiGet<DatasetPlot & { image_b64: string }>(`runs/${runId}/plots/${plotId}`)
@@ -194,6 +197,9 @@ export const predictBatch = (runId: string, inferenceDatasetId: string) =>
 
 export const getPredictions = (runId: string, limit = 50, offset = 0) =>
   apiGet<PredictionListItem[]>(`runs/${runId}/predictions?limit=${limit}&offset=${offset}`)
+
+export const getPredictionCount = (runId: string) =>
+  apiGet<{ run_id: string; count: number }>(`runs/${runId}/predictions/count`)
 
 // Audit
 export const getAuditLog = (runId: string, limit = 100, offset = 0) =>

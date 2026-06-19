@@ -11,8 +11,19 @@ export function TrainingCheckpoint({ run, runId }: { run: Run; runId: string }) 
 
   if (!leaderboard?.length) return <EmptyState />
 
-  const bestName = run.best_model_name
+  // Two distinct concepts that diverge under a user override:
+  //   selectedName  - the model chosen to go forward (run.best_model_name)
+  //   topScorer     - the actual highest-scoring model (leader of the sorted board)
+  const selectedName = run.best_model_name
   const metric = (run.model_selection?.primary_metric ?? "score").toUpperCase()
+
+  const topScorerResult = leaderboard.reduce(
+    (best, r) => (r.mean > best.mean ? r : best),
+    leaderboard[0],
+  )
+  const topScorer = topScorerResult.model_name
+  const isOverride = run.model_selection?.primary_source === "user_override"
+  const overrideDivergesFromTop = isOverride && selectedName !== topScorer
 
   return (
     <div className="space-y-6">
@@ -30,16 +41,19 @@ export function TrainingCheckpoint({ run, runId }: { run: Run; runId: string }) 
               </tr>
             </thead>
             <tbody>
-              {leaderboard.map((result: StabilityResult, idx) => (
+              {leaderboard.map((result: StabilityResult) => (
                 <tr
                   key={result.model_name}
-                  className={`border-b border-neutral-800/50 last:border-0 ${idx === 0 ? "bg-emerald-950/20" : "bg-neutral-900/30"}`}
+                  className={`border-b border-neutral-800/50 last:border-0 ${result.model_name === selectedName ? "bg-emerald-950/20" : "bg-neutral-900/30"}`}
                 >
                   <td className="px-4 py-2 font-mono text-neutral-200">
                     <span className="flex items-center gap-1.5">
                       {result.model_name}
-                      {result.model_name === bestName && (
-                        <Badge variant="success" className="text-[9px] px-1 py-0">best</Badge>
+                      {result.model_name === selectedName && (
+                        <Badge variant="success" className="text-[9px] px-1 py-0">primary</Badge>
+                      )}
+                      {result.model_name === topScorer && result.model_name !== selectedName && (
+                        <Badge variant="info" className="text-[9px] px-1 py-0">top {metric}</Badge>
                       )}
                     </span>
                   </td>
@@ -70,16 +84,24 @@ export function TrainingCheckpoint({ run, runId }: { run: Run; runId: string }) 
         </Section>
       )}
 
-      {/* Best model summary */}
-      {bestName && run.best_model_score != null && (
-        <div className="rounded-lg border border-emerald-900/60 bg-emerald-950/20 px-4 py-3 flex items-center justify-between">
+      {/* Selected primary summary */}
+      {selectedName && run.best_model_score != null && (
+        <div className="rounded-lg border border-emerald-900/60 bg-emerald-950/20 px-4 py-3 flex items-center justify-between gap-3">
           <div>
             <p className="text-sm text-neutral-200">
-              <span className="font-mono text-emerald-300">{bestName}</span> selected as primary
+              <span className="font-mono text-emerald-300">{selectedName}</span> selected as primary
+              {isOverride && <span className="text-neutral-400"> (your override)</span>}
             </p>
             <p className="text-xs text-neutral-500 mt-0.5">
               Mean {metric}: {run.best_model_score.toFixed(4)}
             </p>
+            {overrideDivergesFromTop && (
+              <p className="text-xs text-amber-400/90 mt-1">
+                Not the highest scorer — top {metric} was{" "}
+                <span className="font-mono">{topScorer}</span> ({topScorerResult.mean.toFixed(4)}).
+                Using your choice for downstream tuning, calibration and SHAP.
+              </p>
+            )}
           </div>
           <Badge variant="success">Primary</Badge>
         </div>

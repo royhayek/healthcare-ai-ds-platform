@@ -4,6 +4,7 @@ import type { Run } from "@/lib/types"
 import { InsightReport } from "@/components/results/InsightReport"
 import { ThresholdOptimizer } from "@/components/results/ThresholdOptimizer"
 import { EquityReport } from "@/components/results/EquityReport"
+import { EvalPlots } from "@/components/results/EvalPlots"
 
 export function FinalCheckpoint({ run }: { run: Run }) {
   const metrics = run.final_metrics
@@ -12,6 +13,7 @@ export function FinalCheckpoint({ run }: { run: Run }) {
   const shap = run.shap_summary
   const insight = run.insight_report
   const fairness = run.fairness_report
+  const hasPlots = run.eval_plots != null
 
   // Derive a human-readable outcome name from the target column or task type
   const outcomeName =
@@ -33,6 +35,13 @@ export function FinalCheckpoint({ run }: { run: Run }) {
               />
             ))}
           </div>
+        </Section>
+      )}
+
+      {/* Evaluation plots - ROC/PR, confusion matrix, calibration, distributions */}
+      {hasPlots && (
+        <Section title="Evaluation Plots">
+          <EvalPlots run={run} />
         </Section>
       )}
 

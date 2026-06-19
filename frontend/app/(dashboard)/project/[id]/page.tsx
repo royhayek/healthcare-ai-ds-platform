@@ -242,7 +242,15 @@ export default function ProjectPage() {
           <div className="space-y-2">
             {datasets.map((d) => (
               <div key={d.id} className="space-y-1">
-                <DatasetCard dataset={d} projectId={id} onDatasetUpdated={() => mutateDatasets()} />
+                <DatasetCard
+                  dataset={d}
+                  projectId={id}
+                  onDatasetUpdated={() => mutateDatasets()}
+                  onDeleted={(deletedId) => {
+                    if (selectedDatasetId === deletedId) setSelectedDatasetId(null)
+                    mutateDatasets()
+                  }}
+                />
                 {d.role === "training" && (
                   <label className="flex items-center gap-2 pl-4 cursor-pointer">
                     <input

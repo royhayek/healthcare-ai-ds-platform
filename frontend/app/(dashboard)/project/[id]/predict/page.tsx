@@ -4,7 +4,8 @@ import { useEffect, useState } from "react"
 import { useParams, useSearchParams } from "next/navigation"
 import useSWR from "swr"
 import Link from "next/link"
-import { fetcher, getDatasets, getPredictions, predictBatch, predictSingle } from "@/lib/api"
+import { ArrowLeft } from "lucide-react"
+import { fetcher, getDatasets, getPredictionCount, getPredictions, predictBatch, predictSingle } from "@/lib/api"
 import type { Dataset, PredictResponse, PredictionListItem, Run } from "@/lib/types"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -30,7 +31,13 @@ export default function PredictPage() {
   )
 
   const columns = run?.preprocessing_strategy?.columns ?? {}
-  const keptColumns = Object.entries(columns).filter(([, s]) => s.action === "keep")
+  const targetColumn = run?.preprocessing_strategy?.target_column
+  // Feature columns = everything the model trains on: any column not dropped and
+  // not the target. This includes "encode" columns (categoricals), which the
+  // model needs as inputs — mirrors backend PreprocessingStrategy.feature_columns().
+  const keptColumns = Object.entries(columns).filter(
+    ([col, s]) => s.action !== "drop" && s.action !== "target" && col !== targetColumn,
+  )
 
   const [inputValues, setInputValues] = useState<Record<string, string>>({})
   const [result, setResult] = useState<PredictResponse | null>(null)
@@ -56,15 +63,15 @@ export default function PredictPage() {
   const [batchDone, setBatchDone] = useState(false)
 
   // Poll predictions count when a batch job is in-flight
-  const { data: batchPoll } = useSWR<PredictionListItem[]>(
+  const { data: batchPoll } = useSWR<{ run_id: string; count: number }>(
     batchJob && !batchDone && activeRunId ? `predictions-batch-${activeRunId}` : null,
-    () => getPredictions(activeRunId!, batchJob!.n_rows, 0),
+    () => getPredictionCount(activeRunId!),
     { refreshInterval: 3000 },
   )
 
   useEffect(() => {
     if (!batchJob || batchDone) return
-    if (batchPoll && batchPoll.length >= batchJob.n_rows) {
+    if (batchPoll && batchPoll.count >= batchJob.n_rows) {
       setBatchDone(true)
       void refreshHistory()
     }
@@ -107,14 +114,16 @@ export default function PredictPage() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-6 space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="p-8 max-w-4xl mx-auto space-y-6">
+      <div>
+        <Link
+          href={`/project/${projectId}/results${activeRunId ? `?run_id=${activeRunId}` : ""}`}
+          className="inline-flex items-center gap-1 text-xs text-zinc-500 hover:text-zinc-300 mb-3 transition-colors"
+        >
+          <ArrowLeft className="w-3 h-3" />
+          Back to results
+        </Link>
         <h1 className="text-xl font-semibold text-zinc-100">Interactive prediction</h1>
-        <Button variant="ghost" asChild>
-          <Link href={`/project/${projectId}/results${activeRunId ? `?run_id=${activeRunId}` : ""}`}>
-            ← Results
-          </Link>
-        </Button>
       </div>
 
       {/* Run selector */}
@@ -265,16 +274,16 @@ export default function PredictPage() {
                   </span>
                   <Badge variant="warning">running</Badge>
                 </div>
-                {batchPoll && batchPoll.length > 0 && (
+                {batchPoll && batchPoll.count > 0 && (
                   <div className="w-full bg-zinc-700 rounded-full h-1.5">
                     <div
                       className="bg-blue-500 h-1.5 rounded-full transition-all"
-                      style={{ width: `${Math.min(100, (batchPoll.length / batchJob.n_rows) * 100).toFixed(1)}%` }}
+                      style={{ width: `${Math.min(100, (batchPoll.count / batchJob.n_rows) * 100).toFixed(1)}%` }}
                     />
                   </div>
                 )}
                 <p className="text-[11px] text-zinc-600">
-                  {batchPoll?.length ?? 0} / {batchJob.n_rows} predictions written
+                  {batchPoll?.count ?? 0} / {batchJob.n_rows} predictions written
                 </p>
               </div>
             )}

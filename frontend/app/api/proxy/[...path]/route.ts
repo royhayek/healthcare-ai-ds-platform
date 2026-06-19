@@ -4,20 +4,26 @@ export const dynamic = "force-dynamic"
 /**
  * Auth-gated proxy: all frontend API calls route through here.
  *
- * Dev mode: injects X-User-Id: dev-user-1 header (matches backend auth stub).
- * Production: replace DEV_USER_ID block with Supabase session extraction:
- *   const supabase = createRouteHandlerClient({ cookies })
- *   const { data: { session } } = await supabase.auth.getSession()
- *   if (!session) return new Response('Unauthorized', { status: 401 })
- *   headers.set('Authorization', `Bearer ${session.access_token}`)
+ * Real auth (preferred): the browser mirrors the Supabase access token into the
+ * `sb-access-token` cookie (see lib/supabase.ts). This handler reads that cookie
+ * and forwards `Authorization: Bearer <token>` to FastAPI, which verifies the
+ * JWT when DEV_MODE=false. No bypass: if the token is missing the backend will
+ * reject the request.
+ *
+ * Dev fallback: when no token cookie is present AND NEXT_PUBLIC_DEV_MODE=true,
+ * inject X-User-Id: dev-user-1 to match the backend's dev auth stub. With the
+ * backend in production mode (DEV_MODE=false) this header is ignored and the
+ * request is rejected, which is the intended behavior.
  */
 
 import { type NextRequest, NextResponse } from "next/server";
 
 const FASTAPI_URL = process.env.FASTAPI_URL ?? "http://127.0.0.1:8001";
 console.log("[proxy] FASTAPI_URL =", FASTAPI_URL);
-// Dev-mode user. Remove when wiring real auth.
+const DEV_MODE = process.env.NEXT_PUBLIC_DEV_MODE !== "false";
+// Dev-mode fallback identity, used only when no real session token is present.
 const DEV_USER_ID = "dev-user-1";
+const ACCESS_TOKEN_COOKIE = "sb-access-token";
 
 async function proxyRequest(
   request: NextRequest,
@@ -27,7 +33,15 @@ async function proxyRequest(
   const query = searchParams.toString();
   const targetUrl = `${FASTAPI_URL}/${path}${query ? `?${query}` : ""}`;
 
-  const headers = new Headers({ "X-User-Id": DEV_USER_ID });
+  const headers = new Headers();
+  const accessToken = request.cookies.get(ACCESS_TOKEN_COOKIE)?.value;
+  if (accessToken) {
+    // Real authenticated request: forward the Supabase JWT for verification.
+    headers.set("Authorization", `Bearer ${accessToken}`);
+  } else if (DEV_MODE) {
+    // No session token, but dev mode is on: fall back to the stub identity.
+    headers.set("X-User-Id", DEV_USER_ID);
+  }
 
   const contentType = request.headers.get("content-type");
   if (contentType) headers.set("Content-Type", contentType);

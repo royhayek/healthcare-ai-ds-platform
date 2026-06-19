@@ -253,3 +253,123 @@ html.light .markdown-insight a {
 html.light .markdown-insight a:hover {
   color: #1d4ed8;
 }
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   GRADIENT FADES
+   ══════════════════════════════════════════════════════════════════════════
+ * "See more" collapse overlays fade to the page background. The dark-first
+ * `from-neutral-950` stop is black in light mode, so we re-point the gradient
+ * stops at slate-50 (the light page root). Tailwind's gradient utility sets
+ * --tw-gradient-from / --tw-gradient-to; we override both, preserving the
+ * to-transparent endpoint via a 0-alpha slate-50.
+ * ══════════════════════════════════════════════════════════════════════════ */
+
+html.light .from-neutral-950 {
+  --tw-gradient-from: #f8fafc var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(248 250 252 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   SEMANTIC COLORS (red / green / emerald / blue / amber / …)
+   ══════════════════════════════════════════════════════════════════════════
+ * The neutral/zinc remaps above don't touch hue-bearing utilities, so status
+ * banners, badges, and colored text keep their dark-first values on a light
+ * page — dark tints wash out and pale -300/-400 text loses contrast.
+ *
+ * We remap by family using [class*=…] substring matches so every opacity
+ * variant (e.g. bg-green-950/30, text-red-400/80) is covered by one rule:
+ *   • text  -100…-400  →  -700   (readable on light)
+ *   • text  -500       →  -600
+ *   • bg     -900 / -950 tints  →  -100 / -50  (light tint of same hue)
+ *   • border -700 / -800 / -900 →  -200        (soft light divider)
+ * Saturated mid-tone backgrounds (-400…-700, e.g. bg-indigo-600 buttons,
+ * status dots) are intentionally left alone — they read fine on white.
+ * ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── RED ─────────────────────────────────────────────────────────────────── */
+html.light [class*="text-red-100"],
+html.light [class*="text-red-200"],
+html.light [class*="text-red-300"],
+html.light [class*="text-red-400"]   { color: #b91c1c !important; }
+html.light [class*="text-red-500"]   { color: #dc2626 !important; }
+html.light [class*="bg-red-900"]     { background-color: #fee2e2 !important; }
+html.light [class*="bg-red-950"]     { background-color: #fef2f2 !important; }
+html.light [class*="border-red-700"],
+html.light [class*="border-red-800"],
+html.light [class*="border-red-900"] { border-color: #fecaca !important; }
+
+/* ── GREEN ───────────────────────────────────────────────────────────────── */
+html.light [class*="text-green-300"],
+html.light [class*="text-green-400"]   { color: #15803d !important; }
+html.light [class*="bg-green-900"]     { background-color: #dcfce7 !important; }
+html.light [class*="bg-green-950"]     { background-color: #f0fdf4 !important; }
+html.light [class*="border-green-800"] { border-color: #bbf7d0 !important; }
+
+/* ── EMERALD ─────────────────────────────────────────────────────────────── */
+html.light [class*="text-emerald-300"],
+html.light [class*="text-emerald-400"]   { color: #047857 !important; }
+html.light [class*="bg-emerald-900"]     { background-color: #d1fae5 !important; }
+html.light [class*="bg-emerald-950"]     { background-color: #ecfdf5 !important; }
+html.light [class*="border-emerald-700"],
+html.light [class*="border-emerald-800"],
+html.light [class*="border-emerald-900"] { border-color: #a7f3d0 !important; }
+
+/* ── BLUE ────────────────────────────────────────────────────────────────── */
+html.light [class*="text-blue-100"],
+html.light [class*="text-blue-300"],
+html.light [class*="text-blue-400"]   { color: #1d4ed8 !important; }
+html.light [class*="bg-blue-900"]     { background-color: #dbeafe !important; }
+html.light [class*="bg-blue-950"]     { background-color: #eff6ff !important; }
+html.light [class*="border-blue-800"],
+html.light [class*="border-blue-900"] { border-color: #bfdbfe !important; }
+
+/* ── AMBER ───────────────────────────────────────────────────────────────── */
+html.light [class*="text-amber-200"],
+html.light [class*="text-amber-300"],
+html.light [class*="text-amber-400"]   { color: #b45309 !important; }
+html.light [class*="bg-amber-900"]     { background-color: #fef3c7 !important; }
+html.light [class*="bg-amber-950"]     { background-color: #fffbeb !important; }
+html.light [class*="border-amber-600"],
+html.light [class*="border-amber-700"],
+html.light [class*="border-amber-800"],
+html.light [class*="border-amber-900"] { border-color: #fde68a !important; }
+
+/* ── YELLOW ──────────────────────────────────────────────────────────────── */
+html.light [class*="text-yellow-300"],
+html.light [class*="text-yellow-400"]   { color: #a16207 !important; }
+html.light [class*="bg-yellow-900"]     { background-color: #fef9c3 !important; }
+html.light [class*="bg-yellow-950"]     { background-color: #fefce8 !important; }
+html.light [class*="border-yellow-900"] { border-color: #fef08a !important; }
+
+/* ── ORANGE ──────────────────────────────────────────────────────────────── */
+html.light [class*="text-orange-300"],
+html.light [class*="text-orange-400"]   { color: #c2410c !important; }
+html.light [class*="bg-orange-900"]     { background-color: #ffedd5 !important; }
+html.light [class*="border-orange-700"] { border-color: #fed7aa !important; }
+
+/* ── INDIGO ──────────────────────────────────────────────────────────────── */
+html.light [class*="text-indigo-200"],
+html.light [class*="text-indigo-300"],
+html.light [class*="text-indigo-400"]   { color: #4338ca !important; }
+html.light [class*="bg-indigo-900"]     { background-color: #e0e7ff !important; }
+html.light [class*="bg-indigo-950"]     { background-color: #eef2ff !important; }
+html.light [class*="border-indigo-900"] { border-color: #c7d2fe !important; }
+
+/* ── ROSE ────────────────────────────────────────────────────────────────── */
+html.light [class*="text-rose-300"],
+html.light [class*="text-rose-400"]   { color: #be123c !important; }
+html.light [class*="bg-rose-900"],
+html.light [class*="bg-rose-950"]     { background-color: #ffe4e6 !important; }
+html.light [class*="border-rose-800"] { border-color: #fecdd3 !important; }
+
+/* ── REMAINING ACCENT TEXT (text-only families) ──────────────────────────── */
+html.light [class*="text-violet-400"] { color: #6d28d9 !important; }
+html.light [class*="text-purple-400"] { color: #7e22ce !important; }
+html.light [class*="text-sky-400"]    { color: #0369a1 !important; }
+html.light [class*="text-cyan-400"]   { color: #0e7490 !important; }
+html.light [class*="text-teal-400"]   { color: #0f766e !important; }
+html.light [class*="text-lime-400"]   { color: #4d7c0f !important; }
+html.light [class*="text-pink-400"]   { color: #be185d !important; }

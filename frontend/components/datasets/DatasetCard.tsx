@@ -1,11 +1,11 @@
 "use client"
 
 import { useState } from "react"
-import { ChevronDown, ChevronRight, Eye, BarChart2 } from "lucide-react"
+import { ChevronDown, ChevronRight, Eye, BarChart2, Trash2 } from "lucide-react"
 import useSWR from "swr"
 import { Badge } from "@/components/ui/badge"
 import { DatasetPlotGrid } from "@/components/datasets/DatasetPlotGrid"
-import { fetcher, updateDatasetTargetColumn } from "@/lib/api"
+import { deleteDataset, fetcher, updateDatasetTargetColumn } from "@/lib/api"
 import type { Dataset, DatasetPreview } from "@/lib/types"
 import { cn } from "@/lib/cn"
 
@@ -23,6 +23,7 @@ interface Props {
   dataset: Dataset
   projectId: string
   onDatasetUpdated?: (updated: Dataset) => void
+  onDeleted?: (datasetId: string) => void
 }
 
 function fmtBytes(n: number | null) {
@@ -141,7 +142,7 @@ function TargetColumnSelector({
   )
 }
 
-export function DatasetCard({ dataset: initialDataset, projectId, onDatasetUpdated }: Props) {
+export function DatasetCard({ dataset: initialDataset, projectId, onDatasetUpdated, onDeleted }: Props) {
   const [dataset, setDataset] = useState(initialDataset)
   function handleDatasetUpdated(updated: Dataset) {
     setDataset(updated)
@@ -149,6 +150,26 @@ export function DatasetCard({ dataset: initialDataset, projectId, onDatasetUpdat
   }
   const [open, setOpen] = useState(false)
   const [tab, setTab] = useState<Tab>("preview")
+  const [deleting, setDeleting] = useState(false)
+
+  async function handleDelete(e: React.MouseEvent) {
+    e.stopPropagation()
+    if (
+      !window.confirm(
+        `Delete "${dataset.filename}"? This removes the file and cannot be undone.`,
+      )
+    )
+      return
+    setDeleting(true)
+    try {
+      await deleteDataset(projectId, dataset.id)
+      onDeleted?.(dataset.id)
+      // On success the parent drops this card from its list; no state reset needed.
+    } catch (err) {
+      window.alert(err instanceof Error ? err.message : "Failed to delete dataset")
+      setDeleting(false)
+    }
+  }
 
   return (
     <div className="rounded-lg border border-zinc-800 overflow-hidden">
@@ -157,40 +178,53 @@ export function DatasetCard({ dataset: initialDataset, projectId, onDatasetUpdat
         <TargetColumnSelector dataset={dataset} projectId={projectId} onUpdated={handleDatasetUpdated} />
       )}
       {/* Header row */}
-      <button
-        className="w-full flex items-center gap-3 px-4 py-3 bg-zinc-900/60 hover:bg-zinc-800/60 transition-colors text-left"
-        onClick={() => setOpen((v) => !v)}
-      >
-        {open ? (
-          <ChevronDown className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
-        ) : (
-          <ChevronRight className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
-        )}
+      <div className="flex items-center bg-zinc-900/60 hover:bg-zinc-800/60 transition-colors">
+        <button
+          className="flex flex-1 min-w-0 items-center gap-3 px-4 py-3 text-left"
+          onClick={() => setOpen((v) => !v)}
+        >
+          {open ? (
+            <ChevronDown className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
+          ) : (
+            <ChevronRight className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
+          )}
 
-        <span className="font-mono text-sm text-zinc-200 flex-1 truncate">{dataset.filename}</span>
+          <span className="font-mono text-sm text-zinc-200 flex-1 truncate">{dataset.filename}</span>
 
-        <Badge variant={ROLE_VARIANT[dataset.role] ?? "default"} className="shrink-0">
-          {dataset.role}
-        </Badge>
+          <Badge variant={ROLE_VARIANT[dataset.role] ?? "default"} className="shrink-0">
+            {dataset.role}
+          </Badge>
 
-        {dataset.task_type && (
-          <span className="text-xs text-zinc-500 shrink-0">{dataset.task_type}</span>
-        )}
+          {dataset.task_type && (
+            <span className="text-xs text-zinc-500 shrink-0">{dataset.task_type}</span>
+          )}
 
-        <span className="text-xs text-zinc-500 shrink-0">
-          {dataset.row_count != null ? `${dataset.row_count.toLocaleString()} rows` : "-"}
-          {" × "}
-          {dataset.col_count != null ? `${dataset.col_count} cols` : "-"}
-        </span>
-
-        <span className="text-xs text-zinc-600 shrink-0">{fmtBytes(dataset.file_size_bytes)}</span>
-
-        {dataset.target_column && (
-          <span className="text-xs text-zinc-600 shrink-0">
-            target: <span className="text-zinc-400">{dataset.target_column}</span>
+          <span className="text-xs text-zinc-500 shrink-0">
+            {dataset.row_count != null ? `${dataset.row_count.toLocaleString()} rows` : "-"}
+            {" × "}
+            {dataset.col_count != null ? `${dataset.col_count} cols` : "-"}
           </span>
-        )}
-      </button>
+
+          <span className="text-xs text-zinc-600 shrink-0">{fmtBytes(dataset.file_size_bytes)}</span>
+
+          {dataset.target_column && (
+            <span className="text-xs text-zinc-600 shrink-0">
+              target: <span className="text-zinc-400">{dataset.target_column}</span>
+            </span>
+          )}
+        </button>
+
+        <button
+          onClick={handleDelete}
+          disabled={deleting}
+          title="Delete dataset"
+          aria-label={`Delete ${dataset.filename}`}
+          data-testid={`delete-dataset-${dataset.id}`}
+          className="shrink-0 px-3 py-3 text-zinc-500 hover:text-red-400 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        >
+          <Trash2 className="w-3.5 h-3.5" />
+        </button>
+      </div>
 
       {/* Expanded panel */}
       {open && (

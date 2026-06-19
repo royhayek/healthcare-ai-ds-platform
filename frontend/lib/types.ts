@@ -20,6 +20,7 @@ export interface CaseBrief {
   stakeholder_name: string | null
   stakeholder_role: string | null
   parsed: boolean
+  parse_failed?: boolean
 }
 
 export interface BriefFileRef {
@@ -93,7 +94,12 @@ export interface Run {
 // ── Pipeline strategy types ────────────────────────────────────────────────────
 
 export interface ColumnStrategy {
-  action: "keep" | "drop"
+  // The preprocessing agent emits four actions. "keep" passes a column through
+  // as-is (numeric features); "encode" keeps it as a feature with an encode
+  // strategy applied; "drop" removes it; "target" marks the label column. Only
+  // "drop" and "target" columns are excluded from the model's feature set —
+  // mirror backend PreprocessingStrategy.feature_columns().
+  action: "keep" | "encode" | "drop" | "target"
   impute_strategy: string | null
   encode_strategy: string | null
   scale_strategy: string | null
@@ -113,6 +119,8 @@ export interface ModelSelectionStrategy {
   candidates: string[]
   primary: string
   primary_metric: string
+  /** "user_override" when the primary was forced via chat, else undefined. */
+  primary_source?: string | null
   excluded: Array<{ name: string; reason: string }>
   reasoning: string
   notes: string | null
@@ -190,6 +198,27 @@ export interface ConfusionMatrixMultiData {
   classes: string[]
 }
 
+/** One-vs-rest curve for a single class in a multiclass run. */
+export interface RocCurveMultiSeries {
+  label: string
+  fpr: number[]
+  tpr: number[]
+  auc: number
+}
+
+export interface PrCurveMultiSeries {
+  label: string
+  precision: number[]
+  recall: number[]
+  ap: number
+}
+
+export interface CalibrationCurveMultiSeries {
+  label: string
+  prob_true: number[]
+  prob_pred: number[]
+}
+
 export interface ScatterPoint {
   actual: number
   predicted: number
@@ -207,6 +236,9 @@ export interface EvalPlots {
   score_distribution?: ScoreBin[]
   calibration_curve?: CalibrationCurveData
   confusion_matrix_multi?: ConfusionMatrixMultiData
+  roc_curve_multi?: RocCurveMultiSeries[]
+  pr_curve_multi?: PrCurveMultiSeries[]
+  calibration_curve_multi?: CalibrationCurveMultiSeries[]
   predicted_vs_actual?: ScatterPoint[]
   residuals?: ResidualPoint[]
 }
@@ -368,6 +400,15 @@ export interface DatasetPlot {
   stage: string
   priority: number
   image_b64?: string
+  has_image?: boolean
+  status?: "ready" | "failed" | "pending"
+}
+
+/** Plot manifest envelope: the full planned plot set plus completion state. */
+export interface PlotManifest {
+  plots: DatasetPlot[]
+  complete: boolean
+  error?: string | null
 }
 
 // ── Multi-dataset joins (§7) ──────────────────────────────────────────────────
@@ -433,7 +474,7 @@ export interface StrategyDiff {
   run_id: string
 }
 
-export type SSEEventType = "text_chunk" | "strategy_diff" | "intent" | "artifact_task" | "error" | "done"
+export type SSEEventType = "text_chunk" | "strategy_diff" | "intent" | "artifact_task" | "rerun_triggered" | "error" | "done"
 
 export interface SSETextChunk {
   type: "text_chunk"
@@ -461,11 +502,23 @@ export interface SSEArtifactTask {
   artifact_type: string
 }
 
+export interface SSERerunTriggered {
+  type: "rerun_triggered"
+  step: string
+}
+
 export interface SSEDone {
   type: "done"
 }
 
-export type SSEEvent = SSETextChunk | SSEStrategyDiff | SSEIntent | SSEArtifactTask | SSEError | SSEDone
+export type SSEEvent =
+  | SSETextChunk
+  | SSEStrategyDiff
+  | SSEIntent
+  | SSEArtifactTask
+  | SSERerunTriggered
+  | SSEError
+  | SSEDone
 
 export interface Message {
   id: string

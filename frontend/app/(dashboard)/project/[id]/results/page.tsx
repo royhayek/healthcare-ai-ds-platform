@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { useParams, useSearchParams } from "next/navigation"
 import useSWR from "swr"
 import Link from "next/link"
+import { ArrowLeft } from "lucide-react"
 import { fetcher } from "@/lib/api"
 import type { Run } from "@/lib/types"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -17,17 +18,13 @@ import { InsightReport } from "@/components/results/InsightReport"
 import { DriftReportPanel } from "@/components/results/DriftReport"
 import { RunPlotGrid } from "@/components/checkpoints/RunPlotGrid"
 import { FairnessReportPanel } from "@/components/results/FairnessReport"
-import { RocCurve } from "@/components/results/RocCurve"
-import { PrCurve } from "@/components/results/PrCurve"
-import { BinaryConfusionMatrix, MultiConfusionMatrix } from "@/components/results/ConfusionMatrixPlot"
-import { ScoreDistribution } from "@/components/results/ScoreDistribution"
-import { CalibrationCurve } from "@/components/results/CalibrationCurve"
-import { PredictedVsActual, ResidualsPlot } from "@/components/results/RegressionPlots"
+import { EvalPlots } from "@/components/results/EvalPlots"
 
 export default function ResultsPage() {
   const { id: projectId } = useParams<{ id: string }>()
   const searchParams = useSearchParams()
-  const runIdParam = searchParams.get("run_id")
+  // Accept both ?run_id= and ?run= (the analysis page links with ?run=).
+  const runIdParam = searchParams.get("run_id") ?? searchParams.get("run")
 
   const [activeRunId, setActiveRunId] = useState<string | null>(runIdParam)
 
@@ -75,10 +72,17 @@ export default function ResultsPage() {
   const isClassification = taskType !== "regression"
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-6 space-y-6">
+    <div className="p-8 max-w-5xl mx-auto space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-end justify-between">
         <div>
+          <Link
+            href={`/project/${projectId}`}
+            className="inline-flex items-center gap-1 text-xs text-zinc-500 hover:text-zinc-300 mb-3 transition-colors"
+          >
+            <ArrowLeft className="w-3 h-3" />
+            Back to project
+          </Link>
           <h1 className="text-xl font-semibold text-zinc-100">Results</h1>
           <p className="text-sm text-zinc-500 mt-0.5">
             Run <code className="font-mono text-zinc-400">{run.id.slice(0, 8)}…</code>
@@ -142,94 +146,17 @@ export default function ResultsPage() {
         </Card>
       )}
 
-      {/* Evaluation plots */}
-      {run.eval_plots && (() => {
-        const plots = run.eval_plots
-        const threshold = run.threshold_result?.optimal_threshold
-
-        return (
-          <>
-            {/* ROC + PR curves side by side */}
-            {(plots.roc_curve || plots.pr_curve) && (
-              <Card>
-                <CardHeader>
-                  <CardTitle>Classifier curves</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {plots.roc_curve && run.final_metrics?.auc != null && (
-                      <RocCurve data={plots.roc_curve} auc={run.final_metrics.auc} />
-                    )}
-                    {plots.pr_curve && (
-                      <PrCurve data={plots.pr_curve} />
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-            )}
-
-            {/* Confusion matrix */}
-            {plots.confusion_matrix && (
-              <Card>
-                <CardHeader>
-                  <CardTitle>Confusion matrix</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <BinaryConfusionMatrix data={plots.confusion_matrix} />
-                </CardContent>
-              </Card>
-            )}
-            {plots.confusion_matrix_multi && (
-              <Card>
-                <CardHeader>
-                  <CardTitle>Confusion matrix</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <MultiConfusionMatrix data={plots.confusion_matrix_multi} />
-                </CardContent>
-              </Card>
-            )}
-
-            {/* Score distribution + calibration side by side */}
-            {(plots.score_distribution || plots.calibration_curve) && (
-              <Card>
-                <CardHeader>
-                  <CardTitle>Score distribution &amp; calibration</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {plots.score_distribution && (
-                      <ScoreDistribution data={plots.score_distribution} threshold={threshold} />
-                    )}
-                    {plots.calibration_curve && (
-                      <CalibrationCurve data={plots.calibration_curve} />
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-            )}
-
-            {/* Regression plots */}
-            {(plots.predicted_vs_actual || plots.residuals) && (
-              <Card>
-                <CardHeader>
-                  <CardTitle>Regression diagnostics</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {plots.predicted_vs_actual && (
-                      <PredictedVsActual data={plots.predicted_vs_actual} />
-                    )}
-                    {plots.residuals && (
-                      <ResidualsPlot data={plots.residuals} />
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-            )}
-          </>
-        )
-      })()}
+      {/* Evaluation plots - shared with the final-review checkpoint */}
+      {run.eval_plots && (
+        <Card>
+          <CardHeader>
+            <CardTitle>Evaluation plots</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <EvalPlots run={run} />
+          </CardContent>
+        </Card>
+      )}
 
       {/* Model comparison */}
       {run.model_comparison && run.model_comparison.length > 0 && (

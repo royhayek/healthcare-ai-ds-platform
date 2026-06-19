@@ -4,6 +4,7 @@ import { useState } from "react"
 import { useParams, useSearchParams } from "next/navigation"
 import useSWR from "swr"
 import Link from "next/link"
+import { ArrowLeft } from "lucide-react"
 import { fetcher, getAuditLog, verifyAuditChain } from "@/lib/api"
 import type { AuditEvent, AuditVerifyResult, Run } from "@/lib/types"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -63,14 +64,16 @@ export default function AuditPage() {
   const [expanded, setExpanded] = useState<string | null>(null)
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-6 space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="p-8 max-w-5xl mx-auto space-y-6">
+      <div>
+        <Link
+          href={`/project/${projectId}/results${activeRunId ? `?run_id=${activeRunId}` : ""}`}
+          className="inline-flex items-center gap-1 text-xs text-zinc-500 hover:text-zinc-300 mb-3 transition-colors"
+        >
+          <ArrowLeft className="w-3 h-3" />
+          Back to results
+        </Link>
         <h1 className="text-xl font-semibold text-zinc-100">Audit log</h1>
-        <Button variant="ghost" asChild>
-          <Link href={`/project/${projectId}/results${activeRunId ? `?run_id=${activeRunId}` : ""}`}>
-            ← Results
-          </Link>
-        </Button>
       </div>
 
       {/* Run selector */}

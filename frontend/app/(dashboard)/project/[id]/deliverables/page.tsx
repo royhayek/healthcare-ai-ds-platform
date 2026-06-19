@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation"
 import useSWR from "swr"
 import Link from "next/link"
+import { ArrowLeft } from "lucide-react"
 import { fetcher } from "@/lib/api"
 import type { Run, DeliverableItem } from "@/lib/types"
 import { DeliverableBundle } from "@/components/deliverables/DeliverableBundle"
@@ -43,7 +44,7 @@ export default function DeliverablesPage() {
 
   if (!latestRun) {
     return (
-      <div className="p-8 max-w-3xl">
+      <div className="p-8 max-w-3xl mx-auto">
         <div className="rounded-lg border border-dashed border-zinc-700 py-12 text-center">
           <p className="text-sm font-medium text-zinc-400">No runs yet</p>
           <p className="text-xs text-zinc-600 mt-1">
@@ -74,7 +75,15 @@ export default function DeliverablesPage() {
     : "info"
 
   return (
-    <div className="p-6 max-w-3xl mx-auto space-y-6">
+    <div className="p-8 max-w-3xl mx-auto space-y-6">
+      <Link
+        href={`/project/${id}/results`}
+        className="inline-flex items-center gap-1 text-xs text-zinc-500 hover:text-zinc-300 transition-colors"
+      >
+        <ArrowLeft className="w-3 h-3" />
+        Back to results
+      </Link>
+
       {/* Run status banner */}
       <div className="rounded-lg border border-zinc-700 bg-zinc-800/50 p-4">
         <div className="flex items-center justify-between flex-wrap gap-2">

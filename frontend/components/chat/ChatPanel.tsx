@@ -1,8 +1,10 @@
 "use client"
 
 import { useRef, useState, useEffect, useLayoutEffect, useCallback } from "react"
+import { useRouter } from "next/navigation"
 import { useChatStore } from "@/store/chatStore"
 import { useStrategyStore } from "@/store/strategyStore"
+import { useJobStore } from "@/store/jobStore"
 import { type SSEEvent } from "@/lib/types"
 import ChatMessage from "./ChatMessage"
 import ChatComposer from "./ChatComposer"
@@ -31,6 +33,8 @@ export default function ChatPanel() {
   } = useChatStore()
 
   const { applyDiffs, pendingDiffs } = useStrategyStore()
+
+  const router = useRouter()
 
   const [error, setError] = useState<string | null>(null)
   const [artifactNotice, setArtifactNotice] = useState<string | null>(null)
@@ -80,7 +84,28 @@ export default function ChatPanel() {
     }
   }, [])
 
-  // Load persisted history whenever the active run changes
+  // Fetch persisted history from the server and map it to store messages.
+  const fetchHistory = useCallback(async (): Promise<Parameters<typeof loadMessages>[0] | null> => {
+    if (!runId) return null
+    const r = await fetch(`/api/proxy/runs/${runId}/chat/history`)
+    if (!r.ok) return null
+    const data: Array<{ role: string; content: string; intent?: unknown }> = await r.json()
+    return data.map((m) => ({
+      role: m.role as "user" | "assistant" | "system",
+      content: m.content,
+      intent: (m.intent as Parameters<typeof loadMessages>[0][0]["intent"]) ?? null,
+      diffs: null,
+      isStreaming: false,
+    }))
+  }, [runId])
+
+  const scrollToBottom = useCallback(() => {
+    setTimeout(() => {
+      scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight })
+    }, 50)
+  }, [])
+
+  // Load persisted history whenever the active run changes (full replace).
   useEffect(() => {
     if (!runId) {
       clearHistory()
@@ -88,28 +113,41 @@ export default function ChatPanel() {
     }
     let cancelled = false
     setHistoryLoading(true)
-    fetch(`/api/proxy/runs/${runId}/chat/history`)
-      .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
-      .then((data: Array<{ role: string; content: string; intent?: unknown; strategy_diff?: unknown }>) => {
-        if (cancelled) return
-        loadMessages(
-          data.map((m) => ({
-            role: m.role as "user" | "assistant" | "system",
-            content: m.content,
-            intent: (m.intent as Parameters<typeof loadMessages>[0][0]["intent"]) ?? null,
-            diffs: null,
-            isStreaming: false,
-          })),
-        )
-        // Scroll to bottom after history loads
-        setTimeout(() => {
-          scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight })
-        }, 50)
+    fetchHistory()
+      .then((msgs) => {
+        if (cancelled || !msgs) return
+        loadMessages(msgs)
+        scrollToBottom()
       })
       .catch(() => { /* history fetch failure is non-fatal */ })
       .finally(() => { if (!cancelled) setHistoryLoading(false) })
     return () => { cancelled = true }
-  }, [runId]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [runId, fetchHistory, scrollToBottom, loadMessages, clearHistory])
+
+  // Poll for server-seeded messages while the run is active. The pipeline writes
+  // proactive co-pilot messages directly to the DB (e.g. the EDA checkpoint
+  // summary); without this they only appear on a remount/reload. We reconcile by
+  // replacing the local list only when the server has MORE messages than we hold
+  // and we are not mid-stream - the server persists every user+assistant turn, so
+  // when idle it is an authoritative superset and a longer list means a new
+  // server-seeded message arrived. Never replace while streaming, to avoid
+  // dropping the in-flight assistant turn.
+  useEffect(() => {
+    if (!runId) return
+    const tick = async () => {
+      const status = useJobStore.getState().run?.status
+      if (status === "completed" || status === "failed") return
+      if (useChatStore.getState().isStreaming) return
+      const msgs = await fetchHistory().catch(() => null)
+      if (!msgs) return
+      const cur = useChatStore.getState()
+      if (cur.isStreaming || msgs.length <= cur.messages.length) return
+      loadMessages(msgs)
+      scrollToBottom()
+    }
+    const interval = setInterval(tick, 2500)
+    return () => clearInterval(interval)
+  }, [runId, fetchHistory, scrollToBottom, loadMessages])
 
   const sendMessage = async (content: string) => {
     if (!runId || isStreaming) return
@@ -172,6 +210,17 @@ export default function ChatPanel() {
                 const stage = event.artifact_type.slice(6)
                 setArtifactNotice(`Rendering ${stage} plots - they will appear in the results page shortly.`)
                 setTimeout(() => setArtifactNotice(null), 8000)
+              }
+              break
+            case "rerun_triggered":
+              setArtifactNotice(
+                `Re-running ${event.step} to apply your change - watch the progress feed; the checkpoint will refresh when it completes.`,
+              )
+              // If the user is reviewing this run's checkpoint, the results they
+              // are looking at are now stale. Take them back to the progress feed
+              // to watch the re-run rather than leaving them on a dead page.
+              if (typeof window !== "undefined" && window.location.pathname.includes("/checkpoint/")) {
+                router.push(window.location.pathname.split("/checkpoint/")[0])
               }
               break
             case "error":

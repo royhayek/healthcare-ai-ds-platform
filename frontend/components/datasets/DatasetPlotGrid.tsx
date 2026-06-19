@@ -11,25 +11,31 @@ interface Props {
 }
 
 const POLL_INTERVAL_MS = 2000
-const MAX_STALE_POLLS = 45 // 90 s of no new plots → stop
+// Last-resort fallback for the case where rendering never started. Normal
+// uploads report completion via the backend's `complete` flag.
+const MAX_EMPTY_POLLS = 60 // 120 s
 
-export function DatasetPlotGrid({ projectId, datasetId, referenceDatasetId }: Props) {
+export function DatasetPlotGrid({ projectId, datasetId }: Props) {
   const [plots, setPlots] = useState<DatasetPlot[]>([])
-  // undefined = not fetched, "" = fetching, "__error__" = failed, else = b64
+  // "" = fetching, "__error__" = failed, else = b64
   const [images, setImages] = useState<Record<string, string>>({})
   const [expanded, setExpanded] = useState<string | null>(null)
-  const [renderingDone, setRenderingDone] = useState(false)
+  const [complete, setComplete] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
-  const knownIds = useRef<Set<string>>(new Set())
-  const staleCount = useRef(0)
+  const fetched = useRef<Set<string>>(new Set())
+  const emptyPolls = useRef(0)
 
   async function fetchImage(plotId: string) {
+    if (fetched.current.has(plotId)) return
+    fetched.current.add(plotId)
     setImages((prev) => ({ ...prev, [plotId]: "" }))
     try {
       const { image_b64 } = await getDatasetPlot(projectId, datasetId, plotId)
       setImages((prev) => ({ ...prev, [plotId]: image_b64 }))
     } catch {
       setImages((prev) => ({ ...prev, [plotId]: "__error__" }))
+      fetched.current.delete(plotId)
     }
   }
 
@@ -39,27 +45,32 @@ export function DatasetPlotGrid({ projectId, datasetId, referenceDatasetId }: Pr
     async function poll() {
       if (cancelled) return
       try {
-        const manifest = await getDatasetPlots(projectId, datasetId)
+        const res = await getDatasetPlots(projectId, datasetId)
         if (cancelled) return
 
-        const newPlots = manifest.filter((p) => !knownIds.current.has(p.plot_id))
-        if (newPlots.length > 0) {
-          staleCount.current = 0
-          newPlots.forEach((p) => knownIds.current.add(p.plot_id))
-          setPlots((prev) => [...prev, ...newPlots])
-          newPlots.forEach((p) => fetchImage(p.plot_id))
+        setPlots(res.plots)
+        setError(res.error ?? null)
+        res.plots.forEach((p) => {
+          if (p.status === "ready") fetchImage(p.plot_id)
+        })
+
+        if (res.plots.length === 0 && !res.complete) {
+          emptyPolls.current += 1
+          if (emptyPolls.current >= MAX_EMPTY_POLLS) {
+            setComplete(true)
+            return
+          }
         } else {
-          staleCount.current += 1
+          emptyPolls.current = 0
         }
 
-        if (staleCount.current >= MAX_STALE_POLLS) {
-          setRenderingDone(true)
+        if (res.complete) {
+          setComplete(true)
           return
         }
       } catch {
-        staleCount.current += 1
+        // transient — keep polling
       }
-
       setTimeout(poll, POLL_INTERVAL_MS)
     }
 
@@ -67,20 +78,27 @@ export function DatasetPlotGrid({ projectId, datasetId, referenceDatasetId }: Pr
     return () => { cancelled = true }
   }, [projectId, datasetId]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const isRendering = !renderingDone || plots.length === 0
+  const readyCount = plots.filter((p) => p.status === "ready").length
 
   return (
     <div className="space-y-3">
-      {isRendering && (
+      {error && (
+        <div className="rounded-md border border-amber-800/50 bg-amber-950/40 px-3 py-2 text-xs text-amber-300">
+          {error} Showing the {readyCount} plot{readyCount !== 1 ? "s" : ""} that
+          could be generated from the dataset profile.
+        </div>
+      )}
+
+      {!complete && (
         <div className="flex items-center gap-2 py-2 text-xs text-zinc-500">
           <span className="inline-block w-3 h-3 rounded-full border-2 border-zinc-500 border-t-transparent animate-spin" />
           {plots.length === 0
             ? "Generating EDA plots…"
-            : `Rendered ${plots.length} plot${plots.length !== 1 ? "s" : ""}… more incoming`}
+            : `Rendered ${readyCount}/${plots.length} plots…`}
         </div>
       )}
 
-      {!isRendering && plots.length === 0 && (
+      {complete && plots.length === 0 && (
         <p className="text-xs text-zinc-600 py-2">No plots available yet.</p>
       )}
 
@@ -88,15 +106,15 @@ export function DatasetPlotGrid({ projectId, datasetId, referenceDatasetId }: Pr
         <div className="grid grid-cols-2 gap-3">
           {plots.map((plot) => {
             const img = images[plot.plot_id]
-            const isLoading = img === "" || img === undefined
-            const isError = img === "__error__"
+            const isFailed = plot.status === "failed" || img === "__error__"
             const hasImage = img && img !== "" && img !== "__error__"
+            const isLoading = !isFailed && !hasImage
 
             return (
               <div
                 key={plot.plot_id}
                 className="rounded-lg border border-zinc-800 bg-zinc-900/50 overflow-hidden cursor-pointer hover:border-zinc-600 transition-colors"
-                onClick={() => setExpanded(plot.plot_id)}
+                onClick={() => hasImage && setExpanded(plot.plot_id)}
               >
                 <div className="px-3 py-2 border-b border-zinc-800 flex items-center justify-between">
                   <span className="text-xs font-medium text-zinc-300 truncate">{plot.title}</span>
@@ -108,9 +126,9 @@ export function DatasetPlotGrid({ projectId, datasetId, referenceDatasetId }: Pr
                       <span className="inline-block w-4 h-4 rounded-full border-2 border-zinc-600 border-t-transparent animate-spin" />
                     </div>
                   )}
-                  {isError && (
+                  {isFailed && (
                     <div className="flex items-center justify-center min-h-[80px]">
-                      <span className="text-xs text-red-500">Failed to load</span>
+                      <span className="text-xs text-zinc-600">Unavailable</span>
                     </div>
                   )}
                   {hasImage && (

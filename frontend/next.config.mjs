@@ -5,6 +5,13 @@ const nextConfig = {
   // never be exposed to the browser.
   env: {
     FASTAPI_URL: "http://127.0.0.1:8001",
+    // Mirrors the backend DEV_MODE auth stub. When "true", AuthGuard skips the
+    // Supabase session check and the proxy forwards a hard-coded dev user. This
+    // repo has a real Supabase project wired (NEXT_PUBLIC_SUPABASE_URL/ANON_KEY)
+    // and the backend runs with DEV_MODE=false, so the default is "false" to keep
+    // all three layers (AuthGuard, proxy, backend) in real-auth mode. Set the env
+    // var to "true" only when running against a backend that also has DEV_MODE=true.
+    NEXT_PUBLIC_DEV_MODE: process.env.NEXT_PUBLIC_DEV_MODE ?? "false",
   },
   // react-markdown and its remark/rehype ecosystem are ESM-only packages.
   // Next.js requires them in transpilePackages to bundle correctly.

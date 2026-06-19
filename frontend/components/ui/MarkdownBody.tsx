@@ -14,7 +14,7 @@ function normalizeListText(text: string): string {
   // Handles both ". " and ") " delimiters (e.g. "1) ").
   return text
     .replace(/\s+(\d+)[.)]\s+/g, (_, n) => `\n${n}. `)
-    .replace(/\s+[•·--]\s+/g, "\n- ")
+    .replace(/\s+[•·–-]\s+/g, "\n- ")
     .trim()
 }
 

@@ -7,7 +7,7 @@ import type { DatasetPlot } from "@/lib/types"
 interface Props {
   runId: string
   stage: "eda" | "preprocessing" | "preprocessing_after" | "training" | "drift"
-  /** If true, show priority=2 plots in a collapsible section */
+  /** When true, priority=2 plots can be collapsed behind a toggle (expanded by default). */
   priorityOnly?: boolean
 }
 
@@ -19,30 +19,35 @@ const STAGE_LABELS: Record<string, string> = {
   drift: "Drift",
 }
 
-// Poll every 2 s while plots are still arriving; give up after 90 s of no change
 const POLL_INTERVAL_MS = 2000
-const MAX_STALE_POLLS = 45 // 90 s with no new plots → stop
+// Last-resort fallback for stages that are never rendered at all (e.g. a stage
+// with no plot specs). Active stages report completion via the backend's
+// `complete` flag and finish as soon as rendering is done, so this only fires
+// when nothing ever arrives. Kept generous to tolerate a slow stage start.
+const MAX_EMPTY_POLLS = 60 // 120 s
 
 export function RunPlotGrid({ runId, stage, priorityOnly = false }: Props) {
   const [plots, setPlots] = useState<DatasetPlot[]>([])
-  // map plotId → base64 string (undefined = not yet fetched, "" = fetching, "__error__" = failed)
+  // map plotId → base64 string ("" = fetching, "__error__" = failed)
   const [images, setImages] = useState<Record<string, string>>({})
   const [expanded, setExpanded] = useState<string | null>(null)
-  const [showAll, setShowAll] = useState(!priorityOnly)
-  const [renderingDone, setRenderingDone] = useState(false)
+  const [showAll, setShowAll] = useState(true)
+  const [complete, setComplete] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
-  // Track known IDs so we don't re-fetch
-  const knownIds = useRef<Set<string>>(new Set())
-  const staleCount = useRef(0)
+  const fetched = useRef<Set<string>>(new Set())
+  const emptyPolls = useRef(0)
 
-  // Auto-load a single plot image
   async function fetchImage(plotId: string) {
+    if (fetched.current.has(plotId)) return
+    fetched.current.add(plotId)
     setImages((prev) => ({ ...prev, [plotId]: "" })) // "" = loading
     try {
       const { image_b64 } = await getRunPlot(runId, plotId)
       setImages((prev) => ({ ...prev, [plotId]: image_b64 }))
     } catch {
       setImages((prev) => ({ ...prev, [plotId]: "__error__" }))
+      fetched.current.delete(plotId) // allow a retry on the next poll
     }
   }
 
@@ -52,28 +57,32 @@ export function RunPlotGrid({ runId, stage, priorityOnly = false }: Props) {
     async function poll() {
       if (cancelled) return
       try {
-        const manifest = await getRunPlots(runId, stage)
+        const res = await getRunPlots(runId, stage)
         if (cancelled) return
 
-        const newPlots = manifest.filter((p) => !knownIds.current.has(p.plot_id))
-        if (newPlots.length > 0) {
-          staleCount.current = 0
-          newPlots.forEach((p) => knownIds.current.add(p.plot_id))
-          setPlots((prev) => [...prev, ...newPlots])
-          // Immediately kick off image fetches for new plots
-          newPlots.forEach((p) => fetchImage(p.plot_id))
+        setPlots(res.plots)
+        setError(res.error ?? null)
+        res.plots.forEach((p) => {
+          if (p.status === "ready") fetchImage(p.plot_id)
+        })
+
+        if (res.plots.length === 0 && !res.complete) {
+          emptyPolls.current += 1
+          if (emptyPolls.current >= MAX_EMPTY_POLLS) {
+            setComplete(true)
+            return
+          }
         } else {
-          staleCount.current += 1
+          emptyPolls.current = 0
         }
 
-        if (staleCount.current >= MAX_STALE_POLLS) {
-          setRenderingDone(true)
-          return
+        if (res.complete) {
+          setComplete(true)
+          return // rendering finished — stop polling
         }
       } catch {
-        staleCount.current += 1
+        // transient error — keep polling
       }
-
       setTimeout(poll, POLL_INTERVAL_MS)
     }
 
@@ -83,21 +92,29 @@ export function RunPlotGrid({ runId, stage, priorityOnly = false }: Props) {
 
   const visiblePlots = showAll ? plots : plots.filter((p) => p.priority === 1)
   const hiddenCount = plots.filter((p) => p.priority !== 1).length
-  const isRendering = !renderingDone || plots.length === 0
+  const readyCount = plots.filter((p) => p.status === "ready").length
 
   return (
     <div className="space-y-3">
-      {/* Status bar while plots are arriving */}
-      {isRendering && (
+      {/* df-load / render error banner */}
+      {error && (
+        <div className="rounded-md border border-amber-800/50 bg-amber-950/40 px-3 py-2 text-xs text-amber-300">
+          {error} Showing the {readyCount} plot{readyCount !== 1 ? "s" : ""} that
+          could be generated from the dataset profile.
+        </div>
+      )}
+
+      {/* Progress while plots are still rendering */}
+      {!complete && (
         <div className="flex items-center gap-2 text-xs text-zinc-500">
           <span className="inline-block w-3 h-3 rounded-full border-2 border-zinc-500 border-t-transparent animate-spin" />
           {plots.length === 0
             ? `Generating ${STAGE_LABELS[stage]} plots…`
-            : `Rendered ${plots.length} plot${plots.length !== 1 ? "s" : ""}… more incoming`}
+            : `Rendered ${readyCount}/${plots.length} ${STAGE_LABELS[stage]} plots…`}
         </div>
       )}
 
-      {!isRendering && plots.length === 0 && (
+      {complete && plots.length === 0 && (
         <p className="text-xs text-zinc-600 py-2">No {stage} plots available.</p>
       )}
 
@@ -106,15 +123,15 @@ export function RunPlotGrid({ runId, stage, priorityOnly = false }: Props) {
         <div className="grid grid-cols-2 gap-3">
           {visiblePlots.map((plot) => {
             const img = images[plot.plot_id]
-            const isLoading = img === "" || img === undefined
-            const isError = img === "__error__"
+            const isFailed = plot.status === "failed" || img === "__error__"
             const hasImage = img && img !== "" && img !== "__error__"
+            const isLoading = !isFailed && !hasImage
 
             return (
               <div
                 key={plot.plot_id}
                 className="rounded-lg border border-zinc-800 bg-zinc-900/50 overflow-hidden cursor-pointer hover:border-zinc-600 transition-colors"
-                onClick={() => setExpanded(plot.plot_id)}
+                onClick={() => hasImage && setExpanded(plot.plot_id)}
               >
                 {/* Card header */}
                 <div className="px-3 py-2 border-b border-zinc-800 flex items-center justify-between gap-2">
@@ -129,16 +146,16 @@ export function RunPlotGrid({ runId, stage, priorityOnly = false }: Props) {
                   </div>
                 </div>
 
-                {/* Plot body - always displayed inline */}
+                {/* Plot body */}
                 <div className="p-2">
                   {isLoading && (
                     <div className="flex items-center justify-center min-h-[80px]">
                       <span className="inline-block w-4 h-4 rounded-full border-2 border-zinc-600 border-t-transparent animate-spin" />
                     </div>
                   )}
-                  {isError && (
+                  {isFailed && (
                     <div className="flex items-center justify-center min-h-[80px]">
-                      <span className="text-xs text-red-500">Failed to load</span>
+                      <span className="text-xs text-zinc-600">Unavailable</span>
                     </div>
                   )}
                   {hasImage && (
@@ -155,13 +172,13 @@ export function RunPlotGrid({ runId, stage, priorityOnly = false }: Props) {
         </div>
       )}
 
-      {/* Show more / less toggle for priority=2 plots */}
+      {/* Collapse / expand toggle for priority=2 plots */}
       {priorityOnly && hiddenCount > 0 && (
         <button
           onClick={() => setShowAll((v) => !v)}
           className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors"
         >
-          {showAll ? `↑ Show fewer plots` : `↓ Show ${hiddenCount} more plots`}
+          {showAll ? `↑ Hide ${hiddenCount} secondary plots` : `↓ Show ${hiddenCount} more plots`}
         </button>
       )}
 
