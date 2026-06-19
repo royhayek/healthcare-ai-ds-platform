@@ -90,10 +90,24 @@ see below).
 
 ### Prerequisites
 
-- Python 3.11+
+- Python 3.11+ — on macOS, use a non-Anaconda interpreter (e.g. the python.org
+  build or Homebrew Python). Anaconda ships its own `glib`/`cairo`/`harfbuzz`
+  that conflict with the system PDF libraries and segfault WeasyPrint.
 - Node.js 18+
 - Docker (for Postgres and Redis)
 - An Anthropic API key (the reasoning agents call the Anthropic API)
+- **macOS only — WeasyPrint native libraries** (used by the PDF deliverable
+  generators). Install once with Homebrew:
+
+  ```bash
+  brew install pango cairo gdk-pixbuf libffi
+  ```
+
+  Because these live under `$(brew --prefix)/lib` (e.g. `/opt/homebrew/lib` on
+  Apple Silicon), which Python's loader does not search by default, any process
+  that renders PDFs — the API, the Celery worker, and the test suite — must be
+  started with `DYLD_FALLBACK_LIBRARY_PATH="$(brew --prefix)/lib"` set. The
+  commands below and `backend/run_tests.sh` already do this.
 
 ### 1. Start local infrastructure
 
@@ -105,8 +119,8 @@ docker-compose up -d        # Postgres on :5433, Redis on :6380
 
 ```bash
 cd backend
-python -m venv .venv && source .venv/bin/activate
-pip install -e .
+python -m venv .venv && source .venv/bin/activate   # macOS: use a non-Anaconda python (see Prerequisites)
+pip install -e ".[dev]"                             # installs the app + test dependencies
 
 # Configure environment: copy the example and fill in values
 cp .env.example .env
@@ -124,25 +138,41 @@ Required backend environment variables (see `backend/.env.example`):
 | `DEV_MODE` | `true` for local development (relaxed auth) |
 | `SUPABASE_*` | Optional, only when using Supabase storage/auth instead of local |
 
-Then run the worker and API in two terminals:
+Then run the worker and API in two terminals. The app uses absolute imports
+(`backend.*`), so both commands use the `backend.` package prefix and can be run
+from anywhere once `pip install -e ".[dev]"` has registered the package. The API
+must listen on **port 8001** — that is the port the frontend proxy expects (see
+`frontend/next.config.mjs`).
 
 ```bash
-celery -A tasks.celery_app worker --loglevel=info
-uvicorn main:app --reload --port 8000
+# Terminal 1 — Celery worker
+celery -A backend.tasks.celery_app worker --loglevel=info
+
+# Terminal 2 — FastAPI
+uvicorn backend.main:app --reload --port 8001
 ```
+
+> **macOS:** prefix both commands with `DYLD_FALLBACK_LIBRARY_PATH="$(brew --prefix)/lib"`
+> so WeasyPrint (PDF deliverables) can load its native libraries — e.g.
+> `DYLD_FALLBACK_LIBRARY_PATH="$(brew --prefix)/lib" uvicorn backend.main:app --reload --port 8001`.
 
 ### 3. Frontend
 
 ```bash
 cd frontend
-npm install
-
-# Configure environment
-# NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY (optional, for Supabase auth)
-# FASTAPI_URL=http://localhost:8000
+npm install                 # also installs the test toolchain (vitest, Playwright, Testing Library)
 
 npm run dev                 # http://localhost:3000
 ```
+
+Environment variables (all have working local defaults in `next.config.mjs`, so
+no `.env.local` is required for local development):
+
+| Variable | Purpose | Default |
+|---|---|---|
+| `FASTAPI_URL` | Backend URL the server-side proxy targets. Must match the API port. | `http://127.0.0.1:8001` |
+| `NEXT_PUBLIC_DEV_MODE` | When `true`, `AuthGuard` skips the Supabase session check (mirrors the backend `DEV_MODE` auth stub used by the proxy's hard-coded dev user). Set to `false` in production to restore the real session gate. | `true` |
+| `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase project credentials — only needed when `NEXT_PUBLIC_DEV_MODE=false`. | unset |
 
 ---
 
@@ -209,19 +239,35 @@ biosafety tool, and it is exactly the rigor a medical AI tool must have.
 
 ## Testing
 
-```bash
-# Backend
-cd backend
-pytest                       # unit tests
-pytest -m integration        # full pipeline on real-business fixtures
+### Backend
 
-# Frontend
+```bash
+cd backend
+./run_tests.sh               # unit tests (309)
+./run_tests.sh -m integration   # full pipeline on real-business fixtures (needs Postgres + Redis)
+./run_tests.sh -k profiler   # any extra args are forwarded to pytest
+```
+
+`run_tests.sh` pins the project venv and exports `DYLD_FALLBACK_LIBRARY_PATH` so
+WeasyPrint can load its native libraries on macOS. On Linux you can also just run
+`pytest` directly after `pip install -e ".[dev]"`.
+
+### Frontend
+
+```bash
 cd frontend
 npm run lint
 npm run typecheck
-npm test                     # vitest
-npm run e2e                  # playwright
+npm test                     # vitest — unit + component tests (jsdom)
+npx playwright install chromium   # one-time: download the browser binary
+npm run e2e                  # playwright — end-to-end happy path
 ```
+
+`npm run e2e` needs the full stack running: start Postgres + Redis
+(`docker-compose up -d`) and the backend API on port 8001, then run it with
+`NEXT_PUBLIC_DEV_MODE=true` (the default) so the dashboard is reachable without a
+Supabase session. Playwright starts the Next.js dev server itself. The unit
+suite (`npm test`) has no such dependencies and runs in isolation.
 
 Test fixtures live in `backend/tests/fixtures/` and use real-business-flavored datasets
 (telco churn, credit default, lead scoring, claims triage, housing) chosen to exercise

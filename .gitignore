@@ -48,6 +48,10 @@ yarn-error.log*
 # Env files (never commit live credentials)
 frontend/.env.local
 frontend/.env.production
+frontend/.env.e2e
+
+# Playwright saved auth session (contains live tokens)
+frontend/e2e/.auth/
 
 # OS
 .DS_Store
@@ -61,3 +65,7 @@ Thumbs.db
 
 # Docker volumes (if mapped locally)
 postgres_data/
+
+# Playwright test artifacts
+frontend/test-results/
+frontend/playwright-report/
