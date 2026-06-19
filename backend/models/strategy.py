@@ -55,6 +55,28 @@ class PreprocessingStrategy(BaseModel):
         ]
 
 
+class TargetStrategy(BaseModel):
+    """Target-level hygiene applied before profiling and training (§7, §10).
+
+    Two transforms a senior would do by hand, here made explicit, auditable, and
+    overrideable from chat:
+      - drop_labels: target values that are really "unlabelled" placeholders
+        (e.g. "unknown") - their ROWS are dropped, they are not a real class.
+      - positive_labels: collapse a multiclass target to binary. Rows whose target
+        is in this set become 1, all others 0. Empty = no collapse.
+
+    Derived automatically from the case brief + deterministic unlabeled detection,
+    and overridable via the chat co-pilot (category "target").
+    """
+
+    drop_labels: list[str] = Field(default_factory=list)
+    positive_labels: list[str] = Field(default_factory=list)
+    note: str = ""
+
+    def is_empty(self) -> bool:
+        return not self.drop_labels and not self.positive_labels
+
+
 class ModelSelectionStrategy(BaseModel):
     """Model candidates and ranking produced by the model selector agent."""
 

@@ -65,6 +65,53 @@ def _sse(event: dict) -> str:
     return f"data: {json.dumps(event)}\n\n"
 
 
+async def _maybe_trigger_override_rerun(
+    db: AsyncSession, run_id: str, category: str
+) -> str | None:
+    """Re-run the step a just-applied override invalidated, so it takes effect.
+
+    A chat override edits a decision field but does not recompute anything; the
+    human's intent is only realised once the consuming step re-runs. Fires only
+    when the run is paused at a checkpoint and the override invalidates state
+    already computed at/before it. Flips the run to `running`, re-enqueues the
+    analysis task at the recompute-target step (which re-pauses at the same
+    checkpoint for review), and returns the step name - or None if no re-run.
+    """
+    from backend.core.strategy_mutator import canonical_category
+    from backend.tasks.analysis_task import rerun_step_for_override, run_analysis_task
+
+    run = (await db.execute(select(Run).where(Run.id == run_id))).scalar_one_or_none()
+    if run is None or run.status != "awaiting_checkpoint":
+        return None
+
+    category = canonical_category(category)
+    target_step = rerun_step_for_override(category, run.current_step)
+    if target_step is None:
+        return None
+
+    paused_at = run.current_step
+    run.current_step = target_step
+    run.status = "running"
+    db.add(run)
+
+    from backend.core import audit
+    await audit.append(
+        db,
+        run_id=run_id,
+        actor="system",
+        category=category,
+        action="override_rerun_triggered",
+        payload={"override_category": category, "rerun_step": target_step, "paused_at": paused_at},
+        reason=f"Chat override to {category} re-runs {target_step} to take effect",
+    )
+    await db.commit()
+
+    job = run_analysis_task.delay(run_id)
+    run.job_id = job.id
+    await db.commit()
+    return target_step
+
+
 @router.post("/runs/{run_id}/chat")
 async def chat(
     run_id: str,
@@ -110,6 +157,16 @@ async def chat(
                     )
                 if intent:
                     await queue.put(_sse({"type": "intent", "intent": intent.model_dump()}))
+
+                # A successful override must actually take effect: re-run the step
+                # that consumes the changed decision so the human's intent is
+                # realised before the pipeline advances to the next checkpoint.
+                if diffs and intent:
+                    rerun_step = await _maybe_trigger_override_rerun(db, run_id, intent.category)
+                    if rerun_step:
+                        await queue.put(
+                            _sse({"type": "rerun_triggered", "step": rerun_step})
+                        )
 
                 # Notebook export: enqueue Celery task and emit artifact_task event
                 if (

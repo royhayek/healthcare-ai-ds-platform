@@ -98,6 +98,7 @@ async def create_project(
         "stakeholder_name": None,
         "stakeholder_role": None,
         "parsed": False,
+        "parse_failed": False,
     }
 
     project.case_brief = initial_brief
@@ -125,18 +126,30 @@ async def _parse_brief_background(project_id: str, raw_text: str) -> None:
         parsed = await parse_case_brief(raw_text)
     except Exception as exc:
         logger.error("Brief parsing failed for project %s: %s", project_id, exc)
-        return
+        parsed = None
 
     async with async_session_factory() as session:
         project = await session.get(Project, project_id)
         if project is None:
             return
         existing = dict(project.case_brief or {})
-        existing.update(parsed)
+        if parsed and parsed.get("parsed"):
+            existing.update(parsed)
+            existing["parse_failed"] = False
+            logger.info("Case brief parsed and updated for project %s", project_id)
+        else:
+            # Terminal failure: the model refused, returned no JSON, or the call
+            # raised. Mark the brief as done-but-unparsed so the UI stops showing
+            # "Brief parsing…" forever. The raw brief is retained and the user can
+            # supply objectives / cost matrix manually via the chat co-pilot.
+            existing["parse_failed"] = True
+            logger.warning(
+                "Case brief auto-parse unavailable for project %s; retaining raw brief",
+                project_id,
+            )
         project.case_brief = existing
         session.add(project)
         await session.commit()
-        logger.info("Case brief parsed and updated for project %s", project_id)
 
 
 @router.get("", response_model=list[ProjectResponse])

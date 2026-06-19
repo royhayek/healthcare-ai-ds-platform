@@ -33,8 +33,10 @@ class Settings(BaseSettings):
     SUPABASE_STORAGE_BUCKET: str = "datasets"
 
     # ── Auth ───────────────────────────────────────────────────────────────────
+    # Production verifies Supabase access tokens (ES256) against the project JWKS
+    # at {SUPABASE_URL}/auth/v1/.well-known/jwks.json — see backend/core/auth.py.
+    # No shared HS256 secret is used.
     DEV_MODE: bool = True
-    SUPABASE_JWT_SECRET: str = ""
 
     # ── Anthropic API ──────────────────────────────────────────────────────────
     ANTHROPIC_API_KEY: str = ""

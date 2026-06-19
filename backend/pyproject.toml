@@ -73,3 +73,15 @@ python_version = "3.11"
 strict = true
 ignore_missing_imports = true
 plugins = ["pydantic.mypy"]
+
+# ── setuptools package discovery ──────────────────────────────────────────────
+# The code imports everything as `backend.*` even though this pyproject lives
+# inside backend/. Point discovery one level up so `pip install -e ".[dev]"`
+# registers the single top-level `backend` package (not its sub-dirs as separate
+# top-level packages, which is the auto-discovery error). This makes
+# `uvicorn backend.main:app` / `celery -A backend.tasks.celery_app` importable
+# from any working directory.
+[tool.setuptools.packages.find]
+where = [".."]
+include = ["backend*"]
+namespaces = false

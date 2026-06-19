@@ -28,6 +28,10 @@ _PLOT_PNG_PATH = "runs/{run_id}/plots/{plot_id}.png"
 _PLOT_META_PATH = "runs/{run_id}/plots/{plot_id}.meta.json"
 
 
+_RENDER_STATUS_PATH = "runs/{run_id}/plots/render_{stage}.json"
+_KNOWN_STAGES = ("eda", "preprocessing", "preprocessing_after", "training", "drift")
+
+
 class PlotSummary(BaseModel):
     plot_id: str
     plot_type: str
@@ -36,6 +40,13 @@ class PlotSummary(BaseModel):
     priority: int
     stage: str
     has_image: bool
+    status: str  # "ready" | "failed" | "pending"
+
+
+class PlotManifestResponse(BaseModel):
+    plots: list[PlotSummary]
+    complete: bool
+    error: str | None = None
 
 
 class PlotDetail(BaseModel):
@@ -53,24 +64,67 @@ class GeneratePlotsRequest(BaseModel):
     column: str | None = None  # when None: generate all plots for the stage
 
 
-@router.get("/{run_id}/plots", response_model=list[PlotSummary])
+async def _load_render_status(
+    run_id: str, stage: str | None
+) -> tuple[bool, str | None, set[str]]:
+    """Return (complete, df_error, failed_plot_ids) from the render-status sidecar(s).
+
+    When a stage is given, completion reflects exactly that stage. When no stage
+    is given, completion requires every known stage that has started to be done.
+    """
+    stages = [stage] if stage else list(_KNOWN_STAGES)
+    complete = True
+    any_started = False
+    error: str | None = None
+    failed: set[str] = set()
+
+    for s in stages:
+        path = _RENDER_STATUS_PATH.format(run_id=run_id, stage=s)
+        if not await storage.exists(path):
+            if stage:  # the requested stage hasn't started rendering yet
+                complete = False
+            continue
+        any_started = True
+        try:
+            status = json.loads(await storage.download(path))
+        except Exception:  # noqa: BLE001 - a corrupt sidecar just means "still working"
+            complete = False
+            continue
+        if not status.get("complete"):
+            complete = False
+        if status.get("df_error") and not error:
+            error = status.get("df_error")
+        failed.update(status.get("failed", []))
+
+    if not any_started:
+        complete = False
+    return complete, error, failed
+
+
+@router.get("/{run_id}/plots", response_model=PlotManifestResponse)
 async def list_plots(
     run_id: str,
     stage: str | None = Query(default=None),
     db: AsyncSession = Depends(get_db),
     user_id: str = Depends(get_current_user),
-) -> list[PlotSummary]:
-    """Return the plot manifest for a run, optionally filtered by stage."""
+) -> PlotManifestResponse:
+    """Return the plot manifest for a run, optionally filtered by stage.
+
+    The response includes a ``complete`` flag and per-plot ``status`` so the UI
+    can show every planned plot up front and stop the loading indicator
+    deterministically rather than guessing via a timeout.
+    """
     run = await db.get(Run, run_id)
     if run is None:
         raise HTTPException(status_code=404, detail="Run not found")
 
     manifest_path = _PLOTS_INDEX_PATH.format(run_id=run_id)
     if not await storage.exists(manifest_path):
-        return []
+        return PlotManifestResponse(plots=[], complete=False, error=None)
 
     raw = await storage.download(manifest_path)
     manifest: list[dict[str, Any]] = json.loads(raw)
+    complete, error, failed = await _load_render_status(run_id, stage)
 
     results: list[PlotSummary] = []
     for entry in manifest:
@@ -78,6 +132,11 @@ async def list_plots(
             continue
         png_path = _PLOT_PNG_PATH.format(run_id=run_id, plot_id=entry["plot_id"])
         has_image = await storage.exists(png_path)
+        status = (
+            "ready" if has_image
+            else "failed" if entry["plot_id"] in failed
+            else "pending"
+        )
         results.append(
             PlotSummary(
                 plot_id=entry["plot_id"],
@@ -87,9 +146,10 @@ async def list_plots(
                 priority=entry.get("priority", 1),
                 stage=entry.get("stage", "eda"),
                 has_image=has_image,
+                status=status,
             )
         )
-    return results
+    return PlotManifestResponse(plots=results, complete=complete, error=error)
 
 
 @router.get("/{run_id}/plots/{plot_id}", response_model=PlotDetail)

@@ -43,6 +43,14 @@ for a data science engagement. Extract the following fields as JSON:
   Set to null if no specific numbers are given.
 - known_data_issues: list of data quality concerns, leaky features, or caveats the
   stakeholder explicitly mentions (e.g. "call duration is known to leak the outcome").
+- target_strategy: target-level handling the brief specifies, as
+  {"drop_labels": [...], "positive_labels": [...]}.
+  drop_labels = target values that mean UNLABELLED and whose rows should be dropped
+  (e.g. brief says 'pathogenicity_class = "unknown" means unlabelled, drop these rows'
+  → ["unknown"]).
+  positive_labels = if the brief says to collapse the target to binary, the class(es)
+  that map to the positive class (e.g. 'collapse to binary - high vs {low, moderate}'
+  → ["high"]). Leave both lists empty if the brief does not specify target handling.
 - deliverable_requirements: list of specific outputs the stakeholder asked for
   (e.g. "a lift/gains curve", "a reproducible notebook", "a 5-page report").
   Only include what was explicitly requested - do not infer.
@@ -91,6 +99,7 @@ Extract the structured fields from this brief."""
         "known_data_issues": _coerce_list(parsed.get("known_data_issues")),
         "deliverable_requirements": _coerce_list(parsed.get("deliverable_requirements")),
         "evaluation_criteria": _coerce_list(parsed.get("evaluation_criteria")),
+        "target_strategy": _coerce_target_strategy(parsed.get("target_strategy")),
         "stakeholder_name": parsed.get("stakeholder_name") or None,
         "stakeholder_role": parsed.get("stakeholder_role") or None,
         "parsed": True,
@@ -104,6 +113,7 @@ def _empty() -> dict[str, Any]:
         "known_data_issues": [],
         "deliverable_requirements": [],
         "evaluation_criteria": [],
+        "target_strategy": None,
         "stakeholder_name": None,
         "stakeholder_role": None,
         "parsed": False,
@@ -114,6 +124,21 @@ def _coerce_list(val: Any) -> list[str]:
     if isinstance(val, list):
         return [str(v) for v in val if v]
     return []
+
+
+def _coerce_target_strategy(val: Any) -> dict[str, list[str]] | None:
+    """Coerce the model's target_strategy into {drop_labels, positive_labels}.
+
+    Returns None when the brief specifies no target handling, so the EDA step can
+    distinguish "brief said nothing" from "brief said collapse to nothing".
+    """
+    if not isinstance(val, dict):
+        return None
+    drop_labels = _coerce_list(val.get("drop_labels"))
+    positive_labels = _coerce_list(val.get("positive_labels"))
+    if not drop_labels and not positive_labels:
+        return None
+    return {"drop_labels": drop_labels, "positive_labels": positive_labels}
 
 
 def _coerce_cost_matrix(val: Any) -> dict[str, float] | None:

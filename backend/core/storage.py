@@ -46,11 +46,20 @@ class StorageBackend(Protocol):
         ...
 
 
+# The backend package root (parent of core/). A relative STORAGE_ROOT is
+# anchored here so uploads and downloads resolve to the same directory
+# regardless of the cwd each process (uvicorn, Celery) is launched from.
+_BACKEND_ROOT = Path(__file__).parent.parent
+
+
 class LocalFileSystemStorage:
     """Dev-mode storage that mirrors the Supabase Storage interface."""
 
     def __init__(self, root: str = settings.STORAGE_ROOT) -> None:
-        self._root = Path(root)
+        root_path = Path(root)
+        if not root_path.is_absolute():
+            root_path = _BACKEND_ROOT / root_path
+        self._root = root_path.resolve()
         self._root.mkdir(parents=True, exist_ok=True)
 
     def _abs(self, path: str) -> Path:

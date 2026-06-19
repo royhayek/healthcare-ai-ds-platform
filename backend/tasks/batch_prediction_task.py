@@ -23,6 +23,7 @@ from sqlalchemy import select
 
 from backend.core import audit
 from backend.core.config import settings
+from backend.core.json_utils import json_safe, safe_float
 from backend.core.database import Dataset, Prediction, Run, async_session_factory
 from backend.core.events import ProgressEmitter
 from backend.core.storage import storage
@@ -32,6 +33,7 @@ from backend.tasks.celery_app import celery_app
 logger = logging.getLogger(__name__)
 
 _BATCH_SHAP_LIMIT = 2000  # max rows for per-row SHAP in batch mode
+_COMMIT_CHUNK = 100  # commit predictions in chunks so progress polling sees the count climb
 
 
 @celery_app.task(bind=True, name="prediction.batch", max_retries=0)
@@ -177,26 +179,40 @@ async def _async_batch(run_id: str, inference_dataset_id: str) -> None:
                     result["shap_dampeners"] = dampeners.split(", ") if dampeners else []
 
                 batch_results.append(result)
+                similarity = safe_float(result["similarity_score"])
                 prediction_rows.append(
                     Prediction(
                         run_id=run_id,
                         inference_dataset_id=inference_dataset_id,
-                        input_data=row.to_dict(),
-                        prediction={"value": result["prediction"]},
-                        probability=result["probability"],
-                        similarity_score=result["similarity_score"],
+                        input_data=json_safe(row.to_dict()),
+                        prediction=json_safe({"value": result["prediction"]}),
+                        probability=safe_float(result["probability"]),
+                        similarity_score=similarity,
                         confidence_band=result["confidence_band"],
-                        threshold_used=result["threshold_used"],
-                        shap_values={
-                            "drivers": result["shap_drivers"],
-                            "dampeners": result["shap_dampeners"],
-                        },
+                        threshold_used=safe_float(result["threshold_used"]),
+                        shap_values=json_safe(
+                            {
+                                "drivers": result["shap_drivers"],
+                                "dampeners": result["shap_dampeners"],
+                            }
+                        ),
                         risk_flag=(
-                            (result["similarity_score"] is not None and result["similarity_score"] < 0.3)
+                            (similarity is not None and similarity < 0.3)
                             or result["confidence_band"] == "low"
                         ),
                     )
                 )
+
+                # Commit in chunks so the predictions/count poll sees progress
+                # accumulate while the batch is still running (a single bulk
+                # insert at the end leaves the count at 0 the whole time). Never
+                # commit on the final row: the tail stays pending until after the
+                # artifacts are written, so count only reaches n_rows once the
+                # downloadable files actually exist.
+                if len(prediction_rows) >= _COMMIT_CHUNK and (i + 1) < n_rows:
+                    session.add_all(prediction_rows)
+                    await session.commit()
+                    prediction_rows = []
 
                 # Emit progress every ~10%
                 pct = 15 + int((i + 1) / n_rows * 75)
@@ -205,27 +221,6 @@ async def _async_batch(run_id: str, inference_dataset_id: str) -> None:
                         "batch_predict", f"Predicted {i + 1}/{n_rows} rows…", pct
                     )
                     last_pct = pct
-
-            # Bulk insert predictions
-            session.add_all(prediction_rows)
-            await session.flush()
-
-            await audit.append(
-                session,
-                run_id=run_id,
-                actor="system",
-                category="prediction",
-                action="batch_predict_complete",
-                payload={
-                    "inference_dataset_id": inference_dataset_id,
-                    "filename": ds.filename,
-                    "n_rows": n_rows,
-                    "task_type": task_type,
-                    "drift_warning": drift_warning,
-                },
-                reason=f"Batch inference on {ds.filename} ({n_rows} rows)",
-            )
-            await session.commit()
 
             await emitter.emit_async("batch_predict", "Generating predictions artifact…", 90)
 
@@ -246,7 +241,10 @@ async def _async_batch(run_id: str, inference_dataset_id: str) -> None:
                 for r in batch_results
             ]
 
-            # Write artifacts
+            # Write artifacts BEFORE the final predictions commit. The frontend
+            # treats count == n_rows as "done" and surfaces the download links,
+            # so the downloadable files must already be in storage by the time
+            # the final commit bumps the count to n_rows.
             from backend.deliverables.predictions_artifact import _write_excel, _write_parquet
 
             excel_bytes = _write_excel(df_out, run_id)
@@ -257,6 +255,29 @@ async def _async_batch(run_id: str, inference_dataset_id: str) -> None:
             await storage.upload(f"{prefix}_predictions.xlsx", excel_bytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
             await storage.upload(f"{prefix}_predictions.csv", csv_bytes, "text/csv")
             await storage.upload(f"{prefix}_predictions.parquet", parquet_bytes, "application/octet-stream")
+
+            # Final commit: flush the pending tail of predictions + the audit
+            # event together. This is the write that pushes count to n_rows.
+            if prediction_rows:
+                session.add_all(prediction_rows)
+                await session.flush()
+
+            await audit.append(
+                session,
+                run_id=run_id,
+                actor="system",
+                category="prediction",
+                action="batch_predict_complete",
+                payload={
+                    "inference_dataset_id": inference_dataset_id,
+                    "filename": ds.filename,
+                    "n_rows": n_rows,
+                    "task_type": task_type,
+                    "drift_warning": drift_warning,
+                },
+                reason=f"Batch inference on {ds.filename} ({n_rows} rows)",
+            )
+            await session.commit()
 
             await emitter.emit_async(
                 "batch_predict",

@@ -67,10 +67,9 @@ async def _async_single(dataset_id: str, project_id: str) -> None:
     import pandas as pd
 
     from backend.core.database import Dataset
-    from backend.core.storage import storage
-    from backend.ml.plotter import PlotRenderer, PlotSpec, PlotType
     from backend.ml.profiler import DatasetProfile, compress_profile_for_claude
     from backend.agents.plot_selector_agent import select_plots_for_stage
+    from backend.tasks.plot_task import load_dataframe_for_plots, render_specs_to_storage
 
     local_engine = _cae(settings.DATABASE_URL, pool_pre_ping=True)
     local_factory = _asf(local_engine, class_=_AS, expire_on_commit=False)
@@ -91,20 +90,10 @@ async def _async_single(dataset_id: str, project_id: str) -> None:
                 except Exception:
                     pass
 
-            # Load a sampled DataFrame for row-level plots
-            df: pd.DataFrame | None = None
-            try:
-                raw = await storage.download(ds.storage_path)
-                df_full = (
-                    pd.read_parquet(io.BytesIO(raw))
-                    if ds.filename.endswith(".parquet")
-                    else pd.read_csv(io.BytesIO(raw))
-                )
-                # Sample to keep plot generation under ~10s
-                sample_n = 5000
-                df = df_full.sample(min(sample_n, len(df_full)), random_state=42)
-            except Exception as exc:
-                logger.warning("Could not load dataset %s for plotting: %s", dataset_id, exc)
+            # Load a sampled DataFrame for row-level plots. A load failure is
+            # reported through the manifest, never swallowed (that is what made
+            # the page show only the 2-3 profile-based plots).
+            df, df_error = await load_dataframe_for_plots(ds)
 
             compressed: dict[str, Any] = {}
             if profile:
@@ -112,38 +101,16 @@ async def _async_single(dataset_id: str, project_id: str) -> None:
 
             task_type = ds.task_type or compressed.get("task_type", "unknown")
 
-            # Ask the model to select the best plots for EDA on this dataset
             manifest = await select_plots_for_stage(
                 compressed, stage="eda", task_type=task_type, run_id=dataset_id
             )
 
-            renderer = PlotRenderer()
-            rendered: list[dict[str, Any]] = []
-            specs = manifest.plots
-            manifest_path = f"datasets/{dataset_id}/plots/manifest.json"
-
-            for spec in specs:
-                b64 = renderer.render(spec, profile=profile, df=df)
-                if not b64:
-                    continue
-                png_path = f"datasets/{dataset_id}/plots/{spec.plot_id}.png"
-                meta_path = f"datasets/{dataset_id}/plots/{spec.plot_id}.meta.json"
-                await storage.upload(png_path, base64.b64decode(b64), "image/png")
-                await storage.upload(
-                    meta_path,
-                    json.dumps(spec.to_dict()).encode(),
-                    "application/json",
-                )
-                rendered.append(spec.to_dict())
-                # Write manifest after each plot so the UI can show them progressively
-                await storage.upload(
-                    manifest_path,
-                    json.dumps(rendered).encode(),
-                    "application/json",
-                )
-
-            logger.info(
-                "Dataset %s: rendered %d/%d plots", dataset_id, len(rendered), len(specs)
+            await render_specs_to_storage(
+                manifest.plots,
+                base_dir=f"datasets/{dataset_id}/plots",
+                profile=profile,
+                df=df,
+                df_error=df_error,
             )
 
     finally:

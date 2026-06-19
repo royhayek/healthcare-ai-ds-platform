@@ -154,6 +154,25 @@ async def call_claude_stream(
                         f"model response truncated at {len(full_text)} chars "
                         f"(max_tokens={max_tokens}). Raise max_tokens on the caller."
                     )
+            if full_text.strip():
+                return full_text
+            # Empty completion (zero text blocks, stop_reason e.g. "end_turn") is
+            # not an exception - the stream simply yielded nothing. Because no text
+            # was emitted, nothing reached on_chunk, so a re-roll is safe (no
+            # double-emit). Retry before surfacing "" to the caller's fallback;
+            # an empty turn is usually transient. Use a short delay - this is a
+            # re-roll, not rate-limit backoff.
+            if attempt < _MAX_ATTEMPTS - 1:
+                logger.warning(
+                    "model stream returned no text (stop_reason=%s), re-rolling "
+                    "(attempt %d/%d)", final.stop_reason, attempt + 1, _MAX_ATTEMPTS,
+                )
+                await asyncio.sleep(1)
+                continue
+            logger.error(
+                "the model returned no text content from stream after %d attempts "
+                "(stop_reason=%s)", _MAX_ATTEMPTS, final.stop_reason,
+            )
             return full_text
         except (anthropic.RateLimitError, anthropic.APIStatusError) as exc:
             last_exc = exc

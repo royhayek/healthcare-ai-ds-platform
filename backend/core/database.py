@@ -178,6 +178,9 @@ class Run(Base):
 
     # Pipeline outputs - stored as JSONB so the schema survives new analysis steps
     eda_report: Mapped[dict[str, Any] | None] = mapped_column(JSONB)
+    # Target-level hygiene (drop unlabelled rows, binary collapse) applied before
+    # profiling + training. Derived from the brief, overridable via chat (§7, §10).
+    target_strategy: Mapped[dict[str, Any] | None] = mapped_column(JSONB)
     preprocessing_strategy: Mapped[dict[str, Any] | None] = mapped_column(JSONB)
     model_selection: Mapped[dict[str, Any] | None] = mapped_column(JSONB)
     model_comparison: Mapped[dict[str, Any] | None] = mapped_column(JSONB)
@@ -211,6 +214,12 @@ class Run(Base):
 
     # Queued modify intents during expensive steps (§2 interrupt semantics)
     pending_intents: Mapped[list[Any]] = mapped_column(JSONB, server_default="[]")
+
+    # Verbatim human overrides recorded in the chat co-pilot, keyed by decision
+    # category (e.g. "preprocessing"). When the producing step re-runs, these are
+    # injected into the agent prompt as authoritative instructions the AI MUST
+    # honour, so a clinician can override ANY AI decision by chatting (§2, §21).
+    user_directives: Mapped[dict[str, Any]] = mapped_column(JSONB, server_default="{}")
 
     eval_plots: Mapped[dict[str, Any] | None] = mapped_column(JSONB)
 
@@ -395,6 +404,16 @@ async def init_db() -> None:
         await conn.execute(text("""
             ALTER TABLE runs
                 ADD COLUMN IF NOT EXISTS pending_intents JSONB NOT NULL DEFAULT '[]'::jsonb
+        """))
+
+        await conn.execute(text("""
+            ALTER TABLE runs
+                ADD COLUMN IF NOT EXISTS user_directives JSONB NOT NULL DEFAULT '{}'::jsonb
+        """))
+
+        await conn.execute(text("""
+            ALTER TABLE runs
+                ADD COLUMN IF NOT EXISTS target_strategy JSONB
         """))
 
         await conn.execute(text("""

@@ -31,19 +31,78 @@ from sklearn.preprocessing import (
 
 from sklearn.preprocessing import LabelEncoder
 
-from backend.models.strategy import PreprocessingStrategy
+from backend.models.strategy import PreprocessingStrategy, TargetStrategy
 
 logger = logging.getLogger(__name__)
+
+
+def apply_target_hygiene(
+    df: pd.DataFrame,
+    target_col: str,
+    target_strategy: TargetStrategy | dict[str, Any] | None,
+) -> pd.DataFrame:
+    """Apply target-level hygiene before profiling/training (§7, §10).
+
+    - Drops rows whose target is an "unlabelled" placeholder (drop_labels).
+    - Collapses a multiclass target to binary when positive_labels is set:
+      target ∈ positive_labels → 1, else 0.
+
+    Matching is case-insensitive and whitespace-trimmed. Returns the original frame
+    unchanged when there is no strategy or the target column is absent, so callers
+    can always route through this helper. A binary collapse that would match no rows
+    is skipped (and logged) rather than producing an all-zero target.
+    """
+    if target_strategy is None or target_col not in df.columns:
+        return df
+    if isinstance(target_strategy, dict):
+        target_strategy = TargetStrategy.model_validate(target_strategy)
+    if target_strategy.is_empty():
+        return df
+
+    out = df
+    norm = out[target_col].astype(str).str.strip().str.lower()
+
+    drop_set = {str(v).strip().lower() for v in target_strategy.drop_labels}
+    if drop_set:
+        mask = norm.isin(drop_set)
+        if mask.any():
+            logger.info(
+                "target hygiene: dropping %d unlabelled rows (labels=%s)",
+                int(mask.sum()), sorted(drop_set),
+            )
+            out = out.loc[~mask].copy()
+            norm = norm.loc[~mask]
+
+    pos_set = {str(v).strip().lower() for v in target_strategy.positive_labels}
+    if pos_set:
+        is_pos = norm.isin(pos_set)
+        if is_pos.any():
+            out = out.copy()
+            out[target_col] = is_pos.astype(int).to_numpy()
+            logger.info(
+                "target hygiene: collapsed target to binary (positive=%s, %d positives)",
+                sorted(pos_set), int(is_pos.sum()),
+            )
+        else:
+            logger.warning(
+                "target hygiene: no rows match positive_labels %s - skipping binary "
+                "collapse to avoid an all-zero target", sorted(pos_set),
+            )
+    return out
 
 
 def prepare_data(
     df: pd.DataFrame,
     strategy: PreprocessingStrategy,
+    target_strategy: TargetStrategy | dict[str, Any] | None = None,
 ) -> tuple[pd.DataFrame, pd.Series]:
     """Drop tagged columns and extract target. No fitting.
 
     Returns (X, y) where X contains only feature columns (not target,
     not drop-tagged columns) and y is the target series.
+
+    target_strategy (optional) applies target hygiene first - drop unlabelled rows
+    and collapse to binary - so train/eval match the EDA-time profiling.
 
     y is always integer-encoded for classification targets so sklearn scorers
     (roc_auc, f1, etc.) receive 0/1 labels rather than raw strings.
@@ -51,6 +110,8 @@ def prepare_data(
     target = strategy.target_column
     if target not in df.columns:
         raise ValueError(f"Target column {target!r} not found in DataFrame")
+
+    df = apply_target_hygiene(df, target, target_strategy)
 
     # Columns explicitly tagged drop
     drop_cols = [
@@ -247,7 +308,13 @@ def build_preprocessor(
     if categorical_cols:
         cat_imputer = _pick_imputer_for_group(strategy, categorical_cols, "most_frequent")
         cat_encoder = _pick_encoder_for_group(strategy, categorical_cols, X)
-        cat_steps: list[tuple[str, Any]] = [("imputer", cat_imputer), ("encoder", cat_encoder)]
+        # Coerce to a uniform object/str block first so a mixed bool/str/numeric
+        # categorical group cannot trip the imputer's dtype validation.
+        cat_steps: list[tuple[str, Any]] = [
+            ("coerce", FunctionTransformer(_coerce_categorical_array, feature_names_out="one-to-one")),
+            ("imputer", cat_imputer),
+            ("encoder", cat_encoder),
+        ]
         transformers.append(("cat", Pipeline(cat_steps), categorical_cols))
 
     if not transformers:
@@ -303,6 +370,25 @@ def _coerce_numeric_array(arr: Any) -> np.ndarray:
     """
     df = pd.DataFrame(arr)
     return df.apply(lambda c: pd.to_numeric(c, errors="coerce")).to_numpy()
+
+
+def _coerce_categorical_array(arr: Any) -> np.ndarray:
+    """Cast a categorical-column slice to a uniform object/str array.
+
+    The categorical group routinely mixes string, boolean and numeric-looking
+    columns. Some sklearn/pandas versions infer a float dtype for such a mixed
+    block, which then makes SimpleImputer(strategy="most_frequent") fail with
+    "could not convert string to float: '...'". Casting every non-null value to
+    str (leaving NaN intact so the imputer still fills it) yields a stable object
+    array that imputes and one-hot-encodes consistently across versions.
+
+    Module-level (not a lambda) so the fitted ColumnTransformer stays picklable.
+    """
+    df = pd.DataFrame(arr).astype(object)
+    for col in df.columns:
+        mask = df[col].notna()
+        df.loc[mask, col] = df.loc[mask, col].astype(str)
+    return df.to_numpy(dtype=object)
 
 
 def _pick_imputer_for_group(

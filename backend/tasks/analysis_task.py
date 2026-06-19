@@ -36,7 +36,7 @@ from sqlalchemy import select
 
 from backend.core import audit
 from backend.core.config import settings
-from backend.core.database import ChatMessage as DBChatMessage, Dataset, Run, async_session_factory
+from backend.core.database import ChatMessage as DBChatMessage, Dataset, Project, Run, async_session_factory
 from backend.core.events import ProgressEmitter, emit_progress
 from backend.core.storage import storage
 from backend.core.strategy_mutator import flush_pending_intents
@@ -104,6 +104,99 @@ def rerun_step_for(current_step: str | None) -> str | None:
     if current_step in _STEP_ROUTING:
         return current_step
     return None
+
+
+# ── Override-driven step re-run ────────────────────────────────────────────────
+# When a chat override mutates a pipeline decision, editing the field is not
+# enough: the downstream step that CONSUMES the decision must re-run for the
+# change to take effect. The target step consumes the decision (it does not
+# regenerate it via an LLM agent), so re-running it realises the override
+# without clobbering it - e.g. _step_training reads model_selection.primary and
+# recomputes best_model_name, but never rewrites model_selection.
+
+_OVERRIDE_RECOMPUTE_STEP: dict[str, str] = {
+    # Re-run the PRODUCING agent so the human directive is sent to the AI and the
+    # strategy is regenerated honouring it, then re-pause at checkpoint 2. The
+    # full retrain Rule 8 requires still happens: resuming past checkpoint 2 flows
+    # through model_selection → training on the regenerated strategy.
+    "preprocessing": "preprocessing",
+    # Target hygiene changes the task type, class distribution and every downstream
+    # decision, so it re-runs from EDA and re-pauses at checkpoint 1.
+    "target": "eda",
+    "model_selection": "training",    # primary/candidate change → re-evaluate + re-pick
+    "threshold": "tuning",            # threshold/cost matrix feeds calibration/eval in step 5
+    "fairness": "tuning",             # protected-attribute change → re-run the fairness audit
+}
+
+# Ordinal position of each checkpoint pause and each recompute-target step in the
+# pipeline. Used to decide whether an override invalidates ALREADY-computed state
+# (recompute needed now) or only future state (the normal resume will pick it up).
+_STAGE_ORDER: dict[str, int] = {
+    "checkpoint_1_eda": 1,
+    "checkpoint_2_preprocessing": 2,
+    "checkpoint_3_model_selection": 3,
+    "checkpoint_4_training": 4,
+    "checkpoint_5_final": 5,
+    "eda": 1,
+    "preprocessing": 2,
+    "model_selection": 3,
+    "training": 4,
+    "tuning": 5,
+}
+
+
+def resolve_training_primary(
+    model_selection: dict[str, Any],
+    result_names: list[str],
+    fallback: str,
+) -> str:
+    """Resolve the winning model at the training checkpoint.
+
+    A user override (model_selection["primary_source"] == "user_override") is
+    AUTHORITATIVE: it is honoured exactly and never silently replaced by the
+    leaderboard winner, even when scores tie. This is the whole point of the
+    chat override - "use logistic_regression instead of lightgbm" forces that
+    model, it does not request a re-comparison that might switch back.
+
+    Without an override, the agent's recommended primary is used when it was
+    actually trained, otherwise the top stability result (fallback) wins.
+    """
+    primary = model_selection.get("primary")
+    user_forced = model_selection.get("primary_source") == "user_override"
+
+    if user_forced and primary:
+        if primary not in result_names:
+            logger.error(
+                "User-forced primary %r was not among trained candidates %s - "
+                "honouring the override regardless; its leaderboard score will be unavailable.",
+                primary, result_names,
+            )
+        else:
+            logger.info("Honouring user override: primary model forced to %r", primary)
+        return primary
+
+    if primary and primary in result_names:
+        return primary
+    return fallback
+
+
+def rerun_step_for_override(category: str, current_step: str | None) -> str | None:
+    """Return the step to re-run so a chat override takes effect, or None.
+
+    Returns the recompute-target step only when the override invalidates state
+    that has ALREADY been computed at or before the current checkpoint. Returns
+    None when the overridden decision's downstream step has not run yet (the
+    normal resume will consume the change) or when the category drives no
+    recompute (e.g. fairness/drift, applied in-place).
+    """
+    recompute = _OVERRIDE_RECOMPUTE_STEP.get(category)
+    if recompute is None or not current_step:
+        return None
+    current_stage = _STAGE_ORDER.get(current_step)
+    recompute_stage = _STAGE_ORDER.get(recompute)
+    if current_stage is None or recompute_stage is None:
+        return None
+    return recompute if recompute_stage <= current_stage else None
 
 
 # ── Celery entry point ─────────────────────────────────────────────────────────
@@ -185,6 +278,45 @@ async def _step_eda(session: Any, run: Run, emitter: ProgressEmitter) -> None:
     df = _parse_dataframe(raw_bytes, dataset.filename)
     await emitter.emit_async("load", "Dataset loaded", 8)
 
+    # ── Target hygiene (§7, §10) ───────────────────────────────────────────────
+    # Drop unlabelled rows + collapse the target to binary BEFORE profiling, so the
+    # task type and class distribution reflect the real modelling target rather than
+    # treating an "unknown" placeholder as a class. Derived from the case brief +
+    # deterministic unlabelled detection, merged with any chat override recorded on
+    # the run (the human's override wins). Persisted so training applies the same.
+    if dataset.target_column:
+        target_strategy = await _resolve_target_strategy(session, run, dataset, df)
+        if not target_strategy.is_empty():
+            from backend.ml.cleaner import apply_target_hygiene
+
+            n_before = len(df)
+            df = apply_target_hygiene(df, dataset.target_column, target_strategy)
+            await emitter.emit_async(
+                "target_hygiene",
+                f"Applied target hygiene: {n_before - len(df)} unlabelled rows dropped"
+                + ("; target collapsed to binary" if target_strategy.positive_labels else ""),
+                9,
+            )
+            await audit.append(
+                session, run_id=run_id, actor="system", category="target_hygiene",
+                action="target_hygiene_applied",
+                payload={
+                    "drop_labels": target_strategy.drop_labels,
+                    "positive_labels": target_strategy.positive_labels,
+                    "rows_before": n_before,
+                    "rows_after": len(df),
+                    "source": target_strategy.note,
+                },
+                reason=(
+                    f"Dropped {n_before - len(df)} unlabelled rows"
+                    + (f"; collapsed target to binary (positive={target_strategy.positive_labels})"
+                       if target_strategy.positive_labels else "")
+                ),
+            )
+        run.target_strategy = target_strategy.model_dump(mode="json")
+        session.add(run)
+        await session.commit()
+
     # Profile
     await emitter.emit_async("profile", "Profiling dataset…", 10)
     full_profile = profile_dataset(df, target_column=dataset.target_column)
@@ -217,6 +349,13 @@ async def _step_eda(session: Any, run: Run, emitter: ProgressEmitter) -> None:
     await session.commit()
 
     eda_report = await run_eda_agent(session, run_id, compressed, emitter)
+
+    # The target column and task type are deterministic facts from the dataset
+    # and profiler - not LLM opinions. The agent's free-form target_analysis
+    # often omits these structured fields, leaving the EDA checkpoint showing
+    # "—", so always populate them here.
+    eda_report.target_analysis["column"] = dataset.target_column or "(none specified)"
+    eda_report.target_analysis["task_type"] = full_profile.task_type
 
     # Deterministic leakage + target-hygiene scan (domain-agnostic, §7/§9). Runs
     # regardless of what the LLM agent surfaced, so proxy leakage (a categorical
@@ -350,6 +489,10 @@ async def _step_preprocessing(session: Any, run: Run, emitter: ProgressEmitter) 
     from backend.agents.preprocessing_agent import run_preprocessing_agent
 
     compressed = _compress_stored_profile(dataset.profile or {})
+    # Replay any human overrides recorded in chat for this step so the agent
+    # regenerates the strategy honouring them (§2, §21). On a re-run after an
+    # override, these carry the clinician's verbatim instruction(s).
+    directives = list((run.user_directives or {}).get("preprocessing", []))
     strategy = await run_preprocessing_agent(
         session, run_id,
         compressed_profile=compressed,
@@ -357,6 +500,7 @@ async def _step_preprocessing(session: Any, run: Run, emitter: ProgressEmitter) 
         target_column=dataset.target_column,
         task_type=dataset.task_type or run.eda_report.get("target_analysis", {}).get("task_type", "binary_classification"),
         emitter=emitter,
+        user_directives=directives,
     )
 
     run.status = "awaiting_checkpoint"
@@ -516,8 +660,17 @@ async def _step_training(session: Any, run: Run, emitter: ProgressEmitter) -> No
             await session.commit()
 
     model_selection = run.model_selection
+    logger.info(
+        "Run %s training: model_selection.primary=%r source=%r candidates=%s",
+        run.id,
+        model_selection.get("primary"),
+        model_selection.get("primary_source"),
+        model_selection.get("candidates"),
+    )
 
-    X, y = prepare_data(df, prep_strategy)
+    # Apply the same target hygiene used at profiling time so train/eval match the
+    # EDA-time target (unlabelled rows dropped, binary collapse). §7, §10.
+    X, y = prepare_data(df, prep_strategy, target_strategy=run.target_strategy)
     X_train, X_test, y_train, y_test = split_train_test(
         X, y, prep_strategy.task_type, test_size=0.2, random_state=42
     )
@@ -541,17 +694,40 @@ async def _step_training(session: Any, run: Run, emitter: ProgressEmitter) -> No
     stat_test_result = maybe_run_stat_test(stability_results[:2], prep_strategy.task_type)
     stat_tests_dict = stat_test_result or {}
 
-    # Determine winner (may be overridden by user via chat)
-    primary = model_selection.get("primary", stability_results[0].model_name if stability_results else "xgboost")
-    # If primary is in results, confirm it's still a reasonable choice
+    # Determine winner. A chat override is authoritative (see
+    # resolve_training_primary) - it is never silently replaced by the
+    # leaderboard winner.
     result_names = [r.model_name for r in stability_results]
-    if primary not in result_names and stability_results:
-        primary = stability_results[0].model_name
+    fallback = stability_results[0].model_name if stability_results else "xgboost"
+    primary = resolve_training_primary(model_selection, result_names, fallback)
 
     best_result = next((r for r in stability_results if r.model_name == primary), stability_results[0] if stability_results else None)
     best_score = best_result.mean if best_result else 0.0
 
+    # Separate two distinct concepts that diverge under a user override:
+    #   metric_winner  - the highest-scoring model (top of the sorted leaderboard)
+    #   primary        - the model SELECTED to go forward (may be a human override)
+    # Calling the selected model "best" when the user forced a lower-scoring model
+    # is wrong, so the audit/checkpoint distinguish them explicitly.
+    metric_winner_result = stability_results[0] if stability_results else None
+    metric_winner = metric_winner_result.model_name if metric_winner_result else primary
+    metric_winner_score = metric_winner_result.mean if metric_winner_result else 0.0
+    metric = model_selection.get("primary_metric", "score")
+    primary_is_override = (
+        model_selection.get("primary_source") == "user_override" and primary != metric_winner
+    )
+
     model_comparison = [r.model_dump() for r in stability_results]
+
+    if primary_is_override:
+        training_reason = (
+            f"Selected primary: {primary} ({best_score:.4f} {metric}) - manual override. "
+            f"Highest {metric}: {metric_winner} ({metric_winner_score:.4f})"
+        )
+    elif best_result:
+        training_reason = f"Selected primary: {primary} ({best_score:.4f} mean ± {best_result.std:.4f} std)"
+    else:
+        training_reason = "training complete"
 
     await audit.append(
         session, run_id=run_id, actor="system", category="training",
@@ -560,12 +736,15 @@ async def _step_training(session: Any, run: Run, emitter: ProgressEmitter) -> No
             "candidates": candidates,
             "n_seeds": 3,
             "n_folds": 5,
-            "best_model": primary,
-            "best_score": round(best_score, 6),
+            "selected_primary": primary,
+            "selected_primary_score": round(best_score, 6),
+            "primary_is_override": primary_is_override,
+            "metric_winner": metric_winner,
+            "metric_winner_score": round(metric_winner_score, 6),
             "stat_test_run": stat_test_result is not None,
             "stat_test_p_value": stat_test_result.get("p_value") if stat_test_result else None,
         },
-        reason=f"Best: {primary} ({best_score:.4f} mean ± {best_result.std:.4f} std)" if best_result else "training complete",
+        reason=training_reason,
     )
     await session.commit()
 
@@ -598,15 +777,29 @@ async def _step_training(session: Any, run: Run, emitter: ProgressEmitter) -> No
 
     await run_plots(run_id, "training")
 
+    if primary_is_override:
+        checkpoint_msg = (
+            f"Training complete - primary: {primary} ({best_score:.4f}, your override) | "
+            f"highest {metric}: {metric_winner} ({metric_winner_score:.4f}){stat_msg}"
+        )
+    else:
+        checkpoint_msg = (
+            f"Training complete - primary: {primary} "
+            f"({best_score:.4f}±{(best_result.std if best_result else 0):.4f}){stat_msg}"
+        )
+
     await emitter.emit_async(
         "checkpoint",
-        f"Training complete - best: {primary} ({best_score:.4f}±{(best_result.std if best_result else 0):.4f}){stat_msg}",
+        checkpoint_msg,
         72,
         {
             "checkpoint": 4,
             "step": "training",
-            "best_model": primary,
-            "best_score": round(best_score, 4),
+            "selected_primary": primary,
+            "selected_primary_score": round(best_score, 4),
+            "primary_is_override": primary_is_override,
+            "metric_winner": metric_winner,
+            "metric_winner_score": round(metric_winner_score, 4),
             "stat_test": stat_test_result,
             "leaderboard": [
                 {"name": r.model_name, "mean": round(r.mean, 4), "std": round(r.std, 4)}
@@ -1045,7 +1238,9 @@ async def _step_tuning(session: Any, run: Run, emitter: ProgressEmitter) -> None
                 if target_col in df_holdout.columns:
                     from backend.ml.cleaner import prepare_data
 
-                    X_ho, y_ho = prepare_data(df_holdout, prep_strategy)
+                    X_ho, y_ho = prepare_data(
+                        df_holdout, prep_strategy, target_strategy=run.target_strategy
+                    )
                     holdout_metrics = _compute_final_metrics(
                         calibrated_pipeline, X_ho, y_ho,
                         prep_strategy.task_type, optimal_threshold
@@ -1293,14 +1488,76 @@ def _compute_eval_plots(
             pass
 
     elif task_type == "multiclass":
-        from sklearn.metrics import confusion_matrix
+        from sklearn.metrics import (
+            confusion_matrix, roc_curve, roc_auc_score,
+            precision_recall_curve, average_precision_score,
+        )
+        from sklearn.calibration import calibration_curve
+
         y_pred = pipeline.predict(X_test)
-        cm = confusion_matrix(y_true, y_pred)
-        classes = sorted(set(y_true.tolist()))
+        # Use the fitted estimator's class order so it lines up with the columns
+        # of predict_proba; fall back to sorted unique labels.
+        classes_attr = getattr(pipeline, "classes_", None)
+        classes = list(classes_attr) if classes_attr is not None else sorted(set(y_true.tolist()))
+
+        cm = confusion_matrix(y_true, y_pred, labels=classes)
         plots["confusion_matrix_multi"] = {
             "matrix": cm.tolist(),
             "classes": [str(c) for c in classes],
         }
+
+        # One-vs-rest curves per class. Capped to keep the payload small and the
+        # results page readable; classes whose support is 0 or 100% are skipped
+        # (their one-vs-rest curve is undefined).
+        try:
+            proba = pipeline.predict_proba(X_test)
+        except Exception:  # noqa: BLE001 - some estimators lack predict_proba
+            proba = None
+
+        if proba is not None and proba.shape[1] == len(classes):
+            max_classes = 10
+            roc_multi: list[dict[str, Any]] = []
+            pr_multi: list[dict[str, Any]] = []
+            cal_multi: list[dict[str, Any]] = []
+            for ci, cls in enumerate(classes[:max_classes]):
+                y_bin = (y_true == cls).astype(int)
+                pos = int(y_bin.sum())
+                if pos == 0 or pos == len(y_bin):
+                    continue
+                p = proba[:, ci]
+
+                fpr, tpr, _ = roc_curve(y_bin, p)
+                roc_multi.append({
+                    "label": str(cls),
+                    "fpr": _downsample(fpr),
+                    "tpr": _downsample(tpr),
+                    "auc": round(float(roc_auc_score(y_bin, p)), 6),
+                })
+
+                prec, rec, _ = precision_recall_curve(y_bin, p)
+                pr_multi.append({
+                    "label": str(cls),
+                    "precision": _downsample(prec),
+                    "recall": _downsample(rec),
+                    "ap": round(float(average_precision_score(y_bin, p)), 6),
+                })
+
+                try:
+                    prob_true, prob_pred = calibration_curve(y_bin, p, n_bins=10)
+                    cal_multi.append({
+                        "label": str(cls),
+                        "prob_true": [round(float(v), 6) for v in prob_true],
+                        "prob_pred": [round(float(v), 6) for v in prob_pred],
+                    })
+                except Exception:  # noqa: BLE001 - too few points in some bins
+                    pass
+
+            if roc_multi:
+                plots["roc_curve_multi"] = roc_multi
+            if pr_multi:
+                plots["pr_curve_multi"] = pr_multi
+            if cal_multi:
+                plots["calibration_curve_multi"] = cal_multi
 
     else:  # regression
         y_pred = pipeline.predict(X_test)
@@ -1333,6 +1590,65 @@ def _compress_stored_profile(profile_dict: dict[str, Any]) -> dict[str, Any]:
     except Exception:
         # Fallback: return without heavy columns
         return {k: v for k, v in profile_dict.items() if k not in ("correlation_matrix",)}
+
+
+async def _resolve_target_strategy(
+    session: Any, run: Run, dataset: Dataset, df: pd.DataFrame
+) -> "Any":
+    """Merge target hygiene from three sources, human override winning (§7, §10).
+
+    Precedence / union:
+      - drop_labels: union of any chat override already on the run, the case brief's
+        drop_labels, and deterministic unlabelled detection on the target. Union is
+        safe - dropping a placeholder row is never harmful and the deterministic
+        scan guarantees "unknown" is caught even if the brief parse refused.
+      - positive_labels (binary collapse): the human override wins; otherwise the
+        brief's. Never inferred deterministically (which class is "positive" is a
+        domain decision), so absent a brief/override the target stays as-is.
+    """
+    from backend.ml.leakage_detector import detect_unlabeled_target_classes
+    from backend.models.strategy import TargetStrategy
+
+    base = (
+        TargetStrategy.model_validate(run.target_strategy)
+        if run.target_strategy else TargetStrategy()
+    )
+
+    project = (
+        await session.execute(select(Project).where(Project.id == run.project_id))
+    ).scalar_one_or_none() if hasattr(run, "project_id") else None
+    brief = (project.case_brief if project else None) or {}
+    brief_ts = brief.get("target_strategy") if brief.get("parsed") else None
+    brief_drop = list((brief_ts or {}).get("drop_labels") or [])
+    brief_pos = list((brief_ts or {}).get("positive_labels") or [])
+
+    detected: list[str] = []
+    if dataset.target_column in df.columns:
+        detected = detect_unlabeled_target_classes(df[dataset.target_column]).suspicious_classes
+
+    drop_labels: list[str] = []
+    seen: set[str] = set()
+    for label in [*base.drop_labels, *brief_drop, *detected]:
+        key = str(label).strip().lower()
+        if key and key not in seen:
+            seen.add(key)
+            drop_labels.append(str(label))
+
+    positive_labels = base.positive_labels or brief_pos
+
+    sources = []
+    if base.drop_labels or base.positive_labels:
+        sources.append("chat override")
+    if brief_ts:
+        sources.append("case brief")
+    if detected:
+        sources.append("unlabelled detection")
+
+    return TargetStrategy(
+        drop_labels=drop_labels,
+        positive_labels=[str(p) for p in positive_labels],
+        note="; ".join(sources),
+    )
 
 
 async def _find_comparison_dataset(session: Any, project_id: str) -> Dataset | None:

@@ -101,7 +101,14 @@ def compute_shap(
     elif model_class in _LINEAR_MODELS:
         explainer_type = "linear"
         if preprocessor is not None and background_data is not None:
-            bg = _to_numpy(background_data)[:MAX_KERNEL_BACKGROUND]
+            # The preprocessor is a ColumnTransformer with string column
+            # selectors, so it must receive a DataFrame - converting to numpy
+            # first raises "Specifying the columns using strings is only
+            # supported for dataframes". Preserve the frame through transform.
+            if isinstance(background_data, pd.DataFrame):
+                bg = background_data.iloc[:MAX_KERNEL_BACKGROUND]
+            else:
+                bg = _to_numpy(background_data)[:MAX_KERNEL_BACKGROUND]
             bg_transformed = np.asarray(preprocessor.transform(bg), dtype=np.float32)
         else:
             bg_transformed = X_transformed[:MAX_KERNEL_BACKGROUND]

@@ -157,6 +157,41 @@ async def get_dataset(
     return DatasetResponse.model_validate(dataset)
 
 
+@router.delete("/{dataset_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_dataset(
+    project_id: str,
+    dataset_id: str,
+    user_id: str = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+) -> None:
+    """Delete a dataset and its stored file.
+
+    Referential integrity is handled by the schema: dataset joins cascade,
+    while runs (training/holdout) and predictions (inference) have their
+    dataset references set to NULL - a completed run keeps its results even
+    after its source dataset is removed. The stored file is deleted on a
+    best-effort basis so a missing object never blocks the DB delete.
+    """
+    await _get_project_or_404(project_id, user_id, db)
+
+    result = await db.execute(
+        select(Dataset).where(Dataset.id == dataset_id, Dataset.project_id == project_id)
+    )
+    dataset = result.scalar_one_or_none()
+    if dataset is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Dataset not found")
+
+    # Best-effort storage cleanup - a missing object must not block deletion.
+    try:
+        if await storage.exists(dataset.storage_path):
+            await storage.delete(dataset.storage_path)
+    except Exception:  # noqa: BLE001 - storage cleanup is non-critical
+        pass
+
+    await db.delete(dataset)
+    await db.commit()
+
+
 @router.patch("/{dataset_id}/role", response_model=DatasetResponse)
 async def update_dataset_role(
     project_id: str,
@@ -260,19 +295,49 @@ async def list_dataset_plots(
     dataset_id: str,
     user_id: str = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
-) -> list[dict]:
-    """Return the manifest of rendered EDA plots for a dataset.
+) -> dict:
+    """Return the manifest of EDA plots for a dataset.
 
-    Available within ~5-30s of upload (depending on dataset size).
-    Returns [] while plots are still rendering.
+    The response is ``{plots, complete, error}``: the full planned plot set
+    (each carrying a ``status`` of ready/failed/pending), a ``complete`` flag so
+    the UI stops the loading indicator deterministically, and an ``error``
+    string when the dataset could not be loaded for row-level plots.
     """
     await _get_project_or_404(project_id, user_id, db)
+    import json
+
     manifest_path = f"datasets/{dataset_id}/plots/manifest.json"
     if not await storage.exists(manifest_path):
-        return []
-    import json
-    raw = await storage.download(manifest_path)
-    return json.loads(raw)
+        return {"plots": [], "complete": False, "error": None}
+
+    manifest = json.loads(await storage.download(manifest_path))
+
+    status: dict = {}
+    status_path = f"datasets/{dataset_id}/plots/render.json"
+    if await storage.exists(status_path):
+        try:
+            status = json.loads(await storage.download(status_path))
+        except Exception:  # noqa: BLE001 - corrupt sidecar means "still rendering"
+            status = {}
+    failed = set(status.get("failed", []))
+
+    plots = []
+    for entry in manifest:
+        has_image = await storage.exists(
+            f"datasets/{dataset_id}/plots/{entry['plot_id']}.png"
+        )
+        plot_status = (
+            "ready" if has_image
+            else "failed" if entry["plot_id"] in failed
+            else "pending"
+        )
+        plots.append({**entry, "has_image": has_image, "status": plot_status})
+
+    return {
+        "plots": plots,
+        "complete": bool(status.get("complete", False)),
+        "error": status.get("df_error"),
+    }
 
 
 @router.get("/{dataset_id}/plots/{plot_id}")

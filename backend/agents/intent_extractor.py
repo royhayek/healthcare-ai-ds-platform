@@ -50,7 +50,7 @@ Return JSON with this schema:
 {{
   "intent": "question | modify | abort | request_artifact | navigate",
   "confidence": 0.0-1.0,
-  "category": "eda | preprocessing | model_selection | threshold | fairness | drift | \
+  "category": "eda | preprocessing | target | model_selection | threshold | fairness | drift | \
 deliverables | request_plot | clinical_query | equity_query | threshold_query | general",
   "structured_payload": {{}},
   "needs_confirmation": false,
@@ -58,11 +58,38 @@ deliverables | request_plot | clinical_query | equity_query | threshold_query | 
 }}
 
 Rules:
-- "modify" intent: structured_payload must include at minimum one of: column, field, value, model
+- "modify" intent: structured_payload must include at minimum one of: column, columns_to_drop, drop_labels, positive_labels, field, value, model
 - "abort" intent: needs_confirmation must be true
 - "question" intent: structured_payload is {{}}
 - confidence < 0.5 → set intent to "question" when uncertain
 - category must match the pipeline area the message is about
+
+Override (modify) categories - a human may override ANY decision at ANY step.
+For a MODIFY, always use the DECISION category (not the *_query question forms):
+- model_selection: change the primary model or candidate set
+  ("use logistic_regression instead", "drop random_forest from candidates")
+  → structured_payload {{"model": "<name>"}}
+- preprocessing: change one or more columns' handling. "drop"/"remove"/"exclude
+  from the feature set" maps to field "action", value "drop".
+  Single column → {{"column": "<col>", "field": "<field>", "value": "<value>"}}
+  Multiple columns dropped together ("drop both clinical_syndrome and clade",
+  "exclude clade and clinical_syndrome - they're relabeled targets") →
+    {{"columns_to_drop": ["clinical_syndrome", "clade"], "field": "action", "value": "drop"}}
+  Always list EVERY column the user named - never collapse "both X and Y" to one.
+- threshold: change the decision threshold or business cost matrix
+  ("set the threshold to 0.3" → {{"threshold": 0.3}};
+   "make a false negative cost 10x a false positive" → {{"cost_matrix": {{"cost_fn": 10, "cost_fp": 1}}}})
+- fairness: change the protected attributes audited for bias
+  ("add age_group to protected attributes" → {{"column": "age_group"}};
+   "audit fairness across sex and race" → {{"protected_columns": ["sex", "race"]}})
+- target: change target-level handling - which label values are UNLABELLED and
+  should have their rows dropped, and/or collapsing the target to binary.
+  ("drop rows where pathogenicity_class is unknown", "the 'unknown' label means
+   unlabelled - drop those rows" → {{"drop_labels": ["unknown"]}};
+   "collapse the target to binary, high vs the rest", "treat high as positive,
+   everything else negative" → {{"positive_labels": ["high"]}};
+   both at once → {{"drop_labels": ["unknown"], "positive_labels": ["high"]}})
+Reserve clinical_query / equity_query / threshold_query for QUESTIONS only.
 
 Clinical category rules:
 - use category "clinical_query" for questions about clinical meaning of model outputs

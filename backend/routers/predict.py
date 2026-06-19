@@ -3,7 +3,7 @@
 POST /runs/{run_id}/predict              - single-row interactive prediction
 POST /runs/{run_id}/predict/batch        - batch inference on an inference dataset
 GET  /runs/{run_id}/predictions          - paginated list of stored predictions
-GET  /runs/{run_id}/predictions/batch    - batch inference job status
+GET  /runs/{run_id}/predictions/count    - count of stored predictions (batch progress)
 """
 
 from __future__ import annotations
@@ -12,13 +12,15 @@ import logging
 from typing import Any
 
 from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi.responses import Response
 from pydantic import BaseModel
-from sqlalchemy import select
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from backend.core import audit
 from backend.core.auth import get_current_user
 from backend.core.database import Dataset, Prediction, Run, get_db
+from backend.core.json_utils import json_safe, safe_float
 from backend.core.storage import storage
 from backend.ml.predictor import load_model_artifacts, predict_single
 
@@ -89,19 +91,22 @@ async def predict(
     result = predict_single(pipeline, sim_index, run_meta, body.input_data)
 
     # ── Persist prediction to DB ───────────────────────────────────────────────
+    similarity = safe_float(result["similarity_score"])
     pred_record = Prediction(
         run_id=run_id,
-        input_data=body.input_data,
-        prediction={"value": result["prediction"]},
-        probability=result["probability"],
-        similarity_score=result["similarity_score"],
+        input_data=json_safe(body.input_data),
+        prediction=json_safe({"value": result["prediction"]}),
+        probability=safe_float(result["probability"]),
+        similarity_score=similarity,
         confidence_band=result["confidence_band"],
-        threshold_used=result["threshold_used"],
-        shap_values={
-            "drivers": result["shap_drivers"],
-            "dampeners": result["shap_dampeners"],
-        },
-        risk_flag=(result["similarity_score"] is not None and result["similarity_score"] < 0.3)
+        threshold_used=safe_float(result["threshold_used"]),
+        shap_values=json_safe(
+            {
+                "drivers": result["shap_drivers"],
+                "dampeners": result["shap_dampeners"],
+            }
+        ),
+        risk_flag=(similarity is not None and similarity < 0.3)
         or result["confidence_band"] == "low",
     )
     db.add(pred_record)
@@ -200,6 +205,86 @@ async def predict_batch(
         n_rows=ds.row_count or 0,
         status="queued",
     )
+
+
+_BATCH_ARTIFACT_FORMATS = {
+    "xlsx": ("xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"),
+    "csv": ("csv", "text/csv; charset=utf-8"),
+    "parquet": ("parquet", "application/octet-stream"),
+}
+
+
+@router.get("/{run_id}/predict/batch/{inference_dataset_id}/download")
+async def download_batch_artifact(
+    run_id: str,
+    inference_dataset_id: str,
+    format: str = Query(default="xlsx"),
+    db: AsyncSession = Depends(get_db),
+    user_id: str = Depends(get_current_user),
+) -> Response:
+    """Stream a batch-inference predictions artifact (xlsx/csv/parquet).
+
+    Mirrors the storage layout written by ``batch_prediction_task``:
+    ``runs/{run_id}/inference_{inference_dataset_id}_predictions.{ext}``.
+    """
+    if format not in _BATCH_ARTIFACT_FORMATS:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Unsupported format '{format}'. Use one of: {', '.join(_BATCH_ARTIFACT_FORMATS)}.",
+        )
+
+    run = await db.get(Run, run_id)
+    if run is None:
+        raise HTTPException(status_code=404, detail="Run not found")
+
+    ext, mime = _BATCH_ARTIFACT_FORMATS[format]
+    path = f"runs/{run_id}/inference_{inference_dataset_id}_predictions.{ext}"
+
+    if not await storage.exists(path):
+        raise HTTPException(
+            status_code=404,
+            detail="Batch predictions artifact not found. Run batch inference first.",
+        )
+
+    try:
+        content = await storage.download(path)
+    except FileNotFoundError as exc:
+        raise HTTPException(
+            status_code=404,
+            detail="Batch predictions artifact not found. Run batch inference first.",
+        ) from exc
+
+    filename = f"predictions_{inference_dataset_id}.{ext}"
+    return Response(
+        content=content,
+        media_type=mime,
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
+
+
+class PredictionCountResponse(BaseModel):
+    run_id: str
+    count: int
+
+
+@router.get("/{run_id}/predictions/count", response_model=PredictionCountResponse)
+async def count_predictions(
+    run_id: str,
+    db: AsyncSession = Depends(get_db),
+    user_id: str = Depends(get_current_user),
+) -> PredictionCountResponse:
+    """Return the number of stored predictions for a run.
+
+    Lightweight progress signal for batch inference polling — avoids fetching
+    full SHAP payloads just to count accumulated rows.
+    """
+    run = await db.get(Run, run_id)
+    if run is None:
+        raise HTTPException(status_code=404, detail="Run not found")
+
+    stmt = select(func.count()).select_from(Prediction).where(Prediction.run_id == run_id)
+    count = (await db.execute(stmt)).scalar_one()
+    return PredictionCountResponse(run_id=run_id, count=count)
 
 
 @router.get("/{run_id}/predictions", response_model=list[PredictionListItem])
